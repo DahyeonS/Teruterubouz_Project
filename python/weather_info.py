@@ -5,7 +5,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-col_name = ['REG_ID', 'TM_FC', 'TM_EF', 'MOD', 'NE', 'STN', 'C', 'MAN_ID', 'MAN_FC', 'W1', 'T', 'W2', 'TA', 'ST', 'SKY', 'PREP', 'WF']
+col_name = ['REG_ID', 'TM_FC', 'TM_EF', 'MOD', 'NE', 'STN', 'C', 'MAN_ID', 'MAN_FC', 'W1', 'T', 'W2', 'TA', 'ST', 'SKY', 'PREP']
 
 def weather(reg) :
     url = 'https://apihub.kma.go.kr/api/typ01/url/fct_afs_dl.php'
@@ -21,12 +21,6 @@ def weather(reg) :
     text = response.text
     text = text.split('\n')[4:-2]
     
-    df = pd.DataFrame(text)[0].str.split(expand=True)
-    for i in range(df.shape[0]) :
-        if df.iloc[i,17] != None :
-            df.iloc[i,16] = df.iloc[i,16] + " " + df.iloc[i,17]
-            if df.iloc[i,18] != None : 
-                df.iloc[i,16] = df.iloc[i,16] + " " + df.iloc[i,18]
-    df = df.iloc[:,:-2]
+    df = pd.DataFrame(text)[0].str.split(expand=True).iloc[:, :16]
     df.columns = col_name
     return df
