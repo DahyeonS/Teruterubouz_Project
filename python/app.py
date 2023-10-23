@@ -106,6 +106,20 @@ for i in range(len(x_test_id)) :
 app = Flask(__name__)
 CORS(app)
 
+# 날씨 데이터 조회
+def weather(reg):
+    df = weather_info.weather(reg)
+    data = []
+    for i in range(df.shape[0]) :
+        item = {}
+        item["date"] =  str(df.iloc[i, 2])
+        item["prob"] = str(df.iloc[i, -3])
+        item["sky"] = str(df.iloc[i, -2])
+        item["rain"] = str(df.iloc[i, -1])
+        data.append(item)
+        result = json.dumps(data)
+    return result
+
 @app.route('/')
 def result():
     return "Hello, world!"
@@ -115,46 +129,16 @@ def result():
     result = json.dumps(data)
     return result
 '''
-@app.route('/seoul')
+@app.route('/seoul') # 서울
 def seoul():
-    df = weather_info.weather('11B10101')
-    data = []
-    for i in range(df.shape[0]) :
-        item = {}
-        item["date"] =  str(df.iloc[i, 2])
-        item["prob"] = str(df.iloc[i, -3])
-        item["sky"] = str(df.iloc[i, -2])
-        item["rain"] = str(df.iloc[i, -1])
-        data.append(item)
-    result = json.dumps(data)
-    return result
+    return weather('11B10101')
 
-@app.route('/incheon')
+@app.route('/incheon') # 인천
 def incheon():
-    df = weather_info.weather('11B20201')
-    data = []
-    for i in range(df.shape[0]) :
-        item = {}
-        item["date"] =  str(df.iloc[i, 2])
-        item["prob"] = str(df.iloc[i, -3])
-        item["sky"] = str(df.iloc[i, -2])
-        item["rain"] = str(df.iloc[i, -1])
-        data.append(item)
-    result = json.dumps(data)
-    return result
+    return weather('11B20201')
 
-@app.route('/busan')
+@app.route('/busan') # 부산
 def busan():
-    df = weather_info.weather('11H20201')
-    data = []
-    for i in range(df.shape[0]) :
-        item = {}
-        item["date"] =  str(df.iloc[i, 2])
-        item["prob"] = str(df.iloc[i, -3])
-        item["sky"] = str(df.iloc[i, -2])
-        item["rain"] = str(df.iloc[i, -1])
-        data.append(item)
-    result = json.dumps(data)
-    return result
+    return weather('11H20201')
 
 app.run(host='127.0.0.1',debug=True, port=5050)
