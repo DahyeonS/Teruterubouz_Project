@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# 날씨 데이터 조회
 import pandas as pd
 import requests
 import warnings
