@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # http://127.0.0.1:5050/
 
+# <데이터 분석>
 # 1. 패키지 임포트
 # (1) 데이터 처리
 import pandas as pd
@@ -19,10 +20,6 @@ from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 # (5) 모델 평가
 from sklearn.metrics import accuracy_score
-# (6) 결과물 전송
-import json
-from flask import Flask
-from flask_cors import CORS
 '''
 
 '''
@@ -89,27 +86,36 @@ model = RandomForestClassifier(max_depth = 15, n_estimators = 500)
 model.fit(X, y)
 prediction = model.predict(x_test)
 
-# 7. 결과물 전송
-# (1) 결과물을 JSON으로 변환
+'''
+# <웹 전송>
+# (1) 패키지 임포트
+import json
+from flask import Flask
+from flask_cors import CORS
+'''
+# (2) 결과물을 JSON으로 변환
 data = []
 for i in range(len(x_test_id)) :
     item = {}
     item["id"] =  str(x_test_id.iloc[i])
     item["smoke"] = str(prediction[i])
     data.append(item)
-   
-# (2) 변환된 결과물을 웹에 전송
+'''   
+# (3) 변환된 결과물을 웹에 전송
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
 def result():
     return "Hello, world!"
-
+'''
 @app.route('/data')
 def result():
     result = json.dumps(data)
     return result
-
-app.run(host='127.0.0.1',debug=True, port=5050)
 '''
+@app.route('/seoul')
+def result():
+    result = json.dumps(data)
+    return result
+app.run(host='127.0.0.1',debug=True, port=5050)
