@@ -12,4 +12,4 @@ CREATE TABLE comment (
 );
 
 -- 확인
-SELECT * FROM reply;
+SELECT * FROM comment;
