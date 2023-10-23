@@ -11,8 +11,8 @@ CREATE TABLE post (
     postdate DATETIME DEFAULT NOW() NOT NULL,
     update_date DATETIME,
     visit_count INT DEFAULT 0,
-    FOREIGN KEY (nickname) REFERENCES member(nickname) ON UPDATE CASCADE,
-    FOREIGN KEY (id) REFERENCES member(id) ON DELETE CASCADE
+    FOREIGN KEY (id) REFERENCES member(id) ON DELETE CASCADE,
+    FOREIGN KEY (nickname) REFERENCES member(nickname) ON UPDATE CASCADE
 );
 
 -- 확인
