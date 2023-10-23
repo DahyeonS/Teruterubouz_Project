@@ -8,7 +8,7 @@ warnings.filterwarnings('ignore')
 
 col_name = ['REG_ID', 'TM_FC', 'TM_EF', 'MOD', 'NE', 'STN', 'C', 'MAN_ID', 'MAN_FC', 'W1', 'T', 'W2', 'TA', 'ST', 'SKY', 'PREP', 'WF']
 
-def weather_seoul(reg) :
+def weather(reg) :
     url = 'https://apihub.kma.go.kr/api/typ01/url/fct_afs_dl.php'
     key = 'KAZL23c3Q2yGS9t3N-Nskw'
     params = {'reg': reg,
