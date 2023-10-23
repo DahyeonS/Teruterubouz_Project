@@ -22,9 +22,7 @@ from sklearn.metrics import accuracy_score
 import json
 
 # 2. 데이터 로드
-x_train = pd.read_csv("")
-y_train = pd.read_csv("")
-x_test= pd.read_csv("")
+data = pd.read_csv("D:/kdigital2307/github/Teruterubouz_Project/python/기상청데이터_기온.csv").iloc[:, [2, 3, 4, 5, 7, 8]]
 
 # 3. 데이터 전처리
 # (1) 범주형 데이터 처리
@@ -69,7 +67,7 @@ pred = xgb.predict(X_val)
 print("XGBoost -", accuracy_score(y_val, pred))
 '''
 # 6. 최종 모델 선정 및 적용
-model = RandomForestClassifier(max_depth = 15, n_estimators = 500)
+model = GaussianNB(max_depth = 15, n_estimators = 500)
 model.fit(X, y)
 prediction = model.predict(x_test)
 
