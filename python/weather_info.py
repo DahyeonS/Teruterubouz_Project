@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 import requests
-from datetime import datetime, timedelta
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -31,6 +30,3 @@ def weather(reg) :
     df = df.iloc[:,:-2]
     df.columns = col_name
     return df
-
-reg = '11B10101' # 서울
-print(weather(reg))
