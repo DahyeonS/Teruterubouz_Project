@@ -117,9 +117,43 @@ def result():
 '''
 @app.route('/seoul')
 def result():
-    item = weather_info.weather('11B10101')
+    df = weather_info.weather('11B10101')
     data = []
-    
+    for i in range(df.shape[0]) :
+        item = {}
+        item["date"] =  str(df.iloc[i, 2])
+        item["prob"] = str(df.iloc[i, -3])
+        item["sky"] = str(df.iloc[i, -2])
+        item["rain"] = str(df.iloc[i, -1])
+        data.append(item)
+    result = json.dumps(data)
+    return result
+
+@app.route('/incheon')
+def result():
+    df = weather_info.weather('11B20201')
+    data = []
+    for i in range(df.shape[0]) :
+        item = {}
+        item["date"] =  str(df.iloc[i, 2])
+        item["prob"] = str(df.iloc[i, -3])
+        item["sky"] = str(df.iloc[i, -2])
+        item["rain"] = str(df.iloc[i, -1])
+        data.append(item)
+    result = json.dumps(data)
+    return result
+
+@app.route('/busan')
+def result():
+    df = weather_info.weather('11H20201')
+    data = []
+    for i in range(df.shape[0]) :
+        item = {}
+        item["date"] =  str(df.iloc[i, 2])
+        item["prob"] = str(df.iloc[i, -3])
+        item["sky"] = str(df.iloc[i, -2])
+        item["rain"] = str(df.iloc[i, -1])
+        data.append(item)
     result = json.dumps(data)
     return result
 
