@@ -116,7 +116,7 @@ def result():
     return result
 '''
 @app.route('/seoul')
-def result():
+def seoul():
     df = weather_info.weather('11B10101')
     data = []
     for i in range(df.shape[0]) :
@@ -130,7 +130,7 @@ def result():
     return result
 
 @app.route('/incheon')
-def result():
+def incheon():
     df = weather_info.weather('11B20201')
     data = []
     for i in range(df.shape[0]) :
@@ -144,7 +144,7 @@ def result():
     return result
 
 @app.route('/busan')
-def result():
+def busan():
     df = weather_info.weather('11H20201')
     data = []
     for i in range(df.shape[0]) :
