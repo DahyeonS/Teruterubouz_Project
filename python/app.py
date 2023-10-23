@@ -92,6 +92,7 @@ prediction = model.predict(x_test)
 import json
 from flask import Flask
 from flask_cors import CORS
+import weather_info
 '''
 # (2) 결과물을 JSON으로 변환
 data = []
@@ -100,7 +101,7 @@ for i in range(len(x_test_id)) :
     item["id"] =  str(x_test_id.iloc[i])
     item["smoke"] = str(prediction[i])
     data.append(item)
-'''   
+'''
 # (3) 변환된 결과물을 웹에 전송
 app = Flask(__name__)
 CORS(app)
@@ -116,6 +117,10 @@ def result():
 '''
 @app.route('/seoul')
 def result():
+    item = weather_info.weather('11B10101')
+    data = []
+    
     result = json.dumps(data)
     return result
+
 app.run(host='127.0.0.1',debug=True, port=5050)
