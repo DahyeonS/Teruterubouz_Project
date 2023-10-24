@@ -56,10 +56,10 @@ def temp_month_info():
     
     for i in range(df.shape[0]) :
         item = {}
-        item['month'] = str(df.index[i])
-        item['avg'] =  str(df.iloc[i, 0])
-        item['max'] = str(df.iloc[i, 1])
-        item['min'] = str(df.iloc[i, 2])
+        item['month'] = df.index[i]
+        item['avg'] =  df.iloc[i, 0]
+        item['max'] = df.iloc[i, 1]
+        item['min'] = df.iloc[i, 2]
         data.append(item)
         result = json.dumps(data)
         
