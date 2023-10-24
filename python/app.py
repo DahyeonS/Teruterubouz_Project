@@ -10,6 +10,7 @@ import temp_rf
 import temp_svm
 import precipitation
 import rain_rf
+import rain_svm
 
 # 2. 결과물을 웹에 전송
 app = Flask(__name__)
