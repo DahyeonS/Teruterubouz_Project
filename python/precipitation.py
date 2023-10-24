@@ -35,7 +35,7 @@ def month():
     
     return result
 
-def temp_year_info():
+def rain_year_info():
     df = year_info()
     data = []
     
@@ -50,7 +50,7 @@ def temp_year_info():
         
     return result
 
-def temp_month_info():
+def rain_month_info():
     df = month_info()
     data = []
     
