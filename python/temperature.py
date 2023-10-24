@@ -2,6 +2,7 @@
 # 기온 데이터 처리
 
 import pandas as pd
+import json
 
 data = pd.read_csv("D:/kdigital2307/github/Teruterubouz_Project/python/기상청데이터_기온.csv").iloc[:, [2, 3, 4, 5, 7, 8]]
 
@@ -32,4 +33,34 @@ def month():
     result = data.copy().iloc[: , [0, 1, 3, 5]]
     result['일시'] = result['일시'].str[5:7]
     
+    return result
+
+def temp_year_info():
+    df = year_info()
+    data = []
+    
+    for i in range(df.shape[0]) :
+        item = {}
+        item['year'] = int(df.index[i])
+        item['avg'] =  df.iloc[i, 0]
+        item['max'] = df.iloc[i, 1]
+        item['min'] = df.iloc[i, 2]
+        data.append(item)
+        result = json.dumps(data)
+        
+    return result
+
+def temp_month_info():
+    df = month_info()
+    data = []
+    
+    for i in range(df.shape[0]) :
+        item = {}
+        item['month'] = str(df.index[i])
+        item['avg'] =  str(df.iloc[i, 0])
+        item['max'] = str(df.iloc[i, 1])
+        item['min'] = str(df.iloc[i, 2])
+        data.append(item)
+        result = json.dumps(data)
+        
     return result
