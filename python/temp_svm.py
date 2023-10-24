@@ -8,7 +8,7 @@ import temperature
 # (2) 데이터셋 분리
 from sklearn.model_selection import train_test_split
 # (3) 모델링
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.svm import SVR
 # (4) 모델 평가
 from sklearn.metrics import mean_squared_error
 # (5) 결과값 전송
@@ -25,13 +25,13 @@ y = np.array(month['평균기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # (2). 모델링
-rf = RandomForestRegressor(n_estimators=500, min_samples_split=3)
-rf.fit(X_tr, y_tr)
-pred = rf.predict(X_val)
-print("Random Forest -", mean_squared_error(y_val, pred))
+sv = SVR()
+sv.fit(X_tr, y_tr)
+pred = sv.predict(X_val)
+print("SV -", mean_squared_error(y_val, pred))
 
 # (3). 모델 적용
-model = RandomForestRegressor(n_estimators=500, min_samples_split=3)
+model = SVR()
 model.fit(X, y)
 month_list = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
 prediction = model.predict(month_list)
@@ -44,9 +44,9 @@ y = np.array(month['최고기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # (2). 모델링
-rf.fit(X_tr, y_tr)
-pred = rf.predict(X_val)
-print("Random Forest -", mean_squared_error(y_val, pred))
+sv.fit(X_tr, y_tr)
+pred = sv.predict(X_val)
+print("SV -", mean_squared_error(y_val, pred))
 
 # (3). 모델 적용
 model.fit(X, y)
@@ -61,9 +61,9 @@ y = np.array(month['최저기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # (2). 모델링
-rf.fit(X_tr, y_tr)
-pred = rf.predict(X_val)
-print("Random Forest -", mean_squared_error(y_val, pred))
+sv.fit(X_tr, y_tr)
+pred = sv.predict(X_val)
+print("SV -", mean_squared_error(y_val, pred))
 
 # (3). 모델 적용
 model.fit(X, y)
@@ -78,9 +78,9 @@ def result():
     for i in range(12) :
         item = {}
         item['month'] = i+1
-        item['avg'] = month_avg[i]
-        item['max'] = month_max[i]
-        item['min'] = month_min[i]
+        item['avg'] = round(month_avg[i].astype('float64'), 1)
+        item['max'] = round(month_max[i].astype('float64'), 1)
+        item['min'] = round(month_min[i].astype('float64'), 1)
         data.append(item)
     
     result = json.dumps(data)

@@ -15,8 +15,8 @@ from sklearn.metrics import mean_squared_error
 import json
 
 # 2. 데이터 로드
-year = precipitation.year().fillna(0)
-month = precipitation.month().fillna(0)
+year = precipitation.year()
+month = precipitation.month()
 
 # 3. 연간 데이터 분석
 # (1). 평균일강수량 예측
@@ -39,7 +39,10 @@ prediction = model.predict([[2024]])
 year_avg = round(prediction[0], 1)
 
 # (2). 최다일강수량 예측
-y = np.array(year['최다일강수량(mm)']).reshape(-1, 1)
+year_new = year.groupby(['일시']).max()
+
+X = np.array(year_new.index).reshape(-1, 1)
+y = np.array(year_new['최다일강수량(mm)']).reshape(-1, 1)
 
 # 데이터셋 분리
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
@@ -55,7 +58,7 @@ prediction = model.predict([[2024]])
 year_max = round(prediction[0], 1)
 
 # (3). 1시간최다강수량 예측
-y = np.array(year['1시간최다강수량(mm)']).reshape(-1, 1)
+y = np.array(year_new['1시간최다강수량(mm)']).reshape(-1, 1)
 
 # 데이터셋 분리
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
