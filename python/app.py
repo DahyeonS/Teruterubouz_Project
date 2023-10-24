@@ -4,6 +4,7 @@
 # 1. 패키지 임포트
 from flask import Flask
 from flask_cors import CORS
+
 import weather_info
 import temperature
 import temp_rf
@@ -32,7 +33,31 @@ def incheon():
 def busan():
     return weather_info.weather('11H20201')
 
-@app.route('/temp') # 기온 통계
+@app.route('/daejeon') # 대전
+def daejeon():
+    return weather_info.weather('11C20401')
+
+@app.route('/daegu') # 대구
+def daegu():
+    return weather_info.weather('11H10701')
+
+@app.route('/ulsan') # 울산
+def ulsan():
+    return weather_info.weather('11H20101')
+
+@app.route('/sejong') # 세종
+def sejong():
+    return weather_info.weather('11C20404')
+
+@app.route('/gwangju') # 광주
+def gwangju():
+    return weather_info.weather('11B20702')
+
+@app.route('/jeju') # 제주
+def jeju():
+    return weather_info.weather('11G00201')
+
+@app.route('/temp') # 월별 기온 통계
 def temp_info():
     return temperature.temp_info()
 
@@ -40,7 +65,7 @@ def temp_info():
 def temper_rf():
     return temp_rf.result()
 
-@app.route('/temp/svm') # 월별 기온 예측 - 서포트 벡터머
+@app.route('/temp/svm') # 월별 기온 예측 - 서포트 벡터머신
 def temper_svm():
     return temp_svm.result()
 
@@ -52,7 +77,7 @@ def pre_info():
 def pre_rf():
     return rain_rf.result()
 
-@app.route('/rain/svm') # 월별 기온 예측 - 서포트 벡터머
+@app.route('/rain/svm') # 월별 강수량 예측 - 서포트 벡터머신
 def pre_svm():
     return rain_svm.result()
 
