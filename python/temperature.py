@@ -20,3 +20,16 @@ def month_info():
     
     result = pd.DataFrame({'평균기온':avg_temp, '평균최고기온':max_temp, '평균최저기온':min_temp})
     return result
+
+def year():
+    result = data.copy().iloc[: , [0, 1, 3, 5]]
+    result['일시'] = result['일시'].str[:4]
+    result = result.drop(result[result['일시'] == '2023'].index, axis=0)
+    
+    return result
+
+def month(): 
+    result = data.copy().iloc[: , [0, 1, 3, 5]]
+    result['일시'] = result['일시'].str[5:7]
+    
+    return result
