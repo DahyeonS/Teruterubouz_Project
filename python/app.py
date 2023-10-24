@@ -23,6 +23,7 @@ for i in range(len(x_test_id)) :
 def weather(reg):
     df = weather_info.weather(reg)
     data = []
+    
     for i in range(df.shape[0]) :
         item = {}
         item["date"] =  str(df.iloc[i, 2])
@@ -31,6 +32,7 @@ def weather(reg):
         item["rain"] = str(df.iloc[i, -1])
         data.append(item)
         result = json.dumps(data)
+        
     return result
 
 # 3. 변환된 결과물을 웹에 전송
@@ -62,28 +64,32 @@ def busan():
 def temp_year_info():
     df = temperature.year_info()
     data = []
+    
     for i in range(df.shape[0]) :
         item = {}
         item["year"] = str(df.index[i])
-        item["avg"] =  str(df.iloc[i, 1])
-        item["max"] = str(df.iloc[i, 2])
-        item["min"] = str(df.iloc[i, -3])
+        item["avg"] =  str(df.iloc[i, 0])
+        item["max"] = str(df.iloc[i, 1])
+        item["min"] = str(df.iloc[i, 2])
         data.append(item)
         result = json.dumps(data)
+        
     return result
 
 @app.route('temp/month/info') # 연별 기온 통계
 def temp_month_info():
     df = temperature.month_info()
     data = []
+    
     for i in range(df.shape[0]) :
         item = {}
         item["month"] = str(df.index[i])
-        item["avg"] =  str(df.iloc[i, 1])
-        item["max"] = str(df.iloc[i, 2])
-        item["min"] = str(df.iloc[i, -3])
+        item["avg"] =  str(df.iloc[i, 0])
+        item["max"] = str(df.iloc[i, 1])
+        item["min"] = str(df.iloc[i, 2])
         data.append(item)
         result = json.dumps(data)
+        
     return result
 
 app.run(host='127.0.0.1',debug=True, port=5050)
