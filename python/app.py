@@ -8,6 +8,7 @@ import weather_info
 import temperature
 import temp_dt
 import temp_rf
+import temp_xgb
 
 # 2. 결과물을 웹에 전송
 app = Flask(__name__)
@@ -52,5 +53,13 @@ def temp_year_rf():
 @app.route('/temp/month/rf') # 월별 기온 예측 - 랜덤포레스트
 def temp_month_rf():
     return temp_rf.month()
+
+@app.route('/temp/year/xgb') # 연별 기온 예측 - 부스팅
+def temp_year_xgb():
+    return temp_xgb.year()
+
+@app.route('/temp/month/xgb') # 월별 기온 예측 - 부스팅
+def temp_month_xgb():
+    return temp_xgb.month()
 
 app.run(host='127.0.0.1',debug=True, port=5050)
