@@ -4,7 +4,7 @@
 # 1. 패키지 임포트
 # (1) 데이터 처리
 import numpy as np
-import temperature
+import precipitation
 # (2) 데이터셋 분리
 from sklearn.model_selection import train_test_split
 # (3) 모델링
@@ -15,11 +15,11 @@ from sklearn.metrics import mean_squared_error
 import json
 
 # 2. 데이터 로드
-month = temperature.month()
+month = precipitation.month()
 
-# 3. 평균기온 예측
+# 3. 평균일강수량 예측
 X = np.array(month['일시']).reshape(-1, 1)
-y = np.array(month['평균기온(℃)']).reshape(-1, 1)
+y = np.array(month['평균일강수량(mm)']).reshape(-1, 1)
 
 # (1). 데이터셋 분리
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
@@ -37,8 +37,9 @@ month_list = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
 prediction = model.predict(month_list)
 month_avg = np.round(prediction, 1)
 
-# 4. 최고기온 예측
-y = np.array(month['최고기온(℃)']).reshape(-1, 1)
+# 4. 최다일강수량 예측
+X = np.array(month['일시']).reshape(-1, 1)
+y = np.array(month['최다일강수량(mm)']).reshape(-1, 1)
 
 # (1). 데이터셋 분리
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
@@ -54,8 +55,9 @@ month_list = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
 prediction = model.predict(month_list)
 month_max = np.round(prediction, 1)
 
-# 5. 최저기온 예측
-y = np.array(month['최저기온(℃)']).reshape(-1, 1)
+# 5. 1시간최다강수량 예측
+X = np.array(month['일시']).reshape(-1, 1)
+y = np.array(month['1시간최다강수량(mm)']).reshape(-1, 1)
 
 # (1). 데이터셋 분리
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
@@ -69,7 +71,7 @@ print("Random Forest -", mean_squared_error(y_val, pred))
 model.fit(X, y)
 month_list = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
 prediction = model.predict(month_list)
-month_min = np.round(prediction, 1)
+month_hour = np.round(prediction, 1)
 
 # 6. 결과 데이터 전송
 def result():
@@ -80,7 +82,7 @@ def result():
         item['month'] = i+1
         item['avg'] = month_avg[i]
         item['max'] = month_max[i]
-        item['min'] = month_min[i]
+        item['hour'] = month_hour[i]
         data.append(item)
     
     result = json.dumps(data)
