@@ -9,7 +9,9 @@ import temperature
 from sklearn.model_selection import train_test_split
 # (3) 모델링
 from sklearn.ensemble import RandomForestRegressor
-# (4) 결과값 전송
+# (4) 모델 평가
+from sklearn.metrics import mean_squared_error
+# (5) 결과값 전송
 import json
 
 # 2. 데이터 로드
@@ -28,6 +30,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 rf = RandomForestRegressor()
 rf.fit(X_tr, y_tr)
 pred = rf.predict(X_val)
+print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model = RandomForestRegressor()
@@ -44,6 +47,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 # 모델링
 rf.fit(X_tr, y_tr)
 pred = rf.predict(X_val)
+print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model.fit(X, y)
@@ -59,6 +63,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 # 모델링
 rf.fit(X_tr, y_tr)
 pred = rf.predict(X_val)
+print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model.fit(X, y)
@@ -76,6 +81,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 # 모델링
 rf.fit(X_tr, y_tr)
 pred = rf.predict(X_val)
+print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model.fit(X, y)
@@ -92,6 +98,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 # 모델링
 rf.fit(X_tr, y_tr)
 pred = rf.predict(X_val)
+print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model.fit(X, y)
@@ -108,6 +115,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 # 모델링
 rf.fit(X_tr, y_tr)
 pred = rf.predict(X_val)
+print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model.fit(X, y)
