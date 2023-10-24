@@ -7,6 +7,7 @@ from flask_cors import CORS
 import weather_info
 import temperature
 import temp_dt
+import temp_rf
 
 # 2. 결과물을 웹에 전송
 app = Flask(__name__)
@@ -43,5 +44,13 @@ def temp_year_dt():
 @app.route('/temp/month/dt') # 월별 기온 예측 - 의사결정나무
 def temp_month_dt():
     return temp_dt.month()
+
+@app.route('/temp/year/rf') # 연별 기온 예측 - 랜덤포레스트
+def temp_year_rf():
+    return temp_rf.year()
+
+@app.route('/temp/month/rf') # 월별 기온 예측 - 랜덤포레스트
+def temp_month_rf():
+    return temp_rf.month()
 
 app.run(host='127.0.0.1',debug=True, port=5050)
