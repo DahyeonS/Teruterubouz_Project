@@ -11,7 +11,6 @@ from sklearn.preprocessing import MinMaxScaler
 # (3) 데이터셋 분리
 from sklearn.model_selection import train_test_split
 # (4) 모델링
-from sklearn.naive_bayes import GaussianNB
 #from sklearn.linear_model import LogisticRegression
 #from sklearn.tree import DecisionTreeClassifier
 #from sklearn.ensemble import RandomForestClassifier
