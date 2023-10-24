@@ -8,7 +8,7 @@ import temperature
 # (2) 데이터셋 분리
 from sklearn.model_selection import train_test_split
 # (3) 모델링
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 # (4) 모델 평가
 from sklearn.metrics import mean_squared_error
 # (5) 결과값 전송
@@ -27,12 +27,12 @@ y = np.array(year['평균기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # 모델링
-dt = DecisionTreeRegressor()
-dt.fit(X_tr, y_tr)
-pred = dt.predict(X_val)
+rf = RandomForestRegressor()
+rf.fit(X_tr, y_tr)
+pred = rf.predict(X_val)
 
 # 모델 적용
-model = DecisionTreeRegressor()
+model = RandomForestRegressor()
 model.fit(X, y)
 prediction = model.predict([['2024']])
 year_avg = round(prediction[0], 1)
@@ -45,8 +45,8 @@ y = np.array(year['최고기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # 모델링
-dt.fit(X_tr, y_tr)
-pred = dt.predict(X_val)
+rf.fit(X_tr, y_tr)
+pred = rf.predict(X_val)
 
 # 모델 적용
 model.fit(X, y)
@@ -61,8 +61,8 @@ y = np.array(year['최저기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # 모델링
-dt.fit(X_tr, y_tr)
-pred = dt.predict(X_val)
+rf.fit(X_tr, y_tr)
+pred = rf.predict(X_val)
 
 # 모델 적용
 model.fit(X, y)
@@ -78,8 +78,8 @@ y = np.array(month['평균기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # 모델링
-dt.fit(X_tr, y_tr)
-pred = dt.predict(X_val)
+rf.fit(X_tr, y_tr)
+pred = rf.predict(X_val)
 
 # 모델 적용
 model.fit(X, y)
@@ -95,8 +95,8 @@ y = np.array(month['최고기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # 모델링
-dt.fit(X_tr, y_tr)
-pred = dt.predict(X_val)
+rf.fit(X_tr, y_tr)
+pred = rf.predict(X_val)
 
 # 모델 적용
 model.fit(X, y)
@@ -112,8 +112,8 @@ y = np.array(month['최저기온(℃)']).reshape(-1, 1)
 X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state = 123)
 
 # 모델링
-dt.fit(X_tr, y_tr)
-pred = dt.predict(X_val)
+rf.fit(X_tr, y_tr)
+pred = rf.predict(X_val)
 
 # 모델 적용
 model.fit(X, y)
