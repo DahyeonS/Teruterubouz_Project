@@ -56,7 +56,7 @@ def temp_month_info():
     
     for i in range(df.shape[0]) :
         item = {}
-        item['month'] = df.index[i]
+        item['month'] = int(df.index[i])
         item['avg'] =  df.iloc[i, 0]
         item['max'] = df.iloc[i, 1]
         item['min'] = df.iloc[i, 2]
