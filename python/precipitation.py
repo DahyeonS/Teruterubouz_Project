@@ -59,7 +59,7 @@ def rain_month_info():
         item['month'] = int(df.index[i])
         item['avg'] =  df.iloc[i, 0]
         item['max'] = df.iloc[i, 1]
-        item['min'] = df.iloc[i, 2]
+        item['hour'] = df.iloc[i, 2]
         data.append(item)
         result = json.dumps(data)
         
