@@ -2,94 +2,46 @@
 # http://127.0.0.1:5050/
 
 # 1. 패키지 임포트
-import pandas as pd
-import numpy as np
-import json
 from flask import Flask
 from flask_cors import CORS
 import weather_info
 import temperature
-'''
-# 2. 결과물을 JSON으로 변환
-# (1) 분석 데이터 결과
-data = []
-for i in range(len(x_test_id)) :
-    item = {}
-    item["id"] =  str(x_test_id.iloc[i])
-    item["smoke"] = str(prediction[i])
-    data.append(item)
-'''
-# (2) 날씨 데이터 조회
-def weather(reg):
-    df = weather_info.weather(reg)
-    data = []
-    
-    for i in range(df.shape[0]) :
-        item = {}
-        item["date"] =  str(df.iloc[i, 2])
-        item["prob"] = str(df.iloc[i, -3])
-        item["sky"] = str(df.iloc[i, -2])
-        item["rain"] = str(df.iloc[i, -1])
-        data.append(item)
-        result = json.dumps(data)
-        
-    return result
+import temp_dt
 
-# 3. 변환된 결과물을 웹에 전송
+# 2. 결과물을 웹에 전송
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
 def result():
-    return "Hello, world!"
-'''
-@app.route('/data')
-def result():
-    result = json.dumps(data)
-    return result
-'''
+    return 'Hello, world!'
+
 @app.route('/seoul') # 서울
 def seoul():
-    return weather('11B10101')
+    return weather_info.weather('11B10101')
 
 @app.route('/incheon') # 인천
 def incheon():
-    return weather('11B20201')
+    return weather_info.weather('11B20201')
 
 @app.route('/busan') # 부산
 def busan():
-    return weather('11H20201')
+    return weather_info.weather('11H20201')
 
-@app.route('temp/year/info') # 연별 기온 통계
+@app.route('/temp/year') # 연별 기온 통계
 def temp_year_info():
-    df = temperature.year_info()
-    data = []
-    
-    for i in range(df.shape[0]) :
-        item = {}
-        item["year"] = str(df.index[i])
-        item["avg"] =  str(df.iloc[i, 0])
-        item["max"] = str(df.iloc[i, 1])
-        item["min"] = str(df.iloc[i, 2])
-        data.append(item)
-        result = json.dumps(data)
-        
-    return result
+    return temperature.temp_year_info()
 
-@app.route('temp/month/info') # 연별 기온 통계
+@app.route('/temp/month') # 월별 기온 통계
 def temp_month_info():
-    df = temperature.month_info()
-    data = []
-    
-    for i in range(df.shape[0]) :
-        item = {}
-        item["month"] = str(df.index[i])
-        item["avg"] =  str(df.iloc[i, 0])
-        item["max"] = str(df.iloc[i, 1])
-        item["min"] = str(df.iloc[i, 2])
-        data.append(item)
-        result = json.dumps(data)
-        
-    return result
+    return temperature.temp_month_info()
+
+@app.route('/temp/year/dt') # 연별 기온 예측 - 의사결정나무
+def temp_year_dt():
+    return temp_dt.year()
+
+@app.route('/temp/month/dt') # 월별 기온 예측 - 의사결정나무
+def temp_month_dt():
+    return temp_dt.month()
 
 app.run(host='127.0.0.1',debug=True, port=5050)
