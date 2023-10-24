@@ -35,7 +35,7 @@ print("Random Forest -", mean_squared_error(y_val, pred))
 # 모델 적용
 model = RandomForestRegressor()
 model.fit(X, y)
-prediction = model.predict([['2024']])
+prediction = model.predict([[2024]])
 year_avg = round(prediction[0], 1)
 
 # (2). 최고기온 예측
@@ -51,7 +51,7 @@ print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model.fit(X, y)
-prediction = model.predict([['2024']])
+prediction = model.predict([[2024]])
 year_max = round(prediction[0], 1)
 
 # (3). 최저기온 예측
@@ -67,7 +67,7 @@ print("Random Forest -", mean_squared_error(y_val, pred))
 
 # 모델 적용
 model.fit(X, y)
-prediction = model.predict([['2024']])
+prediction = model.predict([[2024]])
 year_min = round(prediction[0], 1)
 
 # 4. 월간 데이터 분석
