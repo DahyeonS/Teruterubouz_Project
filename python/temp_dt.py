@@ -9,9 +9,7 @@ import temperature
 from sklearn.model_selection import train_test_split
 # (3) 모델링
 from sklearn.tree import DecisionTreeRegressor
-# (4) 모델 평가
-from sklearn.metrics import mean_squared_error
-# (5) 결과값 전송
+# (4) 결과값 전송
 import json
 
 # 2. 데이터 로드
