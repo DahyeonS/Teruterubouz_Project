@@ -8,6 +8,7 @@ import json
 from flask import Flask
 from flask_cors import CORS
 import weather_info
+import temperature
 '''
 # 2. 결과물을 JSON으로 변환
 # (1) 분석 데이터 결과
@@ -56,5 +57,33 @@ def incheon():
 @app.route('/busan') # 부산
 def busan():
     return weather('11H20201')
+
+@app.route('temp/year/info') # 연별 기온 통계
+def temp_year_info():
+    df = temperature.year_info()
+    data = []
+    for i in range(df.shape[0]) :
+        item = {}
+        item["year"] = str(df.index[i])
+        item["avg"] =  str(df.iloc[i, 1])
+        item["max"] = str(df.iloc[i, 2])
+        item["min"] = str(df.iloc[i, -3])
+        data.append(item)
+        result = json.dumps(data)
+    return result
+
+@app.route('temp/month/info') # 연별 기온 통계
+def temp_month_info():
+    df = temperature.month_info()
+    data = []
+    for i in range(df.shape[0]) :
+        item = {}
+        item["month"] = str(df.index[i])
+        item["avg"] =  str(df.iloc[i, 1])
+        item["max"] = str(df.iloc[i, 2])
+        item["min"] = str(df.iloc[i, -3])
+        data.append(item)
+        result = json.dumps(data)
+    return result
 
 app.run(host='127.0.0.1',debug=True, port=5050)
