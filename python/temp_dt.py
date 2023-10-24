@@ -72,7 +72,7 @@ model.fit(X, y)
 prediction = model.predict([['2024']])
 year_min = round(prediction[0], 1)
 
-# 3. 월간 데이터 분석
+# 4. 월간 데이터 분석
 # (1). 평균기온 예측
 X = np.array(month['일시']).reshape(-1, 1)
 y = np.array(month['평균기온(℃)']).reshape(-1, 1)
@@ -109,7 +109,7 @@ month_list = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
 prediction = model.predict(month_list)
 month_max = np.round(prediction, 1)
 
-# (2). 최저기온 예측
+# (3). 최저기온 예측
 X = np.array(month['일시']).reshape(-1, 1)
 y = np.array(month['최저기온(℃)']).reshape(-1, 1)
 
@@ -127,6 +127,7 @@ month_list = [[1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12]]
 prediction = model.predict(month_list)
 month_min = np.round(prediction, 1)
 
+# 5. 결과 데이터 전송
 def year():
     data = []
     
