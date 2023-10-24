@@ -36,7 +36,6 @@ prediction = model.predict([['2024']])
 year_avg = round(prediction[0], 1)
 
 # (2). 최고기온 예측
-X = np.array(year['일시']).reshape(-1, 1)
 y = np.array(year['최고기온(℃)']).reshape(-1, 1)
 
 # 데이터셋 분리
@@ -52,7 +51,6 @@ prediction = model.predict([['2024']])
 year_max = round(prediction[0], 1)
 
 # (3). 최저기온 예측
-X = np.array(year['일시']).reshape(-1, 1)
 y = np.array(year['최저기온(℃)']).reshape(-1, 1)
 
 # 데이터셋 분리
@@ -86,7 +84,6 @@ prediction = model.predict(month_list)
 month_avg = np.round(prediction, 1)
 
 # (2). 최고기온 예측
-X = np.array(month['일시']).reshape(-1, 1)
 y = np.array(month['최고기온(℃)']).reshape(-1, 1)
 
 # 데이터셋 분리
@@ -103,7 +100,6 @@ prediction = model.predict(month_list)
 month_max = np.round(prediction, 1)
 
 # (3). 최저기온 예측
-X = np.array(month['일시']).reshape(-1, 1)
 y = np.array(month['최저기온(℃)']).reshape(-1, 1)
 
 # 데이터셋 분리
