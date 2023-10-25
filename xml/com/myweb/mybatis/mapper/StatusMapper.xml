@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myweb.mybatis.mapper.StatusMapper">
+<select id="getTemp" resultType="statusDTO">
+	<![CDATA[
+	SELECT DATE_FORMAT(일시, '%Y') AS date, ROUND(AVG(평균기온), 1) AS avgTem, ROUND(MAX(평균최고기온), 1) AS maxTem, ROUND(MIN(평균최저기온), 1) AS minTem 
+	FROM temperature GROUP BY DATE_FORMAT(일시, '%Y') ORDER BY date ASC
+	]]>
+</select>
+
+<select id="getRain" resultType="statusDTO">
+	<![CDATA[
+	SELECT DATE_FORMAT(일시, '%Y') AS date, ROUND(AVG(평균일강수량), 1) AS avgRain, ROUND(AVG(최다일강수량), 1) AS maxRain, ROUND(AVG(1시간최다강수량), 1) AS hourRain 
+	FROM precipitation GROUP BY DATE_FORMAT(일시, '%Y') ORDER BY date
+	]]>
+</select>
+</mapper>
