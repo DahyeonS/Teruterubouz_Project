@@ -28,7 +28,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 sv = SVR()
 sv.fit(X_tr, y_tr)
 pred = sv.predict(X_val)
-print("SV -", mean_squared_error(y_val, pred))
+print("SVM -", mean_squared_error(y_val, pred))
 
 # (3). 모델 적용
 model = SVR()
@@ -46,7 +46,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 # (2). 모델링
 sv.fit(X_tr, y_tr)
 pred = sv.predict(X_val)
-print("SV -", mean_squared_error(y_val, pred))
+print("SVM -", mean_squared_error(y_val, pred))
 
 # (3). 모델 적용
 model.fit(X, y)
@@ -63,7 +63,7 @@ X_tr, X_val, y_tr, y_val = train_test_split(X, y, test_size = 0.25, random_state
 # (2). 모델링
 sv.fit(X_tr, y_tr)
 pred = sv.predict(X_val)
-print("SV -", mean_squared_error(y_val, pred))
+print("SVM -", mean_squared_error(y_val, pred))
 
 # (3). 모델 적용
 model.fit(X, y)
