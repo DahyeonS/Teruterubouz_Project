@@ -4,6 +4,7 @@
 **CSV 출처 https://data.kma.go.kr/climate/RankState/selectRankStatisticsDivisionList.do?pgmNo=179**
 
 ## app.py
+결과 값을 전송
 
 ## weather_info
 
