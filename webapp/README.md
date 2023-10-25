@@ -1,1 +1,1 @@
-사용 css - billboard.js(Naver)
+사용 라이브러리 - billboard.js(Naver)
