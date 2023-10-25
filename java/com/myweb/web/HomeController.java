@@ -12,8 +12,24 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/status", method = RequestMethod.GET)
+	public String Status() {
+		return "status/status";
+	}
+	
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String Test() {
-		return "test";
+		return "test/test";
+	}
+	
+	@RequestMapping(value = "/test2", method = RequestMethod.GET)
+	public String Test2() {
+		return "test/test2";
+	}
+	
+	@RequestMapping(value = "/test3", method = RequestMethod.GET)
+	public String Test3() {
+		return "test/test3";
 	}
 }
