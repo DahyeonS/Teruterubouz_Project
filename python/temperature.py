@@ -4,7 +4,7 @@
 import pandas as pd
 import json
 
-data = pd.read_csv("D:/kdigital2307/github/Teruterubouz_Project/python/기상청데이터_기온.csv").iloc[:, [2, 3, 4, 5, 7, 8]]
+data = pd.read_csv("./기상청데이터_기온.csv").iloc[:, [2, 3, 4, 5, 7, 8]]
 
 def info(): 
     avg_temp = round(data.groupby(data['일시'].str[5:7]).mean()['평균기온(℃)'], 1)
