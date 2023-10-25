@@ -4,7 +4,7 @@
 import pandas as pd
 import json
 
-data = pd.read_csv("D:/kdigital2307/github/Teruterubouz_Project/python/기상청데이터_강수.csv").iloc[:, [2, 3, 4, 6]]
+data = pd.read_csv("./기상청데이터_강수.csv").iloc[:, [2, 3, 4, 6]]
 data = data.fillna(0)
 
 def info(): 
