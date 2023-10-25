@@ -9,8 +9,8 @@ data = data.fillna(0)
 
 def info(): 
     avg_rain = round(data.groupby(data['일시'].str[5:7]).mean()['평균일강수량(mm)'], 1)
-    max_rain = round(data.groupby(data['일시'].str[5:7]).max()['최다일강수량(mm)'], 1)
-    hour_rain = round(data.groupby(data['일시'].str[5:7]).max()['1시간최다강수량(mm)'], 1)
+    max_rain = round(data.groupby(data['일시'].str[5:7]).mean()['최다일강수량(mm)'], 1)
+    hour_rain = round(data.groupby(data['일시'].str[5:7]).mean()['1시간최다강수량(mm)'], 1)
     
     result = pd.DataFrame({'평균일강수량':avg_rain, '최다일강수량':max_rain, '1시간최다강수량':hour_rain})
     return result
