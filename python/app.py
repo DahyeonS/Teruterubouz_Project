@@ -21,41 +21,9 @@ CORS(app)
 def result():
     return 'Hello, world!'
 
-@app.route('/seoul') # 서울
-def seoul():
-    return weather_info.weather('11B10101')
-
-@app.route('/incheon') # 인천
-def incheon():
-    return weather_info.weather('11B20201')
-
-@app.route('/busan') # 부산
-def busan():
-    return weather_info.weather('11H20201')
-
-@app.route('/daejeon') # 대전
-def daejeon():
-    return weather_info.weather('11C20401')
-
-@app.route('/daegu') # 대구
-def daegu():
-    return weather_info.weather('11H10701')
-
-@app.route('/ulsan') # 울산
-def ulsan():
-    return weather_info.weather('11H20101')
-
-@app.route('/sejong') # 세종
-def sejong():
-    return weather_info.weather('11C20404')
-
-@app.route('/gwangju') # 광주
-def gwangju():
-    return weather_info.weather('11B20702')
-
-@app.route('/jeju') # 제주
-def jeju():
-    return weather_info.weather('11G00201')
+@app.route('/weather') # 실시간 예보
+def weather():
+    return weather_info.result()
 
 @app.route('/temp') # 월별 기온 통계
 def temp_info():
