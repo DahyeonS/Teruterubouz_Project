@@ -7,13 +7,13 @@
 <title>날씨 통계 조회</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/billboard.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/billboard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.9.4/billboard.min.js" integrity="sha512-z/STTxopF5zN2T1Fm+xdVanV6ypEVVL7KBFxnPi2WkO9mzjo3gpUXnPkdgCBaYZq2H0z16hXkXBiGQ3HRty03A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/billboard.js/3.9.4/billboard.min.css" integrity="sha512-L+GG44se0A9Mp8Sp/fq2t9Y8+Y4F0ApJYmnhUaDnwIqSVQiEnqIvsuquTVvGfj5gXaOvy1yVJ7AI1OvDDIwp3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script>
 function tempYearLoad() {
 	$.ajax({
         type: 'GET',
-        url: 'api/getTemp',
+        url: 'status/getTemp',
         dataType: 'json',
         success: function(data) {
         	let avg = ["평균기온(°C)"];
@@ -189,7 +189,7 @@ function tempSvmLoad() {
 function rainYearLoad() {
 	$.ajax({
         type: 'GET',
-        url: 'api/getRain',
+        url: 'status/getRain',
         dataType: 'json',
         success: function(data) {
         	let avg = ["평균일강수량(mm)"];
