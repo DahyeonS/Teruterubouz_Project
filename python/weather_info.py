@@ -38,29 +38,6 @@ def weather(reg):
         item['sky'] = df.iloc[i, -2]
         item['rain'] = df.iloc[i, -1]
         data.append(item)
+        result = json.dumps(data)
         
-    return data
-
-def result():
-    seoul = weather('11B10101')
-    incheon = weather('11B20201')
-    daejeon = weather('11C20401')
-    sejong = weather('11C20404')
-    gwangju = weather('11B20702')
-    daegu = weather('11H10701')
-    busan = weather('11H20201')
-    ulsan = weather('11H20101')
-    jeju = weather('11G00201')
-    
-    data = {'seoul' : seoul,
-              'incheon' : incheon,
-              'daejeon' : daejeon,
-              'sejong' : sejong,
-              'gwangju' : gwangju,
-              'daegu' : daegu,
-              'busan' : busan,
-              'ulsan' : ulsan,
-              'jeju' : jeju }
-    result = json.dumps(data)
-    
     return result
