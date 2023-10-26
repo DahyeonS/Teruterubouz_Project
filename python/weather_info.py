@@ -38,9 +38,8 @@ def weather(reg):
         item['sky'] = df.iloc[i, -2]
         item['rain'] = df.iloc[i, -1]
         data.append(item)
-        result = json.dumps(data)
         
-    return result
+    return data
 
 def result():
     seoul = weather('11B10101')
