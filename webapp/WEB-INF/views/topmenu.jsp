@@ -25,9 +25,10 @@ a {
 </div>
 <a href="<%=contextPath%>" id="home">Home</a>
 <br>
-<a href="<%=contextPath%>">오늘 날씨 맑음?</a>
-<a href="<%=contextPath%>/status">내년 날씨 어떰?</a>
+<a href="<%=contextPath%>/weather?city=seoul">오늘 날씨 맑음?</a>
+<a href="<%=contextPath%>/status">내년 날씨 어때?</a>
 <div class="menu">
+<a href="<%=contextPath%>">About</a> 
 <a href="<%=contextPath%>">Community</a> 
 <a href="<%=contextPath%>">Goods</a>
 </div>

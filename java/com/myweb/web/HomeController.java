@@ -12,6 +12,11 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/weather", method = RequestMethod.GET)
+	public String Weather() {
+		return "weather/weather";
+	}
+	
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	public String Status() {
 		return "status/status";
