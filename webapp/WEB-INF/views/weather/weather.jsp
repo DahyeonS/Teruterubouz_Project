@@ -33,56 +33,24 @@ function weatherLoad(city) {
 	        	if (isSameDate(now, time)) {
 		        	if (item['date'][8] === '0') text += '오늘 오전 ';
 		        	else text += '오늘 오후 ';
-		        	
-		        	if (item['sky'][3] === '1') text += '맑음 ';
-		        	else if (item['sky'][3] === '2') text += '구름 조금 ';
-		        	else if (item['sky'][3] === '3') text += '구름 많음 ';
-		        	else text += '흐림 ';
-		        	
-		        	if (item['rain'] === '0') text += '비 예정 없음';
-		        	else text += '비 예정';
-		        	
-		        	text += '(강수확률 ' + item['prob'] + ')</h3><h3>'
 	        	} else if (isSameDate(one, time)) {
 		        	if (item['date'][8] === '0') text += '내일 오전 ';
 		        	else text += '내일 오후 ';
-		        	
-		        	if (item['sky'][3] === '1') text += '맑음 ';
-		        	else if (item['sky'][3] === '2') text += '구름 조금 ';
-		        	else if (item['sky'][3] === '3') text += '구름 많음 ';
-		        	else text += '흐림 ';
-		        	
-		        	if (item['rain'] === '0') text += '비 예정 없음';
-		        	else text += '비 예정';
-		        	
-		        	text += '(강수확률 ' + item['prob'] + ')</h3><h3>'
 	        	} else if (isSameDate(two, time)) {
 		        	if (item['date'][8] === '0') text += '모레 오전 ';
 		        	else text += '모레 오후 ';
-		        	
-		        	if (item['sky'][3] === '1') text += '맑음 ';
-		        	else if (item['sky'][3] === '2') text += '구름 조금 ';
-		        	else if (item['sky'][3] === '3') text += '구름 많음 ';
-		        	else text += '흐림 ';
-		        	
-		        	if (item['rain'] === '0') text += '비 예정 없음';
-		        	else text += '비 예정';
-		        	
-		        	text += '(강수확률 ' + item['prob'] + ')</h3><h3>'
 	        	} else {
 		        	if (item['date'][8] === '0') text += '글피 오전 ';
 		        	else text += '글피 오후 ';
-		        	
-		        	if (item['sky'][3] === '1') text += '맑음 ';
-		        	else if (item['sky'][3] === '2') text += '구름 조금 ';
-		        	else if (item['sky'][3] === '3') text += '구름 많음 ';
-		        	else text += '흐림 ';
-		        	
-		        	if (item['rain'] === '0') text += '비 예정 없음';
-		        	else text += '비 예정';
-		        	
-		        	text += '(강수확률 ' + item['prob'] + ')</h3><h3>'
-	        	}
+	        	} if (item['sky'][3] === '1') text += '맑음 ';
+	        	else if (item['sky'][3] === '2') text += '구름 조금 ';
+	        	else if (item['sky'][3] === '3') text += '구름 많음 ';
+	        	else text += '흐림 ';
+	        	
+	        	if (item['rain'] === '0') text += '비 예정 없음';
+	        	else text += '비 예정';
+	        	
+	        	text += '(강수확률 ' + item['prob'] + ')</h3><h3>'
         	}
         	$('.weatherinfo').html(text);
         },
@@ -142,6 +110,7 @@ $(function() {
 <h2>제주</h2>
 </c:if>
 <div class="weatherinfo">
+<h3>로딩 중</h3>
 </div>
 </body>
 </html>
