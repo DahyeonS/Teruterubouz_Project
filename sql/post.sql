@@ -1,13 +1,13 @@
 -- 테이블 생성
 CREATE TABLE post (
     id VARCHAR(20) NOT NULL,
-    num INT PRIMARY KEY NOT NULL,
+    num INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     nickname VARCHAR(30) NOT NULL,
     title VARCHAR(100) NOT NULL,
     content VARCHAR(4000) NOT NULL,
     province VARCHAR(20) NOT NULL,
     city VARCHAR(20) NOT NULL,
-    district VARCHAR(20) NOT NULL,
+    district VARCHAR(20),
     file_id VARCHAR(200),
     file_name VARCHAR(200),
     postdate DATETIME DEFAULT NOW() NOT NULL,
