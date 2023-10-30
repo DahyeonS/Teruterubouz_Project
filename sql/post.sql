@@ -7,7 +7,7 @@ CREATE TABLE post (
     content VARCHAR(4000) NOT NULL,
     province VARCHAR(20) NOT NULL,
     city VARCHAR(20) NOT NULL,
-    district VARCHAR(20),
+    district VARCHAR(20) NOT NULL,
     file_id VARCHAR(200),
     file_name VARCHAR(200),
     postdate DATETIME DEFAULT NOW() NOT NULL,
