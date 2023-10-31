@@ -1,5 +1,8 @@
 package com.myweb.member;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myweb.board.BoardDTO;
@@ -22,6 +26,32 @@ public class MemberControllerAjax {
 	@Qualifier("memberServiceImpl")
 	MemberService service;
 	
+	public void deleteFile(String fileId) {
+		File file;
+		String uploadFolder = "D:/kdigital2307/spring/springws/midproject/src/main/webapp/resources/uploads";
+//		String uploadFolder = "D:/spring/springws/midproject/src/main/webapp/resources/uploads";
+		
+		try {
+			if (fileId.split(", ").length != 1) {
+				for (String id : fileId.split(", ")) {
+					file = new File(uploadFolder + "/" + URLDecoder.decode(id, "UTF-8"));
+					file.delete();
+					
+					file = new File(uploadFolder + "/s_" + URLDecoder.decode(id, "UTF-8"));
+					file.delete();
+				}
+			} else {
+				file = new File(uploadFolder + "/" + URLDecoder.decode(fileId, "UTF-8"));
+				file.delete();
+				
+				file = new File(uploadFolder + "/s_" + URLDecoder.decode(fileId, "UTF-8"));
+				file.delete();
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@PostMapping("login")
 	public Map<String, Object> login(MemberDTO dto, HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -29,13 +59,14 @@ public class MemberControllerAjax {
 		
 		dto = service.getMember(dto);
 		
-		if (dto.getPw().equals(pw)) map.put("rs", 1);
+		if (dto != null) {
+			if (dto.getPw().equals(pw)) map.put("rs", 1);
+			session.setAttribute("id", dto.getId());
+			session.setAttribute("nickname", dto.getNickname());
+			session.setAttribute("grade", dto.getGrade());
+		}
 		else map.put("rs", 0);
 		
-		session.setAttribute("id", dto.getId());
-		session.setAttribute("nickname", dto.getNickname());
-		session.setAttribute("grade", dto.getGrade());
-
 		return map;
 	}
 	
@@ -183,6 +214,9 @@ public class MemberControllerAjax {
 	@PostMapping("deleteBoard")
 	public Map<String, Object> deleteBoard(int num) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		BoardDTO dto = service.getBoardNum(num);
+		deleteFile(dto.getFileId());
+		
 		int rs = service.deleteBoard(num);
 		map.put("rs", rs);
 		

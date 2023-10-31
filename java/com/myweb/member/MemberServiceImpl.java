@@ -54,4 +54,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.deleteBoard(num);
 	}
 
+	@Override
+	public BoardDTO getBoardNum(int num) {
+		return dao.getBoardNum(num);
+	}
+
 }

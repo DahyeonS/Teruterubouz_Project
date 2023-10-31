@@ -8,23 +8,24 @@
 <%@include file="loginCheck.jsp"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 <script>
-function pagingBoard(param) {
+function pagingBoard(params) {
 	$.ajax({
         type: 'POST',
         url: '../memberApi/pagingBoard',
         dataType: 'json',
-        data: param,
+        data: params,
         success: function(data) {
         	const {blockNum, endPage, isBNext, isBPrev, isNext, isPrev, listNum, pageNum, startPage, totalCount, totalPage} = data;
         	let tr = '<tr><td colspan="5">';
-			if(isPrev) tr += '<a href="#" onclick="getBoard('+ (pageNum - 1) + ', ' + param['limit'] + ');">[<]</a>';
-            if(isBPrev) tr += '<a href="#" onclick="getBoard('+ (startPage - 1) + ', ' + param['limit'] + ');">[<<]</a>';
+			if(isPrev) tr += '<a href="#" onclick="getBoard('+ (pageNum - 1) + ', ' + params['limit'] + ');">[<]</a>';
+            if(isBPrev) tr += '<a href="#" onclick="getBoard('+ (startPage - 1) + ', ' + params['limit'] + ');">[<<]</a>';
 			for(let i=startPage; i<=endPage; i++) {
 				if(i === pageNum) tr += '<span style="color:red;">['+ i + ']</span>';
-				else tr += '<a href="#" onclick="getBoard(' + i + ', ' + param['limit'] + ');">['+ i +']</a>';
+				else tr += '<a href="#" onclick="getBoard(' + i + ', ' + params['limit'] + ');">['+ i +']</a>';
 			};
-			if(isNext) tr += '<a href="#" onclick="getBoard(' + (pageNum + 1) + ', ' + param['limit'] + ');">[>]</a>';
-			if(isBNext) tr += '<a href="#" onclick="getBoard(' + (endPage + 1) + ', ' + param['limit'] + ');">[>>]</a></td></tr>';
+			if(isNext) tr += '<a href="#" onclick="getBoard(' + (pageNum + 1) + ', ' + params['limit'] + ');">[>]</a>';
+			if(isBNext) tr += '<a href="#" onclick="getBoard(' + (endPage + 1) + ', ' + params['limit'] + ');">[>>]</a>';
+			tr += '</td></tr>';
             $('#paging').html(tr);
         },
         error: function(xhr, status, error) {
@@ -35,18 +36,15 @@ function pagingBoard(param) {
 
 function getBoard(page, limit) {
 	let title, content;
-	if ($('#select').val() === 'title') {
-		title = $('#content').val();
-	} else if ($('#select').val() === 'content') {
-		content = $('#content').val();
-	}
+	if ($('#select').val() === 'title') title = $('#content').val();
+	else if ($('#select').val() === 'content') content = $('#content').val();
 	
-	const param = {page, limit, title, content};
+	const params = {page, limit, title, content};
 	$.ajax({
         type: 'POST',
         url: '../memberApi/boardList',
         dataType: 'json',
-        data: param,
+        data: params,
         success: function(data) {
             let tr = '';
             if (data['rs'] === 0) {
@@ -63,7 +61,7 @@ function getBoard(page, limit) {
 	            }
             }
             $('#tbody').html(tr);
-            pagingBoard(param);
+            pagingBoard(params);
         },
         error: function(xhr, status, error) {
             console.log(xhr, status, error);

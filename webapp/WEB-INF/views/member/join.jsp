@@ -149,7 +149,7 @@ $(function() {
             return;
         }
         if(nickname === '') {
-            alert('닉네임을 입력해주세요.');
+            alert('별명을 입력해주세요.');
             $('#nickname').focus();
             return;
         }
@@ -195,17 +195,17 @@ $(function() {
 <td>비밀번호 확인이 완료되었습니다.</td>
 </tr>
 <tr>
-<th>닉네임</th>
+<th>별명</th>
 <td><input type="text" id="nickname"></td>
 <td><input type="button" id="nickcheck" value="중복확인" style="margin-left: 20px"></td>
 </tr>
 <tr id="nickfail">
 <th>&nbsp</th>
-<td>중복된 닉네임입니다.</td>
+<td>중복된 별명입니다.</td>
 </tr>
 <tr id="nicksuccess">
 <th>&nbsp</th>
-<td>사용할 수 있는 닉네임입니다.</td>
+<td>사용할 수 있는 별명입니다.</td>
 </tr>
 <tr>
 <th colspan="2">&nbsp</th>
