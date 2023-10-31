@@ -89,7 +89,7 @@ function deleteBoard(param) {
 };
 
 function loginCheck(num) {
-	if ('${id}' === undefined) {
+	if ('${id}' === '') {
 		alert('세션이 만료되었습니다.')
 		$('a').attr('href', 'login');
 	} else location.href = '../board/view?num=' + num;
