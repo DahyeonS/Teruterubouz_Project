@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myweb.mybatis.mapper.MemberMapper">
+<select id="getMember" resultType="memberDTO">
+	<![CDATA[
+	SELECT idx, id, pw, nickname, grade, regdate FROM member WHERE id = #{id} OR nickname = #{nickname}
+	]]>
+</select>
+
+<insert id="insert" parameterType="memberDTO">
+	<![CDATA[
+	INSERT member (id, pw, nickname) VALUES (#{id}, #{pw}, #{nickname})
+	]]>
+</insert>
+
+<update id="update" parameterType="memberDTO">
+	<![CDATA[
+	UPDATE member SET nickname = #{nickname} WHERE id = #{id}
+	]]>
+</update>
+
+<update id="pwUpdate" parameterType="memberDTO">
+	<![CDATA[
+	UPDATE member SET pw = #{pw} WHERE id = #{id}
+	]]>
+</update>
+
+<delete id="delete" parameterType="memberDTO">
+	<![CDATA[
+		delete from member where id = #{id}
+	]]>
+</delete>
+
+<select id="getBoard" parameterType="Map" resultType="boardDTO">
+	<![CDATA[
+	SELECT num, title, postdate, visit_count AS visitCount FROM post WHERE id = #{id} AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%') ORDER BY num desc limit #{limit} offset #{page}
+	]]>
+</select>
+
+<select id="getBoardCount" parameterType="Map" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*) AS cnt FROM post WHERE id = 'test' AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%')
+	]]>
+</select>
+
+<delete id="deleteBoard">
+	<![CDATA[
+	DELETE FROM post WHERE num = #{num}
+	]]>
+</delete>
+</mapper>
