@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title></title>
 </head>
+<%@include file="../topmenu.jsp"%>
 <body>
 
 </body>
