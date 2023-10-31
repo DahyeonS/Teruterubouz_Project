@@ -57,7 +57,7 @@ function getBoard(page, limit) {
 	            	if (data['rs'][i]['num'] !== 0) $('#noboard').hide();
 	            	$('#board').show();
 	                const {num, title, visitCount, postdate} = data['rs'][i];
-	                tr += '<tr style="text-align: center;"><td class="num">' + num + '</td><td class="title"><a href="#" onclick="loginCheck();">'
+	                tr += '<tr style="text-align: center;"><td class="num">' + num + '</td><td class="title"><a href="#" onclick="loginCheck(' + num + ');">'
 	                	+ title + '</a></td><td class="count">' + visitCount + '</td><td class="date">' + postdate + '</td>'
 	                	+ '<td class="control"><a href="#" onclick="deleteCheck(' + num + ');" id="delete">삭제</td></tr>';
 	            }
@@ -88,11 +88,11 @@ function deleteBoard(param) {
     });
 };
 
-function loginCheck() {
-	if (${id} === undefined) {
+function loginCheck(num) {
+	if ('${id}' === undefined) {
 		alert('세션이 만료되었습니다.')
 		$('a').attr('href', 'login');
-	}
+	} else location.href = '../board/view?num=' + num;
 };
 
 function deleteCheck(num) {
