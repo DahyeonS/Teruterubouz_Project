@@ -8,6 +8,7 @@ import com.myweb.board.BoardDTO;
 public interface MemberService {
 	MemberDTO getMember(MemberDTO dto);
 	List<BoardDTO> getBoard(Map<String, Object> map);
+	BoardDTO getBoardNum(int num);
 	int getBoardCount(Map<String, Object> map);
 	int deleteBoard(int num);
 	

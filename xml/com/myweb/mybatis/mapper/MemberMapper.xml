@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <delete id="delete" parameterType="memberDTO">
 	<![CDATA[
-		delete from member where id = #{id}
+	DELETE FROM member WHERE id = #{id}
 	]]>
 </delete>
 
@@ -40,9 +40,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
 </select>
 
+<select id="getBoardNum" parameterType="int" resultType="boardDTO">
+	<![CDATA[
+	SELECT file_id as FileId FROM post WHERE num = #{num}
+	]]>
+</select>
+
 <select id="getBoardCount" parameterType="Map" resultType="int">
 	<![CDATA[
-	SELECT COUNT(*) AS cnt FROM post WHERE id = 'test' AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%')
+	SELECT COUNT(*) FROM post WHERE id = 'test' AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%')
 	]]>
 </select>
 

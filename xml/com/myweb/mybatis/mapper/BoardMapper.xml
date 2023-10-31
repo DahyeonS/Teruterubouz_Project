@@ -4,9 +4,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myweb.mybatis.mapper.BoardMapper">
+<select id="getBoardList" parameterType="Map" resultType="boardDTO">
+	<![CDATA[
+	SELECT num, title, nickname, visit_count AS visitCount, file_id AS fileId FROM post WHERE id LIKE CONCAT('%',#{id},'%') 
+	AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%') ORDER BY num desc limit 10 offset #{page}
+	]]>
+</select>
+
+<select id="getBoardCount" parameterType="Map" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*) FROM post WHERE id LIKE CONCAT('%',#{id},'%') AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%')
+	]]>
+</select>
+
+<select id="getBoard">
+	<![CDATA[
+	SELECT num, id, nickname, title, content, province, city, district, file_id AS fileId, file_name AS fileName, postdate, update_date AS updateDate, visit_count AS visitCount FROM post WHERE num = #{num}
+	]]>
+</select>
+
 <insert id="insert" parameterType="boardDTO">
 	<![CDATA[
 	INSERT INTO post (id, nickname, title, content, province, city, district, file_id, file_name) VALUES (#{id}, #{nickname}, #{title}, #{content}, #{province}, #{city}, #{district}, #{fileId}, #{fileName})
 	]]>
 </insert>
+
+<update id="visitCnt" parameterType="boardDTO">
+	<![CDATA[
+	UPDATE post SET visit_count = (visit_count + 1) WHERE num = #{num}
+	]]>
+</update>
 </mapper>

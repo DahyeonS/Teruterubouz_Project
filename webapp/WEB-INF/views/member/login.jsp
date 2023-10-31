@@ -15,7 +15,10 @@ function login(id, pw) {
         dataType: 'json',
         data: params,
         success: function(data) {
-        	if (data['rs'] === 0) alert('ID 또는 비밀번호가 다릅니다.');
+        	if (data['rs'] === 0) {
+        		alert('ID 또는 비밀번호가 다릅니다.');
+        		return;
+        	}
         	else {
         		alert('환영합니다!');
         		location.href = '../';
@@ -51,6 +54,7 @@ $(function() {
     		const pw = $('#pw').val();
     		if (id === '') alert('아이디를 입력해주세요.');
     		else if (pw === '') alert('비밀번호를 입력해주세요.');
+	        else login(id, pw);
     	}
     });
 });
