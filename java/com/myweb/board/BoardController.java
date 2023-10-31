@@ -20,4 +20,10 @@ public class BoardController {
 		view = "board/write";
 		return view;
 	}
+	
+	@GetMapping("view")
+	public String view() {
+		view = "board/boardview";
+		return view;
+	}
 }
