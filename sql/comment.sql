@@ -1,7 +1,7 @@
 -- 테이블 생성
 CREATE TABLE comment (
     id VARCHAR(20) NOT NULL,
-    num INT PRIMARY KEY NOT NULL,
+    num INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     post_num INT NOT NULL,
     nickname VARCHAR(30) NOT NULL,
     content VARCHAR(2000) NOT NULL,
