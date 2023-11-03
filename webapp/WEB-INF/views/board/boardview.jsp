@@ -6,58 +6,7 @@
 <meta charset="UTF-8">
 <title></title>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
-<script>
-function getBoard(num) {
-	const param = {num};
-	$.ajax({
-        type: 'POST',
-        url: '../boardApi/getBoard',
-        dataType: 'json',
-        data: param,
-        success: function(data) {
-        	console.log(data);
-        	const {num, id, nickname, title, content, province, city, district, fileId, fileName, postdate, updateDate, visitCount} = data;
-        	
-        	let region = '';
-        	cities = ['서울', '인천', '대전', '세종', '광주', '대구', '울산', '부산'];
-        	if (cities.indexOf(province) === -1) region += '<a id="province" href="#">' + province + '</a> ';
-        	
-        	region += '<a id="city" href="#">' + city + '</a>';
-        	if (province !== '세종') region += ' <a id="district" href="#">' + district + '</a>';
-        	
-        	
-        	let info = '<h4 id="nickname">' + nickname + '(' + id + ')</h4><h4 id="postdate">작성일자 ' + postdate + '</h4>';
-        	if (updateDate !== null) info += '<h4 id="updatedate">수정일자 ' + updateDate + '</h4>'
-        	info += '<h4>조회수 ' + visitCount + '</h4>';
-        	
-        	let image = '';
-        	if (fileId === '') $('#image').hide;
-        	else {
-	        	const newFileId = encodeURIComponent(fileId.split(',')[0]);
-	        	image += '<img src="../resources/uploads/' + newFileId + '" style="width: 70%; height: auto;"/><br>';
-        	}
-        	
-        	$('title').html(title);
-        	$('#title').html('<h2>'+ title +'</h2>');
-        	$('#region').html(region);
-        	$('#info').html(info);
-        	$('#image').html(image);
-        	$('#content').html(content);
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr, status, error);
-        }
-    });
-};
-
-$(function() {
-	getBoard(${param.num});
-	
-	$('#write').click(function() {
-		location.href = 'write';
-	});
-});
-</script>
+<%@include file="../../../resources/script/board/view.jsp"%>
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
@@ -68,9 +17,34 @@ $(function() {
 <div id="info">
 </div>
 <hr>
+<div id="filelist">
+</div>
 <div id="image">
 </div>
 <div id="content">
 </div>
+<div class="replies">
+<table id="replylist${param.num}">
+</table>
+</div>
+<table>
+<c:if test="${nickname != null}">
+<tr>
+<td><textarea id="reply${param.num}"></textarea>&nbsp&nbsp</td>
+<td><input type="button" value="댓글 작성" onclick="writeReply(${param.num});" id="rwrite"></td>
+</tr>
+</c:if>
+<c:if test="${nickname == null}">
+<tr>
+<td><textarea id="reply${param.num}" placeholder="로그인한 사용자만 작성할 수 있습니다." readonly="readonly"></textarea>&nbsp&nbsp</td>
+<td><input type="button" value="댓글 작성" onclick="writeReply(${param.num});" id="rwrite" disabled="disabled"></td>
+</tr>
+</c:if>
+<tr>
+</table>
+<input type="button" value="목록보기" id="list">
+<div id="control">
+</div>
+<input type="button" value="글쓰기" id="write">
 </body>
 </html>
