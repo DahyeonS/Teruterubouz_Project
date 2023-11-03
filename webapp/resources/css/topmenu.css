@@ -1,0 +1,20 @@
+a {
+	text-decoration: none;
+	color: black;
+}
+
+#menu {
+    opacity: 80%;
+}
+
+.text-small {
+    font-size: 85%;
+}
+
+.dropdown-toggle:not(:focus) {
+    outline: 0;
+}
+
+body {
+    padding-bottom: 20px;
+}
