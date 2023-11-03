@@ -11,18 +11,20 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-<form>
-<table>
-<tr>
-<th>비밀번호를 입력하세요</th>
-</tr>
-<tr>
-<td><input type="password" id="pw"></td>
-</tr>
-<tr>
-<td colspan="2"><input type="button" value="다음" id="submit"></td>
-</tr>
-</table>
-</form>
+    <div class="container">
+        <form>
+            <table>
+                <tr>
+                    <th>비밀번호를 입력하세요</th>
+                </tr>
+                <tr>
+                    <td><input type="password" id="pw"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="다음" id="submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>

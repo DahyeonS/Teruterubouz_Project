@@ -8,7 +8,8 @@
 </head>
 <%@include file="topmenu.jsp"%>
 <body>
-<h1>메인 화면</h1>
-
+	<div class="container">
+		<h1>메인 화면</h1>
+	</div>
 </body>
 </html>

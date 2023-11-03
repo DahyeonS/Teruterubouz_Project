@@ -10,23 +10,25 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-<h1>로그인</h1>
-<form>
-<table>
-<tr>
-<th>아이디</th>
-<td><input type="text" id="id"></td>
-</tr>
-<tr>
-<th>비밀번호</th>
-<td><input type="password" id="pw"></td>
-</tr>
-<tr>
-<td colspan="2"><input type="button" value="로그인" id="submit"></td>
-</tr>
-</table>
-</form>
-<br>
-<a href="./join">회원가입</a>
+    <div class="container">
+        <h1>로그인</h1>
+        <form>
+            <table>
+                <tr>
+                    <th>아이디</th>
+                    <td><input type="text" id="id"></td>
+                </tr>
+                <tr>
+                    <th>비밀번호</th>
+                    <td><input type="password" id="pw"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="로그인" id="submit"></td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <a href="./join">회원가입</a>
+    </div>
 </body>
 </html>

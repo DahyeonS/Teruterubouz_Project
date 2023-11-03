@@ -43,7 +43,8 @@ function tempYearLoad() {
     		    axis: {
     		    	x: {
     		    		type: "category",
-    		    		categories: year
+    		    		categories: year,
+    		    		height: 50
     		    	}
     		    }
     		});
@@ -85,7 +86,8 @@ function tempMonthLoad() {
     		    axis: {
     		    	x: {
     		    		type: "category",
-    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    		    		height: 50
     		    	}
     		    }
     		});
@@ -127,7 +129,8 @@ function tempPreLoad() {
     		    axis: {
     		    	x: {
     		    		type: "category",
-    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    		    		height: 50
     		    	}
     		    }
     		});
@@ -219,7 +222,8 @@ function rainYearLoad() {
     		    axis: {
     		    	x: {
     		    		type: "category",
-    		    		categories: year
+    		    		categories: year,
+    		    		height: 50
     		    	}
     		    }
     		});
@@ -261,7 +265,8 @@ function rainMonthLoad() {
     		    axis: {
     		    	x: {
     		    		type: "category",
-    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    		    		height: 50
     		    	}
     		    }
     		});
@@ -303,7 +308,8 @@ function rainPreLoad() {
     		    axis: {
     		    	x: {
     		    		type: "category",
-    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]
+    		    		categories: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+    		    		height: 50
     		    	}
     		    }
     		});
@@ -387,22 +393,24 @@ $(function() {
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-<h1>기온 통계</h1>
-<div id="chart1"></div>
-<div id="chart2"></div>
-<div class="handle">
-<input type="radio" checked="checked" name="tempmodel" value="1"> 모델 1
-<input type="radio" name="tempmodel" value="2"> 모델 2
-</div>
-<div id="chart3"></div>
-<br>
-<h1>강수량 통계</h1>
-<div id="chart4"></div>
-<div id="chart5"></div>
-<div class="handle">
-<input type="radio" checked="checked" name="rainmodel" value="1"> 모델 1
-<input type="radio" name="rainmodel" value="2"> 모델 2
-</div>
-<div id="chart6"></div>
+	<div class="container">
+		<h1>기온 통계</h1>
+		<div id="chart1"></div>
+		<div id="chart2"></div>
+		<div class="handle">
+			<input type="radio" checked="checked" name="tempmodel" value="1"> 모델 1
+			<input type="radio" name="tempmodel" value="2"> 모델 2
+		</div>
+		<div id="chart3"></div>
+		<br>
+		<h1>강수량 통계</h1>
+		<div id="chart4"></div>
+		<div id="chart5"></div>
+		<div class="handle">
+			<input type="radio" checked="checked" name="rainmodel" value="1"> 모델 1
+			<input type="radio" name="rainmodel" value="2"> 모델 2
+		</div>
+		<div id="chart6"></div>
+	</div>
 </body>
 </html>

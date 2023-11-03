@@ -11,17 +11,19 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-<h1>회원탈퇴</h1>
-<form>
-<table>
-<tr>
-<th>비밀번호</th>
-<td><input type="password" id="pw"></td>
-</tr>
-<tr>
-<td colspan="2"><input type="button" value="탈퇴하기" id="submit"></td>
-</tr>
-</table>
-</form>
+    <div class="container">
+        <h1>회원탈퇴</h1>
+        <form>
+            <table>
+                <tr>
+                    <th>비밀번호</th>
+                    <td><input type="password" id="pw"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="button" value="탈퇴하기" id="submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </body>
 </html>

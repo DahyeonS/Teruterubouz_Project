@@ -79,8 +79,7 @@ public class FileIO {
 		Resource resource = new FileSystemResource(uploadFolder + "/" + dto.getFileId());
 		
 		String downloadFile = "";
-		if (userAgent.contains("Trident")) downloadFile = URLEncoder.encode(dto.getFileName(), "UTF-8").replaceAll("\\+", " ");
-		else if (userAgent.contains("Edge")) downloadFile = URLEncoder.encode(dto.getFileName(), "UTF-8");
+		if (userAgent.contains("Edge")) downloadFile = URLEncoder.encode(dto.getFileName(), "UTF-8");
 		else downloadFile = new String(dto.getFileName().getBytes("UTF-8"), "ISO-8859-1");
 		
 		if (!(resource.exists())) return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
