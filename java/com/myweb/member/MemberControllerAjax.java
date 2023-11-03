@@ -1,8 +1,5 @@
 package com.myweb.member;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myweb.board.BoardDTO;
 import com.myweb.board.PagingDTO;
+import com.myweb.web.FileIO;
 
 @RestController
 @RequestMapping("memberApi")
@@ -25,32 +22,6 @@ public class MemberControllerAjax {
 	@Autowired
 	@Qualifier("memberServiceImpl")
 	MemberService service;
-	
-	public void deleteFile(String fileId) {
-		File file;
-		String uploadFolder = "D:/kdigital2307/spring/springws/midproject/src/main/webapp/resources/uploads";
-//		String uploadFolder = "D:/spring/springws/midproject/src/main/webapp/resources/uploads";
-		
-		try {
-			if (fileId.split(", ").length != 1) {
-				for (String id : fileId.split(", ")) {
-					file = new File(uploadFolder + "/" + URLDecoder.decode(id, "UTF-8"));
-					file.delete();
-					
-					file = new File(uploadFolder + "/s_" + URLDecoder.decode(id, "UTF-8"));
-					file.delete();
-				}
-			} else {
-				file = new File(uploadFolder + "/" + URLDecoder.decode(fileId, "UTF-8"));
-				file.delete();
-				
-				file = new File(uploadFolder + "/s_" + URLDecoder.decode(fileId, "UTF-8"));
-				file.delete();
-			}
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	@PostMapping("login")
 	public Map<String, Object> login(MemberDTO dto, HttpSession session) {
@@ -128,8 +99,9 @@ public class MemberControllerAjax {
 	}
 	
 	@PostMapping("pwUpdate")
-	public Map<String, Object> pwUpdate(MemberDTO dto) {
+	public Map<String, Object> pwUpdate(MemberDTO dto, HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		dto.setId((String)session.getAttribute("id"));
 		
 		int rs = service.pwUpdate(dto);
 		map.put("rs", rs);
@@ -215,7 +187,7 @@ public class MemberControllerAjax {
 	public Map<String, Object> deleteBoard(int num) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		BoardDTO dto = service.getBoardNum(num);
-		deleteFile(dto.getFileId());
+		FileIO.deleteFile(dto.getFileId());
 		
 		int rs = service.deleteBoard(num);
 		map.put("rs", rs);

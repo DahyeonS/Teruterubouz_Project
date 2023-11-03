@@ -7,5 +7,6 @@
   		<typeAlias type="com.myweb.status.StatusDTO" alias="statusDTO"/>
   		<typeAlias type="com.myweb.member.MemberDTO" alias="memberDTO"/>
   		<typeAlias type="com.myweb.board.BoardDTO" alias="boardDTO"/>
+  		<typeAlias type="com.myweb.board.CommentDTO" alias="commentDTO"/>
 	</typeAliases>
 </configuration>

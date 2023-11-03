@@ -6,14 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.myweb.mybatis.mapper.BoardMapper">
 <select id="getBoardList" parameterType="Map" resultType="boardDTO">
 	<![CDATA[
-	SELECT num, title, nickname, visit_count AS visitCount, file_id AS fileId FROM post WHERE id LIKE CONCAT('%',#{id},'%') 
-	AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%') ORDER BY num desc limit 10 offset #{page}
+	SELECT num, title, nickname, visit_count AS visitCount, file_id AS fileId FROM post WHERE id LIKE CONCAT('%',#{id},'%') AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') 
+	AND content LIKE CONCAT('%',#{content},'%') AND province LIKE CONCAT('%',#{province},'%') AND city LIKE CONCAT('%',#{city},'%') AND district LIKE CONCAT('%',#{district},'%') ORDER BY num desc limit 10 offset #{page}
 	]]>
 </select>
 
 <select id="getBoardCount" parameterType="Map" resultType="int">
 	<![CDATA[
-	SELECT COUNT(*) FROM post WHERE id LIKE CONCAT('%',#{id},'%') AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%')
+	SELECT COUNT(*) FROM post WHERE id LIKE CONCAT('%',#{id},'%') AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%') 
+	AND province LIKE CONCAT('%',#{province},'%') AND city LIKE CONCAT('%',#{city},'%') AND district LIKE CONCAT('%',#{district},'%')
 	]]>
 </select>
 
@@ -23,9 +24,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
 </select>
 
+<select id="getReply" parameterType="Map" resultType="commentDTO">
+	<![CDATA[
+	SELECT id, num, nickname, content, postdate, post_num AS postNum FROM comment WHERE post_num = #{postNum} ORDER BY num DESC limit 10 offset #{page}
+	]]>
+</select>
+
+<select id="getReplyCount" parameterType="commentDTO" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*) FROM comment WHERE post_num = #{postNum}
+	]]>
+</select>
+
 <insert id="insert" parameterType="boardDTO">
 	<![CDATA[
 	INSERT INTO post (id, nickname, title, content, province, city, district, file_id, file_name) VALUES (#{id}, #{nickname}, #{title}, #{content}, #{province}, #{city}, #{district}, #{fileId}, #{fileName})
+	]]>
+</insert>
+
+<insert id="reply" parameterType="commentDTO">
+	<![CDATA[
+	INSERT INTO comment (id, nickname, content, post_num) VALUES (#{id}, #{nickname}, #{content}, #{postNum})
 	]]>
 </insert>
 
@@ -34,4 +53,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	UPDATE post SET visit_count = (visit_count + 1) WHERE num = #{num}
 	]]>
 </update>
+
+<update id="update" parameterType="boardDTO">
+	<![CDATA[
+	UPDATE post SET title = #{title}, content = #{content}, province = #{province}, city = #{city}, district = #{district}, file_id = #{fileId}, file_name = #{fileName}, update_date = NOW() WHERE num = #{num}
+	]]>
+</update>
+
+<update id="deleteImg" parameterType="boardDTO">
+	<![CDATA[
+	UPDATE post SET file_id = #{fileId}, file_name = #{fileName} WHERE num = #{num}
+	]]>
+</update>
+
+<delete id="delete" parameterType="boardDTO">
+	<![CDATA[
+	DELETE FROM post WHERE num = #{num}
+	]]>
+</delete>
+
+<delete id="deleteReply" parameterType="commentDTO">
+	<![CDATA[
+	DELETE FROM comment WHERE num = #{num}
+	]]>
+</delete>
 </mapper>

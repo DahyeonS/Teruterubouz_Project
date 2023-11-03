@@ -38,4 +38,38 @@ public class BoardServiceImpl implements BoardService {
 		return dao.visitCnt(dto);
 	}
 
+	@Override
+	public int update(BoardDTO dto) {
+		return dao.update(dto);
+	}
+
+	@Override
+	public int delete(BoardDTO dto) {
+		return dao.delete(dto);
+	}
+
+	@Override
+	public int deleteImg(BoardDTO dto) {
+		return dao.deleteImg(dto);
+	}
+
+	@Override
+	public int reply(CommentDTO dto) {
+		return dao.reply(dto);
+	}
+
+	@Override
+	public List<CommentDTO> getReply(Map<String, Object> map) {
+		return dao.getReply(map);
+	}
+
+	@Override
+	public int getReplyCount(CommentDTO dto) {
+		return dao.getReplyCount(dto);
+	}
+
+	@Override
+	public int deleteReply(CommentDTO dto) {
+		return dao.deleteReply(dto);
+	}
 }
