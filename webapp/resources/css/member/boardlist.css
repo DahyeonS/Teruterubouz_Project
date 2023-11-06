@@ -1,0 +1,10 @@
+table {
+    text-align: center;
+}
+th, td {
+    width: 100px;
+    height: 50px;
+}
+#title {
+    width: 200px;
+}

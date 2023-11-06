@@ -10,25 +10,27 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-    <div class="container">
-        <h1>로그인</h1>
-        <form>
-            <table>
-                <tr>
-                    <th>아이디</th>
-                    <td><input type="text" id="id"></td>
-                </tr>
-                <tr>
-                    <th>비밀번호</th>
-                    <td><input type="password" id="pw"></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="button" value="로그인" id="submit"></td>
-                </tr>
-            </table>
-        </form>
-        <br>
-        <a href="./join">회원가입</a>
+    <div class="container d-flex align-items-center py-4 bg-body-tertiary">
+        <main class="form-signin w-25 m-auto">
+            <form class="row g-2">
+                <h3 class="mb-3 fw-normal">로그인</h3>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="text" id="id" class="form-control" placeholder="아이디">
+                        <label for="id">아이디</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input type="password" id="pw" class="form-control" placeholder="비밀번호">
+                        <label for="pw">비밀번호</label>
+                    </div>
+                </div>
+                <div><input type="button" value="로그인" id="submit" class="btn btn-info w-100 py-2 text-light"></div>
+            </form>
+            <br>
+            <div class="btn-info btn py-2"><a href="./join" class="text-light">회원가입</a></div>
+        </main>
     </div>
 </body>
 </html>

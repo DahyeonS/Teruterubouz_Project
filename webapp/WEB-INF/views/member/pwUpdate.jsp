@@ -11,31 +11,23 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-    <div class="container">
-        <h1>비밀번호 수정</h1>
-        <form>
-            <table>
-                <tr>
-                    <th>비밀번호</th>
-                    <td><input type="password" id="pw"></td>
-                </tr>
-                <tr>
-                    <th>비밀번호 확인</th>
-                    <td><input type="password" id="pw2"></td>
-                </tr>
-                <tr id="pwfail">
-                    <th>&nbsp</th>
-                    <td>비밀번호가 일치하지 않습니다.</td>
-                </tr>
-                <tr id="pwsuccess">
-                    <th>&nbsp</th>
-                    <td>비밀번호 확인이 완료되었습니다.</td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="button" value="수정하기" id="submit"></td>
-                </tr>
-            </table>
-        </form>
+    <div class="container d-flex align-items-center py-4 bg-body-tertiary">
+        <main class="form-signin w-50 m-auto">
+            <form class="row g-2">
+                <h3 class="mb-3 fw-normal">비밀번호 변경</h3>
+                    <div class="col-12">
+                        <label for="pw" class="form-label">새 비밀번호</label>
+                        <input type="password" id="pw" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="pw2" class="form-label">비밀번호 확인</label>
+                        <input type="password" id="pw2" class="form-control">
+                        <div id="pwfail" class="form-text text-danger">비밀번호가 일치하지 않습니다.</div>
+                        <div id="pwsuccess" class="form-text">비밀번호 확인이 완료되었습니다.</div>
+                    </div>
+                    <input type="button" value="수정하기" id="submit" class="btn btn-info py-2 text-light w-100">
+            </form>
+        </main>
     </div>
 </body>
 </html>

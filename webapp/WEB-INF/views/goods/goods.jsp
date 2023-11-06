@@ -9,6 +9,8 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-
+	<div class="container">
+		<a href="goods/product">이동</a>
+	</div>
 </body>
 </html>

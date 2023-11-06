@@ -52,7 +52,7 @@ function weatherLoad(city) {
 	        	
 	        	text += '(강수확률 ' + item['prob'] + ')</h3><h3>'
         	}
-        	$('.weatherinfo').html(text);
+        	$('#weatherinfo').html(text);
         },
         error: function(xhr, status, error) {
             console.log(xhr, status, error);
@@ -70,7 +70,7 @@ $(function() {
 <body>
 	<div class="container">
 		<h1>오늘의 날씨는?</h1>
-		<div class="region">
+		<div id="region">
 			<h4>다른 지역 보기
 				<a href="./weather?city=seoul">서울</a>
 				<a href="./weather?city=incheon">인천</a>
@@ -110,8 +110,10 @@ $(function() {
 		<c:if test="${param.city == 'jeju'}">
 			<h2>제주</h2>
 		</c:if>
-		<div class="weatherinfo">
-			<h3>로딩 중</h3>
+		<div id="weatherinfo">
+			<div class="spinner-border text-info" role="status">
+				<span class="visually-hidden">로딩 중</span>
+			</div>
 		</div>
 	</div>
 </body>
