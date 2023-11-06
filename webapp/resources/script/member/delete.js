@@ -28,4 +28,9 @@ $(function() {
 			return;
 		} else deleteMember(pw);
 	});
+	$('#pw').keydown(function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+		}
+    });
 });

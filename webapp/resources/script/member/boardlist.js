@@ -6,17 +6,20 @@ function pagingBoard(params) {
 		data: params,
 		success: function(data) {
 			const {blockNum, endPage, isBNext, isBPrev, isNext, isPrev, listNum, pageNum, startPage, totalCount, totalPage} = data;
-			let tr = '<tr><td colspan="5">';
-			if(isPrev) tr += '<a href="#" onclick="getBoard('+ (pageNum - 1) + ', ' + params['limit'] + ');">[<]</a>';
-			if(isBPrev) tr += '<a href="#" onclick="getBoard('+ (startPage - 1) + ', ' + params['limit'] + ');">[<<]</a>';
+			let li = '';
+			if(isBPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard('+ (startPage - 1) + ', ' + params['limit'] + ');">처음</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">처음</span></li>';
+			if(isPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard('+ (pageNum - 1) + ', ' + params['limit'] + ');">이전</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">이전</span></li>';
 			for(let i=startPage; i<=endPage; i++) {
-				if(i === pageNum) tr += '<span style="color:red;">['+ i + ']</span>';
-				else tr += '<a href="#" onclick="getBoard(' + i + ', ' + params['limit'] + ');">['+ i +']</a>';
+				if(i === pageNum) li += '<li class="page-item active"><span class="page-link">'+ i + '</span></li>';
+				else li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard(' + i + ', ' + params['limit'] + ');">'+ i +'</a></li>';
 			};
-			if(isNext) tr += '<a href="#" onclick="getBoard(' + (pageNum + 1) + ', ' + params['limit'] + ');">[>]</a>';
-			if(isBNext) tr += '<a href="#" onclick="getBoard(' + (endPage + 1) + ', ' + params['limit'] + ');">[>>]</a>';
-			tr += '</td></tr>';
-            $('#paging').html(tr);
+			if(isNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard(' + (pageNum + 1) + ', ' + params['limit'] + ');">다음</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">다음</span></li>';
+			if(isBNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard(' + (endPage + 1) + ', ' + params['limit'] + ');">마지막</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">마지막</span></li>';
+            $('#paging').html(li);
         },
         error: function(xhr, status, error) {
 			console.log(xhr, status, error);
@@ -45,9 +48,10 @@ function getBoard(page, limit) {
 					if (data['rs'][i]['num'] !== 0) $('#noboard').hide();
 					$('#board').show();
 					const {num, title, visitCount, postdate} = data['rs'][i];
-					tr += '<tr style="text-align: center;"><td class="num">' + num + '</td><td class="title"><a href="#" onclick="loginCheck(' + num + ');">'
-						+ title + '</a></td><td class="count">' + visitCount + '</td><td class="date">' + postdate + '</td>'
-						+ '<td class="control"><a href="#" onclick="deleteCheck(' + num + ');" id="delete">삭제</td></tr>';
+					tr += '<tr><th scope="row">' + num + '</th><td id="title"><a href="#" onclick="loginCheck(' + num + ');" class="text-dark">';
+					if (title.length > 15) tr += title.substring(0, 15) + '…</a></td><td>';
+					else tr += title + '</a></td><td>';
+					tr += visitCount + '</td><td>' + postdate + '</td>' + '<td><a href="#" onclick="deleteCheck(' + num + ');" id="delete">삭제</td></tr>';
 				}
 			}
 			$('#tbody').html(tr);
@@ -97,7 +101,7 @@ $(function() {
 	getBoard(1, limit);
 	
 	$('#limit').change(function() {
-		limit = $('#limit option:selected').val();
+		limit = parseInt($('#limit option:selected').val());
 		getBoard(1, limit);
 	});
 	

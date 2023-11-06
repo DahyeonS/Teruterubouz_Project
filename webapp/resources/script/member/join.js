@@ -7,10 +7,12 @@ function idCheck(id) {
         data: param,
         success: function(data) {
             if (data['rs'] === 1) {
+                $('#id').attr('class', 'form-control is-invalid');
                 $('#idsuccess').hide();
                 $('#idfail').show();
                 $('#submit').attr('disabled', 'disabled');
             } else {
+                $('#id').attr('class', 'form-control');
                 $('#idsuccess').show();
                 $('#idfail').hide();
                 $('#submit').removeAttr("disabled");
@@ -31,10 +33,12 @@ function nickCheck(nickname) {
         data: param,
         success: function(data) {
             if (data['rs'] === 1) {
+                $('#nickname').attr('class', 'form-control is-invalid');
                 $('#nicksuccess').hide();
                 $('#nickfail').show();
                 $('#submit').attr('disabled', 'disabled');
             } else {
+                $('#nickname').attr('class', 'form-control');
                 $('#nicksuccess').show();
                 $('#nickfail').hide();
                 $('#submit').removeAttr("disabled");
@@ -67,6 +71,8 @@ function join(params) {
 }
 
 $(function() {
+	$('#id').focus();
+
 	$('#idsuccess').hide();
 	$('#idfail').hide();
 	$('#pwsuccess').hide();
@@ -76,11 +82,13 @@ $(function() {
 	
 	$('#pw2').keyup(function() {
 		if ($('#pw').val() !== $('#pw2').val()) {
+            $('#pw').attr('class', 'form-control is-invalid');
 			$('#pwsuccess').hide();
 			$('#pwfail').show();
 			$('#submit').attr('disabled', 'disabled');
 		}
 		else {
+            $('#pw').attr('class', 'form-control');
 			$('#pwfail').hide();
 			$('#pwsuccess').show();
 			$('#submit').removeAttr("disabled");
@@ -104,7 +112,7 @@ $(function() {
 	$('#nickcheck').click(function() {
         const nickname = $('#nickname').val();
         if(nickname === '') {
-            alert('닉네임을 입력해주세요.');
+            alert('별명을 입력해주세요.');
             $('#nickname').focus();
             return;
         }

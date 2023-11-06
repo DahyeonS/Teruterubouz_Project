@@ -292,7 +292,9 @@
                         if (i < 5) {
                             title1 += '<td colspan=2><a href="#" onclick="linkBoard(' + num + ');"';
                             if (nickname === '관리자') title1 += ' style="font-weight: bold;"';
-                            title1 += '>' + title + '</td>';
+                            title1 += '>';
+                            if (title.length > 15) title1 += title.substring(0, 15) + '…</td>';
+                            else title1 += title + '</td>';
                             
                             visit1 += '<td';
                             if (nickname === '관리자') visit1 += ' style="font-weight: bold;"'
@@ -312,7 +314,9 @@
                         } else {
                             title2 += '<td colspan=2><a href="#" onclick="linkBoard(' + num + ');"';
                             if (nickname === '관리자') title2 += ' style="font-weight: bold;"';
-                            title2 += '>' + title + '</td>';
+                            title2 += '>';
+                            if (title.length > 15) title2 += title.substring(0, 15) + '…</td>';
+                            else title2 += title + '</td>';
                             
                             visit2 += '<td';
                             if (nickname === '관리자') visit2 += ' style="font-weight: bold;"'
