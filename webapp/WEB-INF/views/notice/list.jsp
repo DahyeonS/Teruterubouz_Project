@@ -4,20 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>작성글 목록</title>
+<title>공지사항</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
-<script src="../resources/script/member/boardlist.js"></script>
-<%@include file="../../../resources/script/member/loginCheck.jsp"%>
-<link rel="stylesheet" href="../resources/css/member/boardlist.css">
+<script src="resources/script/notice/list.js"></script>
+<link rel="stylesheet" href="resources/css/notice/list.css">
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
 	<main>
 		<div class="container">
 			<br>
-			<h3 class="mb-3 fw-normal">작성글 목록</h3>
+			<h3 class="mb-3 fw-normal">공지사항</h3>
 			<br>
 			<h2 class="h4 mb-3 fw-normal" id="noboard">작성글이 없습니다.</h2>
+			<c:if test="${grade == 'ADMIN'}">
+				<input type="button" value="글쓰기" id="write" class="btn btn-outline-primary">
+			</c:if>
 			<form id="board">
 				<div class="row g-4">
 					<div class="col-2">

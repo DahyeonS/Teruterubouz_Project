@@ -132,7 +132,7 @@ public class MemberControllerAjax {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String id = (String)session.getAttribute("id");
 		map.put("id", id);
-		map.put("page", (page-1)*10);
+		map.put("page", (page-1)*limit);
 		map.put("limit", limit);
 		if (title != null) map.put("title", title);
 		else map.put("title", "");

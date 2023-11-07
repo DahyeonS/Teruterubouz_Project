@@ -32,6 +32,16 @@ public class HomeController {
 		return "goods/goods";
 	}
 	
+	@RequestMapping(value = "/goods/product", method = RequestMethod.GET)
+	public String product() {
+		return "goods/product";
+	}
+	
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public String notice() {
+		return "notice/list";
+	}
+	
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String Test() {

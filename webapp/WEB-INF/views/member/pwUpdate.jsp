@@ -15,11 +15,11 @@
         <main class="form-signin w-50 m-auto">
             <form class="row g-2">
                 <h3 class="mb-3 fw-normal">비밀번호 변경</h3>
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <label for="pw" class="form-label">새 비밀번호</label>
                         <input type="password" id="pw" class="form-control">
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-12">
                         <label for="pw2" class="form-label">비밀번호 확인</label>
                         <input type="password" id="pw2" class="form-control">
                         <div id="pwfail" class="form-text text-danger">비밀번호가 일치하지 않습니다.</div>

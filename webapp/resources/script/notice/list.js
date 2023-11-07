@@ -3,7 +3,7 @@ var title, content;
 function pagingBoard(params) {
 	$.ajax({
 		type: 'POST',
-		url: '../memberApi/pagingBoard',
+		url: '../noticeApi/pagingBoard',
 		dataType: 'json',
 		data: params,
 		success: function(data) {
@@ -31,9 +31,10 @@ function pagingBoard(params) {
 
 function getBoard(page, limit) {
 	const params = {page, limit, title, content};
+	console.log(params);
 	$.ajax({
 		type: 'POST',
-        url: '../memberApi/boardList',
+        url: '../noticeApi/boardList',
         dataType: 'json',
         data: params,
         success: function(data) {
@@ -46,7 +47,7 @@ function getBoard(page, limit) {
 					if (data['rs'][i]['num'] !== 0) $('#noboard').hide();
 					$('#board').show();
 					const {num, title, visitCount, postdate} = data['rs'][i];
-					tr += '<tr><th scope="row">' + num + '</th><td id="title"><a href="#" onclick="loginCheck(' + num + ');" class="text-dark">';
+					tr += '<tr><th scope="row">' + num + '</th><td id="title"><a href="page?num=' + num + '" class="text-dark">';
 					if (title.length > 15) tr += title.substring(0, 15) + '…</a></td><td>';
 					else tr += title + '</a></td><td>';
 					tr += visitCount + '</td><td>' + postdate + '</td>' + '<td><a href="#" onclick="deleteCheck(' + num + ');" id="delete">삭제</td></tr>';
@@ -65,7 +66,7 @@ function getBoard(page, limit) {
 function deleteBoard(param) {
 	$.ajax({
 		type: 'POST',
-		url: '../memberApi/deleteBoard',
+		url: '../noticeApi/deleteBoard',
 		dataType: 'json',
 		data: param,
 		success: function(data) {
@@ -77,13 +78,6 @@ function deleteBoard(param) {
 			console.log(xhr, status, error);
         }
     });
-};
-
-function loginCheck(num) {
-	if ('${id}' === '') {
-		alert('세션이 만료되었습니다.')
-		$('a').attr('href', 'login');
-	} else window.open('../board/view?num=' + num);
 };
 
 function deleteCheck(num) {
@@ -105,6 +99,10 @@ $(function() {
 		getBoard(1, limit);
 	});
 	
+	$('#write').click(function() {
+		location.href = 'notice/write';
+	});
+
 	$('#search').click(function() {
 		const word = $('#content').val();
 		if ($('#select').val() === '선택') {
