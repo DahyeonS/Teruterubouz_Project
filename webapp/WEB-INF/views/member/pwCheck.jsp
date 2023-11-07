@@ -18,7 +18,7 @@
                 <h3 class="mb-3 fw-normal">비밀번호 확인</h3>
                 <div class="form">
                     <input type="password" id="pw" class="form-control" placeholder="비밀번호를 입력하세요">
-                    <input type="button" value="다음" id="submit" class="btn btn-info py-2 text-light">
+                    <input type="button" value="다음" id="submit" class="btn btn-info text-light btn-sm">
                 </div>
             </form>
         </main>

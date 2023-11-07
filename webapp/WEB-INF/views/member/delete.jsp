@@ -18,7 +18,7 @@
                 <h3 class="mb-3 fw-normal">회원탈퇴</h3>
                 <div class="form">
                     <input type="password" id="pw" class="form-control" placeholder="비밀번호를 입력하세요">
-                    <input type="button" value="탈퇴하기" id="submit" class="btn btn-info py-2 text-light btn-sm">
+                    <input type="button" value="탈퇴하기" id="submit" class="btn btn-info text-light btn-sm">
                 </div>
             </form>
         </main>

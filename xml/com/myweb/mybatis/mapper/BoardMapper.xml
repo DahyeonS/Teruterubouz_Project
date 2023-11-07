@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.myweb.mybatis.mapper.BoardMapper">
 <select id="getBoardList" parameterType="Map" resultType="boardDTO">
 	<![CDATA[
-	SELECT num, title, nickname, visit_count AS visitCount, file_id AS fileId FROM post WHERE id LIKE CONCAT('%',#{id},'%') AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') 
+	SELECT num, title, nickname, postdate, visit_count AS visitCount, file_id AS fileId FROM post WHERE id LIKE CONCAT('%',#{id},'%') AND nickname LIKE CONCAT('%',#{nickname},'%') AND title LIKE CONCAT('%',#{title},'%') 
 	AND content LIKE CONCAT('%',#{content},'%') AND province LIKE CONCAT('%',#{province},'%') AND city LIKE CONCAT('%',#{city},'%') AND district LIKE CONCAT('%',#{district},'%') ORDER BY num desc limit 10 offset #{page}
 	]]>
 </select>

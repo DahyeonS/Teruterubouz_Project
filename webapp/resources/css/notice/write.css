@@ -1,0 +1,11 @@
+#content {
+    height: 800px;
+}
+
+#control {
+    float: right;
+}
+
+#filelist img {
+    width: 200px; height: 150px
+}
