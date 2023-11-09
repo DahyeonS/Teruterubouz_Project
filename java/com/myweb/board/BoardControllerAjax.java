@@ -134,38 +134,25 @@ public class BoardControllerAjax {
 		int listNum = 10;
 		int blockNum = 10;
 		
-		map.put("page", page);
-		if (dto.getId() != null) map.put("id", dto.getId());
-		else map.put("id", "");
-		if (dto.getNickname() != null) map.put("nickname", dto.getNickname());
-		else map.put("nickname", "");
-		if (dto.getTitle() != null) map.put("title", dto.getTitle());
-		else map.put("title", "");
-		if (dto.getContent() != null) map.put("content", dto.getContent());
-		else map.put("content", "");
-		map.put("province", dto.getProvince());
-		map.put("city", dto.getCity());
-		map.put("district", dto.getDistrict());
+		if (dto.getId() == null) dto.setId("");
+		if (dto.getNickname() == null) dto.setNickname("");
+		if (dto.getTitle() == null) dto.setTitle("");
+		if (dto.getContent() == null) dto.setContent("");
 		
-		int totalCount = service.getBoardCount(map);
+		int totalCount = service.getBoardCount(dto);
 		
 		PagingDTO paging = new PagingDTO(totalCount, pageNum, listNum, blockNum);
 		paging.setPaging();
 		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("totalCount", paging.getTotalCount());
-		result.put("listNum", paging.getListNum());
-		result.put("blockNum", paging.getBlockNum());
-		result.put("pageNum", paging.getPageNum());
-		result.put("totalPage", paging.getTotalPage());
-		result.put("startPage", paging.getStartPage());
-		result.put("endPage", paging.getEndPage());
-		result.put("isPrev", paging.isPrev());
-		result.put("isNext", paging.isNext());
-		result.put("isBPrev", paging.isBPrev());
-		result.put("isBNext", paging.isBNext());
+		map.put("pageNum", paging.getPageNum());
+		map.put("startPage", paging.getStartPage());
+		map.put("endPage", paging.getEndPage());
+		map.put("isPrev", paging.isPrev());
+		map.put("isNext", paging.isNext());
+		map.put("isBPrev", paging.isBPrev());
+		map.put("isBNext", paging.isBNext());
 		
-		return result;
+		return map;
 	}
 	
 	@PostMapping("getBoard")

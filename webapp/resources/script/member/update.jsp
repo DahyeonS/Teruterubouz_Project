@@ -68,12 +68,27 @@
         $('#nicksuccess').hide();
         $('#nickfail').hide();
         $('#nickequal').hide();
+        $('#nicklong').hide();
+        
+        $('#nickname').keyup(function() {
+            const nickname = $('#nickname').val();
+            if (/^[ㄱ-ㅎ|가-힣]+$/.test(nickname) && nickname.length > 15) {
+                $('#nicklong').show();
+                $('#nickcheck').attr('disabled', 'disabled');
+            } else {
+                $('#nicklong').hide();
+                $('#nickcheck').removeAttr("disabled");
+            }
+        });
+        
         $('#submit').click(function() {
             const input = confirm("회원정보를 수정하겠습니까?");
             if (input) update();
             else return;
         });
+
         $('#nickcheck').click(function() {
+            event.preventDefault();
             const nickname = $('#nickname').val();
             if(nickname === '') {
                 alert('닉네임을 입력해주세요.');

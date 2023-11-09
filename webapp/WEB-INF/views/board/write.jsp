@@ -24,7 +24,7 @@
             <br>
             <form>
                 <div class="row g-4">
-                    <div class="col-2">
+                    <div class="col-4">
                         <select id="province" class="form-select">
                             <option>선택</option>
                             <option value="서울">서울특별시</option>
@@ -59,12 +59,11 @@
                 </div>
                 <br>
                 <br>
-                <input type="text" id="title" placeholder="제목을 입력하세요." class="form-control-lg w-100">
+                <input type="text" id="title" maxlength="50" placeholder="제목을 입력하세요." class="form-control-lg w-100">
                 <br>
                 <br>
                 <br>
-                <textarea id="content" placeholder="내용을 입력하세요." class="form-control-lg w-100"></textarea>
-                <br>
+                <textarea id="content" placeholder="내용을 입력하세요." class="form-control-lg w-100 mb-2"></textarea>
                 <div id="filelist">
                 </div>
                 <c:if test="${param.update != null}">

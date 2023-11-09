@@ -128,15 +128,15 @@ public class MemberControllerAjax {
 	}
 	
 	@PostMapping("boardList")
-	public Map<String, Object> boardList(HttpSession session, int page, int limit, String title, String content) {
+	public Map<String, Object> boardList(HttpSession session, int page, int limit, BoardDTO dto) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String id = (String)session.getAttribute("id");
 		map.put("id", id);
 		map.put("page", (page-1)*limit);
 		map.put("limit", limit);
-		if (title != null) map.put("title", title);
+		if (dto.getTitle() != null) map.put("title", dto.getTitle());
 		else map.put("title", "");
-		if (content != null) map.put("content", content);
+		if (dto.getContent() != null) map.put("content", dto.getContent());
 		else map.put("content", "");
 		
 		List<BoardDTO> list = service.getBoard(map);
@@ -148,39 +148,31 @@ public class MemberControllerAjax {
 	}
 	
 	@PostMapping("pagingBoard")
-	public Map<String, Object> pagingBoard(HttpSession session, int page, int limit, String title, String content) {
+	public Map<String, Object> pagingBoard(HttpSession session, int page, int limit, BoardDTO dto) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String id = (String)session.getAttribute("id");
 		int pageNum = page;
 		int listNum = limit;
 		int blockNum = 10;
-		map.put("id", id);
-		map.put("page", page);
-		map.put("limit", limit);
-		if (title != null) map.put("title", title);
-		else map.put("title", "");
-		if (content != null) map.put("content", content);
-		else map.put("content", "");
 		
-		int totalCount = service.getBoardCount(map);
+		dto.setId(id);
+		if (dto.getTitle() == null) dto.setTitle("");
+		if (dto.getContent() == null) dto.setContent("");
+		
+		int totalCount = service.getBoardCount(dto);
 		
 		PagingDTO paging = new PagingDTO(totalCount, pageNum, listNum, blockNum);
 		paging.setPaging();
 		
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("totalCount", paging.getTotalCount());
-		result.put("listNum", paging.getListNum());
-		result.put("blockNum", paging.getBlockNum());
-		result.put("pageNum", paging.getPageNum());
-		result.put("totalPage", paging.getTotalPage());
-		result.put("startPage", paging.getStartPage());
-		result.put("endPage", paging.getEndPage());
-		result.put("isPrev", paging.isPrev());
-		result.put("isNext", paging.isNext());
-		result.put("isBPrev", paging.isBPrev());
-		result.put("isBNext", paging.isBNext());
+		map.put("pageNum", paging.getPageNum());
+		map.put("startPage", paging.getStartPage());
+		map.put("endPage", paging.getEndPage());
+		map.put("isPrev", paging.isPrev());
+		map.put("isNext", paging.isNext());
+		map.put("isBPrev", paging.isBPrev());
+		map.put("isBNext", paging.isBNext());
 		
-		return result;
+		return map;
 	}
 	
 	@PostMapping("deleteBoard")

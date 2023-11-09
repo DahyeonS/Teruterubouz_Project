@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="<%=contextPath%>/resources/css/topmenu.css">
 </head>
 <body class="bg-body-tertiary">
-	<nav class="navbar sticky-top navbar-expand-lg rounded bg-info bg-opacity-75" id="menu">
+	<nav class="navbar navbar-dark sticky-top navbar-expand-lg rounded bg-info bg-opacity-75" id="menu">
 		<div class="container">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#innermenu" aria-controls="innermenu" aria-expanded="false">
 				<span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link link-body-emphasis px-2 active text-white" aria-current="page" href="<%=contextPath%>" id="home">Home</a></li>
 					<li class="nav-item"><a class="nav-link link-body-emphasis px-2 text-white" href="<%=contextPath%>/about">About</a></li>
-					<li class="nav-item"><a class="nav-link link-body-emphasis px-2 text-white" href="<%=contextPath%>/notice">Notice</a></li>
+					<li class="nav-item"><a class="nav-link link-body-emphasis px-2 text-white" href="<%=contextPath%>/notice/list">Notice</a></li>
 					<li class="nav-item"><a class="nav-link link-body-emphasis px-2 text-white" href="<%=contextPath%>/board/list">Community</a></li>
 					<li class="nav-item"><a class="nav-link link-body-emphasis px-2 text-white" href="<%=contextPath%>/goods">Goods</a></li>
 				</ul>

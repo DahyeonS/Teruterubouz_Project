@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class NoticeController {
 	String view;
 	
-	@GetMapping("page")
-	public String page() {
-		view = "notice/page";
+	@GetMapping("list")
+	public String list() {
+		view = "notice/list";
+		return view;
+	}
+	
+	@GetMapping("view")
+	public String view() {
+		view = "notice/view";
 		return view;
 	}
 	

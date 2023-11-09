@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>공지사항</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
-<script src="resources/script/notice/list.js"></script>
-<link rel="stylesheet" href="resources/css/notice/list.css">
+<%@include file="../../../resources/script/notice/list.jsp"%>
+<link rel="stylesheet" href="../resources/css/notice/list.css">
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
@@ -18,7 +18,7 @@
 			<br>
 			<h2 class="h4 mb-3 fw-normal" id="noboard">작성글이 없습니다.</h2>
 			<c:if test="${grade == 'ADMIN'}">
-				<input type="button" value="글쓰기" id="write" class="btn btn-outline-primary">
+				<input type="button" value="글쓰기" id="write" class="btn btn-outline-primary mb-4">
 			</c:if>
 			<form id="board">
 				<div class="row g-4">
@@ -54,7 +54,9 @@
 							<th scope="col" id="title">제목</th>
 							<th scope="col">조회수</th>
 							<th scope="col">작성일자</th>
-							<th scope="col">&nbsp</th>
+							<c:if test="${grade == 'ADMIN'}">
+								<th scope="col">&nbsp</th>
+							</c:if>
 						</tr>
 					</thead>
 					<tbody id="tbody"/>

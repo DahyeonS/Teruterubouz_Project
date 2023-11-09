@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
+<%@include file="../../../resources/script/notice/loginCheck.jsp"%>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
 <%@include file="../../../resources/script/notice/write.jsp"%>
 <link rel="stylesheet" href="../resources/css/notice/write.css">
@@ -22,7 +23,7 @@
             </c:if>
             <form>
                 <br>
-                <input type="text" id="title" placeholder="제목을 입력하세요." class="form-control-lg w-100">
+                <input type="text" maxlength="50" id="title" placeholder="제목을 입력하세요." class="form-control-lg w-100">
                 <br>
                 <br>
                 <br>

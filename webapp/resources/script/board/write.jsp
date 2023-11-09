@@ -504,7 +504,13 @@
                 }
             }
         });
-
+        
+        $('#content').keyup(function (e) {
+            if ($(this).val().length > 200) {
+                $(this).val($(this).val().substring(0, 2000));
+            };
+        });
+        
         $('#province').change(function() {
             cityShow();
         });

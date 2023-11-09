@@ -1,0 +1,26 @@
+.bb-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18pt;
+    font-style: italic;
+}
+
+.bb-main {
+    margin-top: 20px;
+}
+
+tspan, .bb-legend-item text {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.bb-legend-item text {
+    font-size: 12pt;
+}
+
+.bb-axis-y .tick text tspan {
+    font-size: 10pt;
+}
+
+#chart2 svg .bb-main .bb-axis-x .tick text tspan, #chart3 svg .bb-main .bb-axis-x .tick text tspan,
+#chart5 svg .bb-main .bb-axis-x .tick text tspan, #chart6 svg .bb-main .bb-axis-x .tick text tspan {
+    font-size: 14pt;
+}

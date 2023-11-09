@@ -77,24 +77,72 @@ $(function() {
 	$('#idfail').hide();
 	$('#pwsuccess').hide();
 	$('#pwfail').hide();
+	$('#pwvoid').hide();
 	$('#nicksuccess').hide();
 	$('#nickfail').hide();
+	$('#nicklong').hide();
 	
+	$('#pw').keyup(function() {
+		if ($('#pw').val() !== $('#pw2').val()) {
+            $('#pw').attr('class', 'form-control is-invalid');
+            $('#pw2').attr('class', 'form-control is-invalid');
+			$('#pwsuccess').hide();
+			$('#pwvoid').hide();
+			$('#pwfail').show();
+			$('#submit').attr('disabled', 'disabled');
+		} else if ($('#pw').val() === '') {
+            $('#pw').attr('class', 'form-control is-invalid');
+            $('#pw2').attr('class', 'form-control is-invalid');
+			$('#pwsuccess').hide();
+			$('#pwfail').hide();
+			$('#pwvoid').show();
+			$('#submit').attr('disabled', 'disabled');
+        } else {
+            $('#pw').attr('class', 'form-control');
+            $('#pw2').attr('class', 'form-control');
+			$('#pwfail').hide();
+			$('#pwvoid').hide();
+			$('#pwsuccess').show();
+			$('#submit').removeAttr("disabled");
+		}
+	});
+
 	$('#pw2').keyup(function() {
 		if ($('#pw').val() !== $('#pw2').val()) {
             $('#pw').attr('class', 'form-control is-invalid');
+            $('#pw2').attr('class', 'form-control is-invalid');
 			$('#pwsuccess').hide();
+			$('#pwvoid').hide();
 			$('#pwfail').show();
 			$('#submit').attr('disabled', 'disabled');
-		}
-		else {
-            $('#pw').attr('class', 'form-control');
+		} else if ($('#pw').val() === '') {
+            $('#pw').attr('class', 'form-control is-invalid');
+            $('#pw2').attr('class', 'form-control is-invalid');
+			$('#pwsuccess').hide();
 			$('#pwfail').hide();
+			$('#pwvoid').show();
+			$('#submit').attr('disabled', 'disabled');
+        } else {
+            $('#pw').attr('class', 'form-control');
+            $('#pw2').attr('class', 'form-control');
+			$('#pwfail').hide();
+			$('#pwvoid').hide();
 			$('#pwsuccess').show();
 			$('#submit').removeAttr("disabled");
 		}
 	});
 	
+    $('#nickname').keyup(function() {
+        const nickname = $('#nickname').val();
+		if (/^[ㄱ-ㅎ|가-힣]+$/.test(nickname) && nickname.length > 15) {
+            $('#nicklong').show();
+            $('#nickcheck').attr('disabled', 'disabled');
+		} else {
+            $('#nicklong').hide();
+            $('#nickcheck').removeAttr("disabled");
+        }
+	});
+
 	$('#idcheck').click(function() {
         const id = $('#id').val();
         if(id === '') {

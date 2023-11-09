@@ -13,7 +13,7 @@
 <%@include file="../topmenu.jsp"%>
 <body>
     <div class="container d-flex align-items-center py-4 bg-body-tertiary">
-        <main class="form-signin w-25 m-auto">
+        <main class="form-signin w-lg-25 w-md-50 m-auto">
             <form>
                 <h3 class="mb-3 fw-normal">회원탈퇴</h3>
                 <div class="form">

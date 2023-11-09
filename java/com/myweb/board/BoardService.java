@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface BoardService {
 	List<BoardDTO> getBoardList(Map<String, Object> map);
-	int getBoardCount(Map<String, Object> map);
+	int getBoardCount(BoardDTO dto);
 	BoardDTO getBoard(BoardDTO dto);
 	
 	int insert(BoardDTO dto);
