@@ -9,19 +9,18 @@
             dataType: 'json',
             data: param,
             success: function(data) {
-                console.log(data);
                 const {num, id, nickname, title, content, province, city, district, fileId, fileName, postdate, updateDate, visitCount} = data;
                 
                 let region = '';
                 const cities = ['서울', '인천', '대전', '세종', '광주', '대구', '울산', '부산'];
                 if (cities.indexOf(province) === -1) region += '<a id="province" href="list?province=' + province +  '">' + province + '</a> ';
                 
-                region += '<a id="city" href="list?province=' + province + '&city=' + city + '">' + city + '</a>';
+                region += '<a href="list?province=' + province + '&city=' + city + '">' + city + '</a>';
                 if (province !== '세종') region += ' <a id="district" href="list?province=' + province + '&city=' + city + '&district=' + district + '">' + district + '</a>';
                 
-                let info = '<h4 id="nickname">' + nickname + '(' + id + ')</h4><h4 id="postdate">작성일자 ' + postdate + '</h4>';
-                if (updateDate !== null) info += '<h4 id="updatedate">수정일자 ' + updateDate + '</h4>'
-                info += '<h4>조회수 ' + visitCount + '</h4>';
+                let info = '<div class="d-flex justify-content-between"><p id="postdate" class="my-3">작성일자 ' + postdate + '</p>';
+                if (updateDate !== null) info += '<p id="updatedate" class="my-3">수정일자 ' + updateDate + '</p>'
+                info += '</div><div class="d-flex justify-content-between"><p class="mb-1">' + nickname + '(' + id + ')</p><p class="mb-1">조회수 ' + visitCount + '</p></div>';
                 
                 let image = '';
                 let filelist = ''
@@ -30,21 +29,26 @@
                     $('#filelist').hide;
                 }
                 else {
+                    filelist += '<ul class="list-group">';
                     for (let i=0; i<fileId.split(', ').length; i++) {
                         const newFileId = encodeURIComponent(fileId.split(', ')[i]);
                         image += '<img src="../resources/uploads/' + newFileId + '" style="width: 70%; height: auto;"/><br>';
-                        filelist += '<img src="../resources/image/image_picture_icon_143003.png" style="width: 20px; height: 20px"/> <a href="download?fileId=' + newFileId + '&fileName=' + fileName.split(',')[i] + '">' + fileName.split(',')[i] + '</a><br>'
+                        filelist += '<li class="list-group-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">'
+                            + '<path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 '
+                            + '2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>'
+                            + '</svg><a class="mx-2" href="download?fileId=' + newFileId + '&fileName=' + fileName.split(',')[i] + '">' + fileName.split(',')[i] + '</a></li>'
                     }
+                    filelist += '</ul>';
                 }
                 
-                let control;
+                let control = '';
                 if (id == '${id}' || '${grade}' === 'ADMIN') {
-                    control = '<input type="button" value="수정하기" id="update" onclick="updateLink(' + num + ');">'
-                    + '<input type="button" value="삭제하기" id="delete" onclick="deleteConfirm(' + num + ')">';
+                    control += '<input class="btn btn-info text-white mx-2" type="button" value="수정하기" id="update" onclick="updateLink(' + num + ');">'
+                    + '<input class="btn btn-info text-white" type="button" value="삭제하기" id="delete" onclick="deleteConfirm(' + num + ')">';
                 }
                 
                 $('title').html(title);
-                $('#title').html('<h2>'+ title +'</h2>');
+                $('#title').html('<h3>'+ title +'</h3>');
                 $('#region').html(region);
                 $('#info').html(info);
                 $('#image').html(image);
@@ -53,8 +57,8 @@
                 $('#control').html(control);
                 
                 if (id === 'admin') {
-                    $('#title > h2').attr('style', 'color: red;');
-                    $('#content').attr('style', 'font-weight: bold;');
+                    $('#title > h3').attr('class', 'text-danger');
+                    $('#content').attr('class', 'fw-bold');
                 }
             },
             error: function(xhr, status, error) {
@@ -64,6 +68,8 @@
     };
     
     function getReply(postNum, page) {
+        event.preventDefault();
+
         const params = {postNum, page};
         $.ajax({
             type: 'POST',
@@ -74,14 +80,19 @@
                 if (data['rs'] !== 0) {
                     let string = '';
                     for (item of data['rs']) {
-                        string += '<tr><td id="rnickname">' + item['nickname'] + '님&nbsp&nbsp&nbsp</td><td id="rcontent">' + item['content'] + '</td></tr><tr><td id="rpostdate">' + item['postdate'] + '</td>';
-                        if ('${nickname}' === item['nickname'] || '${grade}' === 'ADMIN') string += '<td id="rdelete"><a href="#" onclick="deleteReplyConfirm(' + item['num'] + ')">삭제</td></tr><tr><td>&nbsp</td></tr>';
-                        else string += '</tr>';
+                        if ('${nickname}' === item['nickname'] || '${grade}' === 'ADMIN') {
+                            string += '<div id="rnickname" class="col-lg-3">' + item['nickname'] + '님</div><div id="rcontent" class="col-lg-5">' + item['content']
+                                + '</div><div id="rpostdate" class="col-lg-3">' + item['postdate']
+                                    + '</div><div id="rdelete" class="col-lg-1"><a href="#" onclick="deleteReplyConfirm(' + item['num'] + ')">삭제</a></div><hr class="mt-3">';
+                        } else {
+                            string += '<div id="rnickname" class="col-lg-3">' + item['nickname'] + '님</div><div id="rcontent" class="col-lg-5">' + item['content']
+                                + '</div><div id="rpostdate" class="col-lg-4">' + item['postdate'] + '</div><hr class="mt-3">';
+                        }
                     }
-                    string += '<tr id="paging"/>';
+                    string += '<div id="paging" class="pagination justify-content-center mt-2"></div>';
                     $('#replylist' + postNum).html(string);
                     pagingReply(params);
-                    $('.replies').show();
+                    $('section').show();
                 }
             },
             error: function(xhr, status, error) {
@@ -97,18 +108,21 @@
             dataType: 'json',
             data: params,
             success: function(data) {
-                const {blockNum, endPage, isBNext, isBPrev, isNext, isPrev, listNum, pageNum, startPage, totalCount, totalPage} = data;
-                let td = '<td colspan="10">';
-                if(isPrev) td += '<a href="#" onclick="getReply(${param.num} ,'+ (pageNum - 1) + ');">[<]</a>';
-                if(isBPrev) td += '<a href="#" onclick="getReply(${param.num} ,'+ (startPage - 1) + ');">[<<]</a>';
-                for(let i=startPage; i<=endPage; i++) {
-                    if(i === pageNum) td += '<span style="color:red;">['+ i + ']</span>';
-                    else td += '<a href="#" onclick="getReply(${param.num} ,' + i + ');">['+ i +']</a>';
-                };
-                if(isNext) td += '<a href="#" onclick="getReply(${param.num} ,' + (pageNum + 1) + ');">[>]</a>';
-                if(isBNext) td += '<a href="#" onclick="getReply(${param.num} ,' + (endPage + 1) + ');">[>>]</a>';
-                td += '</td>';
-                $('#paging').html(td);
+            const {endPage, isBNext, isBPrev, isNext, isPrev, pageNum, startPage} = data;
+			let li = '';
+			if(isBPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getReply(${param.num} ,' + (startPage - 1) + ');">처음</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">처음</span></li>';
+			if(isPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getReply(${param.num} ,'+ (pageNum - 1) + ');">이전</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">이전</span></li>';
+			for(let i=startPage; i<=endPage; i++) {
+				if(i === pageNum) li += '<li class="page-item active"><span class="page-link">'+ i + '</span></li>';
+				else li += '<li class="page-item"><a href="#" class="page-link" onclick="getReply(${param.num} ,' + i + ');">'+ i +'</a></li>';
+			};
+			if(isNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getReply(${param.num} ,' + (pageNum + 1) + ');">다음</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">다음</span></li>';
+			if(isBNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getReply(${param.num} ,' + (endPage + 1) + ');">마지막</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">마지막</span></li>';
+            $('#paging').html(li);
             },
             error: function(xhr, status, error) {
                 console.log(xhr, status, error);
@@ -207,7 +221,7 @@
     };
     
     $(function() {
-        $('.replies').hide();
+        $('section').hide();
         
         let page = 1;
         const sPage = '${param.page}';

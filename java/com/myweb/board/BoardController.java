@@ -29,7 +29,7 @@ public class BoardController {
 	
 	@GetMapping("view")
 	public String view() {
-		view = "board/boardview";
+		view = "board/view";
 		return view;
 	}
 	

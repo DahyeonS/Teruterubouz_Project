@@ -1,0 +1,21 @@
+#title, #content, #rcontent {
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+table textarea {
+    width: 400px;
+    height: 100px;
+}
+
+#control, #rdelete {
+    float: right;
+}
+
+#rnickname {
+    font-weight: bold;
+}
+
+#rpostdate {
+    font-style: italic;
+}

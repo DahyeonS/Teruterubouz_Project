@@ -44,7 +44,7 @@
         });
     }
 
-    function update() {
+    function update(num) {
         const title = $('#title').val();
         const content = $('#content').val();
         params = {num, title, content};
@@ -76,6 +76,12 @@
             loadBoard(${param.update});
         }
         
+        $('#content').keyup(function (e) {
+            if ($(this).val().length > 200) {
+                $(this).val($(this).val().substring(0, 2000));
+            };
+        });
+        
         $('#submit').click(function() {
             if ($('#title').val() === '') {
                 alert('제목을 작성해주세요.');
@@ -97,7 +103,7 @@
             } else if ($('#content').val() === '') {
                 alert('내용을 작성해주세요.');
                 return;
-            } else update();
+            } else update(${param.update});
         });
     });
 </script>

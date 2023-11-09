@@ -12,7 +12,7 @@
 <%@include file="../topmenu.jsp"%>
 <body>
     <div class="container d-flex align-items-center py-4 bg-body-tertiary">
-        <main class="form-signin w-50 m-auto">
+        <main class="form-signin w-lg-50 w-md-75 m-auto">
             <form class="row g-2">
                 <h3 class="mb-3 fw-normal">비밀번호 변경</h3>
                     <div class="col-md-12">

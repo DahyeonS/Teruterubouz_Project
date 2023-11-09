@@ -269,10 +269,6 @@
         let district = $('#district option:selected').val();
         if (district == '선택' || district == undefined) district = '';
         
-        console.log(province);
-        console.log(city);
-        console.log(district);
-        
         const params = {page, id, nickname, title, content, province, city, district};
         $.ajax({
             type: 'POST',
@@ -300,7 +296,10 @@
                             
                         div += '</h6><hr><div id="info" class="d-flex justify-content-between align-items-center mb-3"><p class="card-text"';
                         if (nickname === '관리자') div += ' style="font-weight: bold;"'
-                        div += '>' + nickname + '</p><p class="card-text">조회수 ' + visitCount + '</p></div><p class="card-text"><small class="text-body-secondary">'
+                        div += '>';
+                        if (nickname.length > 5) div += nickname.substring(0, 5) + '…';
+                        else div += nickname;
+                        div += '</p><p class="card-text">조회수 ' + visitCount + '</p></div><p class="card-text"><small class="text-body-secondary">'
                             + postdate + '</small></p></div></div></div>';
                     }
                 }

@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	]]>
 </select>
 
-<select id="getBoardCount" parameterType="Map" resultType="int">
+<select id="getBoardCount" parameterType="boardDTO" resultType="int">
 	<![CDATA[
 	SELECT COUNT(*) FROM post WHERE id = #{id} AND title LIKE CONCAT('%',#{title},'%') AND content LIKE CONCAT('%',#{content},'%')
 	]]>

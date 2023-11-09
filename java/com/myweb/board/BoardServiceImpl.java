@@ -24,8 +24,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getBoardCount(Map<String, Object> map) {
-		return dao.getBoardCount(map);
+	public int getBoardCount(BoardDTO dto) {
+		return dao.getBoardCount(dto);
 	}
 
 	@Override
