@@ -11,8 +11,8 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-    <div class="container d-flex align-items-center py-4 bg-body-tertiary">
-        <main class="form-signin w-lg-50 w-md-75 m-auto">
+    <main class="container d-flex align-items-center py-4 bg-body-tertiary">
+        <div class="form-signin w-lg-50 w-md-75 m-auto">
             <form class="row g-2">
                 <h3 class="mb-3 fw-normal">비밀번호 변경</h3>
                     <div class="col-md-12">
@@ -27,7 +27,7 @@
                     </div>
                     <input type="button" value="수정하기" id="submit" class="btn btn-info py-2 text-light w-100">
             </form>
-        </main>
-    </div>
+        </div>
+    </main>
 </body>
 </html>

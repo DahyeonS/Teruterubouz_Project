@@ -10,8 +10,14 @@
 <%@include file="../topmenu.jsp"%>
 <body>
     <main>
-        <div class="container">
+        <div class="container marketing">
+            <div class="row featurette">
 
+            </div>
+            <hr class="featurette-divider">
+            <div class="row featurette">
+    
+            </div>
         </div>
     </main>
     <%@include file="../footer.jsp"%>

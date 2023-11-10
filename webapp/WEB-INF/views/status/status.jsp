@@ -14,49 +14,47 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-	<main>
-		<div class="container">
-			<h3 class="mb-3 mt-5 fw-normal">기온 통계</h3>
-			<div class="my-5">
-				<div id="chart1"></div>
-			</div>
-			<div class="my-5">
-				<div id="chart2"></div>
-			</div>
-			<div class="my-5">
-				<div class="mx-5 mb-2">
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" checked="checked" name="tempmodel" id="tempmodel1" value="1">
-						<label class="form-check-label" for="tempmodel1">모델 1</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="tempmodel" id="tempmodel2" value="2">
-						<label class="form-check-label" for="tempmodel2">모델 2</label>
-					</div>
+	<main class="container">
+		<h3 class="mb-3 mt-5 fw-normal">기온 통계</h3>
+		<div class="my-5">
+			<div id="chart1"></div>
+		</div>
+		<div class="my-5">
+			<div id="chart2"></div>
+		</div>
+		<div class="my-5">
+			<div class="mx-5 mb-2">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" checked="checked" name="tempmodel" id="tempmodel1" value="1">
+					<label class="form-check-label" for="tempmodel1">모델 1</label>
 				</div>
-				<div id="chart3"></div>
-			</div>
-			<hr class="mb-5">
-			<h3 class="mb-3 fw-normal">강수량 통계</h3>
-			<div class="my-5">
-				<div id="chart4"></div>
-			</div>
-			<div class="my-5">
-				<div id="chart5"></div>
-			</div>
-			<div class="my-5">
-				<div class="mx-5 mb-2">
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" checked="checked" name="rainmodel" id="rainmodel1" value="1">
-						<label class="form-check-label" for="rainmodel1">모델 1</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<input class="form-check-input" type="radio" name="rainmodel" id="rainmodel2" value="2">
-						<label class="form-check-label" for="rainmodel2">모델 2</label>
-					</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="tempmodel" id="tempmodel2" value="2">
+					<label class="form-check-label" for="tempmodel2">모델 2</label>
 				</div>
-				<div id="chart6"></div>
 			</div>
+			<div id="chart3"></div>
+		</div>
+		<hr class="mb-5">
+		<h3 class="mb-3 fw-normal">강수량 통계</h3>
+		<div class="my-5">
+			<div id="chart4"></div>
+		</div>
+		<div class="my-5">
+			<div id="chart5"></div>
+		</div>
+		<div class="my-5">
+			<div class="mx-5 mb-2">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" checked="checked" name="rainmodel" id="rainmodel1" value="1">
+					<label class="form-check-label" for="rainmodel1">모델 1</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="rainmodel" id="rainmodel2" value="2">
+					<label class="form-check-label" for="rainmodel2">모델 2</label>
+				</div>
+			</div>
+			<div id="chart6"></div>
 		</div>
 	</main>
 	<%@include file="../footer.jsp"%>
