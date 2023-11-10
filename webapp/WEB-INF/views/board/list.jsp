@@ -13,8 +13,7 @@
 <body>
 	<main>
 		<div class="container">
-			<br>
-			<h3 class="mb-3 fw-normal">커뮤니티 게시판</h3>
+			<h3 class="mb-3 mt-5 fw-normal">커뮤니티 게시판</h3>
 			<br>
 			<form>
 				<div class="row g-4">
@@ -85,5 +84,6 @@
 			</div>
 		</div>
 	</main>
+	<%@include file="../footer.jsp"%>
 </body>
 </html>

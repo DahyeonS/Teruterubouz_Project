@@ -20,7 +20,7 @@
             <div id="info">
             </div>
             <hr>
-            <div class="mb-1">
+            <div class="mb-5">
                 <div id="filelist" class="m-0 border-0">
                 </div>
                 <div id="image" class="my-3">
@@ -28,7 +28,8 @@
                 <div id="content">
                 </div>
             </div>
-            <section id="replies">
+            <section id="replies" class="mt-5">
+                <br>
                 <div id="replylist${param.num}" class="row g-1 align-items-center border border-info d-flex justify-content-center text-center px-2 py-3 mt-5 bg-white rounded">
                 </div>
             </section>
@@ -55,5 +56,6 @@
             <br>
         </div>
     </main>
+    <%@include file="../footer.jsp"%>
 </body>
 </html>

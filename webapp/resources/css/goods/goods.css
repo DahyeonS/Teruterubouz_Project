@@ -1,0 +1,8 @@
+.card-text {
+    text-align: right;
+    font-style: italic;
+}
+
+.card-body a {
+    font-size: 15pt;
+}

@@ -6,115 +6,72 @@
 <meta charset="UTF-8">
 <title>오늘의 날씨</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
-<script>
-function weatherLoad(city) {
-	$.ajax({
-        type: 'GET',
-        url: 'http://127.0.0.1:5050/' + city,
-        dataType: 'json',
-        success: function(data) {
-        	let text = '<h3>';
-	        let now = new Date();
-	        
-	        let one = new Date();
-	        one.setDate(now.getDate()+1);
-	        let two = new Date();
-	        two.setDate(now.getDate()+2);
-        	
-        	for (item of data) {
-	        	let time = new Date(item['date'].substr(0, 4), parseInt(item['date'].substr(4, 2))-1, item['date'].substr(6, 2));
-	        	
-	        	const isSameDate = (date1, date2) => {
-	        		return date1.getFullYear() === date2.getFullYear()
-	        			&& date1.getMonth() === date2.getMonth()
-	        		    && date1.getDate() === date2.getDate();
-	        	}
-	        	
-	        	if (isSameDate(now, time)) {
-		        	if (item['date'][8] === '0') text += '오늘 오전 ';
-		        	else text += '오늘 오후 ';
-	        	} else if (isSameDate(one, time)) {
-		        	if (item['date'][8] === '0') text += '내일 오전 ';
-		        	else text += '내일 오후 ';
-	        	} else if (isSameDate(two, time)) {
-		        	if (item['date'][8] === '0') text += '모레 오전 ';
-		        	else text += '모레 오후 ';
-	        	} else {
-		        	if (item['date'][8] === '0') text += '글피 오전 ';
-		        	else text += '글피 오후 ';
-	        	} if (item['sky'][3] === '1') text += '맑음 ';
-	        	else if (item['sky'][3] === '2') text += '구름 조금 ';
-	        	else if (item['sky'][3] === '3') text += '구름 많음 ';
-	        	else text += '흐림 ';
-	        	
-	        	if (item['rain'] === '0') text += '비 예정 없음';
-	        	else text += '비 예정';
-	        	
-	        	text += '(강수확률 ' + item['prob'] + ')</h3><h3>'
-        	}
-        	$('#weatherinfo').html(text);
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr, status, error);
-        }
-    });
-}
-
-$(function() {
-	const city = '${param.city}';
-	weatherLoad(city);
-});
-</script>
+<%@include file="../../../resources/script/weather/weather.jsp"%>
+<link rel="stylesheet" href="./resources/css/weather/weather.css">
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-	<div class="container">
-		<h1>오늘의 날씨는?</h1>
-		<div id="region">
-			<h4>다른 지역 보기
-				<a href="./weather?city=seoul">서울</a>
-				<a href="./weather?city=incheon">인천</a>
-				<a href="./weather?city=daejeon">대전</a>
-				<a href="./weather?city=sejong">세종</a>
-				<a href="./weather?city=gwangju">광주</a>
-				<a href="./weather?city=daegu">대구</a>
-				<a href="./weather?city=ulsan">울산</a>
-				<a href="./weather?city=busan">부산</a>
-				<a href="./weather?city=jeju">제주</a>
-			</h4>
-		</div>
-		<c:if test="${param.city == 'seoul'}">
-			<h2>서울</h2>
-		</c:if>
-		<c:if test="${param.city == 'incheon'}">
-			<h2>인천</h2>
-		</c:if>
-		<c:if test="${param.city == 'daejeon'}">
-			<h2>대전</h2>
-		</c:if>
-		<c:if test="${param.city == 'sejong'}">
-			<h2>세종</h2>
-		</c:if>
-		<c:if test="${param.city == 'gwangju'}">
-			<h2>광주</h2>
-		</c:if>
-		<c:if test="${param.city == 'daegu'}">
-			<h2>대구</h2>
-		</c:if>
-		<c:if test="${param.city == 'ulsan'}">
-			<h2>울산</h2>
-		</c:if>
-		<c:if test="${param.city == 'busan'}">
-			<h2>부산</h2>
-		</c:if>
-		<c:if test="${param.city == 'jeju'}">
-			<h2>제주</h2>
-		</c:if>
-		<div id="weatherinfo">
-			<div class="spinner-border text-info" role="status">
-				<span class="visually-hidden">로딩 중</span>
+	<main>
+		<div class="container">
+			<div class="dropdown" id="region">
+				<button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">다른 지역 보기</button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" href="./weather?city=seoul">서울</a></li>
+					<li><a class="dropdown-item" href="./weather?city=incheon">인천</a></li>
+					<li><a class="dropdown-item" href="./weather?city=daejeon">대전</a></li>
+					<li><a class="dropdown-item" href="./weather?city=sejong">세종</a></li>
+					<li><a class="dropdown-item" href="./weather?city=gwangju">광주</a></li>
+					<li><a class="dropdown-item" href="./weather?city=daegu">대구</a></li>
+					<li><a class="dropdown-item" href="./weather?city=ulsan">울산</a></li>
+					<li><a class="dropdown-item" href="./weather?city=busan">부산</a></li>
+					<li><a class="dropdown-item" href="./weather?city=jeju">제주</a></li>
+				</ul>
+			</div>
+			<c:if test="${param.city == 'seoul'}">
+				<h3 class="mb-3 mt-5 fw-normal">서울 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'incheon'}">
+				<h3 class="mb-3 mt-5 fw-normal">인천 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'daejeon'}">
+				<h3 class="mb-3 mt-5 fw-normal">대전 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'sejong'}">
+				<h3 class="mb-3 mt-5 fw-normal">세종 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'gwangju'}">
+				<h3 class="mb-3 mt-5 fw-normal">광주 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'daegu'}">
+				<h3 class="mb-3 mt-5 fw-normal">대구 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'ulsan'}">
+				<h3 class="mb-3 mt-5 fw-normal">울산 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'busan'}">
+				<h3 class="mb-3 mt-5 fw-normal">부산 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'jeju'}">
+				<h3 class="mb-3 mt-5 fw-normal">제주 날씨</h3>
+			</c:if>
+			<div id="weatherinfo" class="justify-content-center m-0 align-items-center">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<div id="image" class="my-5">
+					<div class="spinner-border text-info" role="status" id="loading">
+						<span class="visually-hidden">로딩 중</span>
+					</div>
+				</div>
+			</div>
+			<div class="text-end mt-5">
+				<a href="https://www.weather.go.kr" target="_blank" class="btn btn-info text-white">기상청 바로가기</a>
 			</div>
 		</div>
-	</div>
+	</main>
+	<%@include file="../footer.jsp"%>
 </body>
 </html>

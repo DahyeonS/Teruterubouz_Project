@@ -10,8 +10,8 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-    <div class="container d-flex align-items-center py-4 bg-body-tertiary">
-        <main class="form-signin w-lg-25 w-md-50 m-auto">
+    <main class="container d-flex align-items-center py-4 bg-body-tertiary">
+        <div class="form-signin w-lg-25 w-md-50 m-auto">
             <form class="row g-2">
                 <h3 class="mb-3 fw-normal">로그인</h3>
                 <div class="col-sm-12">
@@ -30,7 +30,8 @@
             </form>
             <br>
             <div class="btn-info btn py-2"><a href="./join" class="text-light">회원가입</a></div>
-        </main>
-    </div>
+        </div>
+    </main>
+    <%@include file="../footer.jsp"%>
 </body>
 </html>

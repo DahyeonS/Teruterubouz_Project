@@ -324,8 +324,6 @@
             processData: false,
             contentType: false,
             success: function(data) {
-                console.log(data);
-                console.log(data['fileId'].substring(1, data['fileId'].length-1));
                 const id = '${id}';
                 const nickname = '${nickname}';
                 const title = $('#title').val();
@@ -381,7 +379,6 @@
     }
     
     function write(params) {
-        console.log(params);
         $.ajax({
             type: 'POST',
             url: '../boardApi/write',
@@ -403,7 +400,6 @@
     }
     
     function update(params) {
-        console.log(params);
         $.ajax({
             type: 'POST',
             url: '../boardApi/update',
@@ -467,9 +463,6 @@
             
             const district = $('#district option:selected').val();
             
-            console.log(province);
-            console.log(city);
-            console.log(district);
             if (province == '선택') alert('지역을 선택해주세요.');
             else if (city == '선택') alert('지역을 선택해주세요.');
             else if (district == '선택') alert('지역을 선택해주세요.');
