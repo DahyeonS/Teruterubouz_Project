@@ -182,6 +182,8 @@ public class MemberControllerAjax {
 		FileIO.deleteFile(dto.getFileId());
 		
 		int rs = service.deleteBoard(num);
+		if (rs != 0) FileIO.deleteFile(dto.getFileId());
+		
 		map.put("rs", rs);
 		
 		return map;

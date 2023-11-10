@@ -14,8 +14,7 @@
 <body>
 	<main>
 		<div class="container">
-			<br>
-			<h3 class="mb-3 fw-normal">작성글 목록</h3>
+			<h3 class="mb-3 mt-5 fw-normal">작성글 목록</h3>
 			<br>
 			<h2 class="h4 mb-3 fw-normal" id="noboard">작성글이 없습니다.</h2>
 			<form id="board">
@@ -63,5 +62,6 @@
 			</form>
 		</div>
 	</main>
+	<%@include file="../footer.jsp"%>
 </body>
 </html>

@@ -16,7 +16,7 @@
 <body>
 	<main>
 		<div class="container">
-			<h3 class="mb-3 fw-normal">기온 통계</h3>
+			<h3 class="mb-3 mt-5 fw-normal">기온 통계</h3>
 			<div class="my-5">
 				<div id="chart1"></div>
 			</div>
@@ -59,5 +59,6 @@
 			</div>
 		</div>
 	</main>
+	<%@include file="../footer.jsp"%>
 </body>
 </html>

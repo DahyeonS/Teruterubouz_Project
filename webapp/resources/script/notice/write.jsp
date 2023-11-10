@@ -23,7 +23,6 @@
         const title = $('#title').val();
         const content = $('#content').val();
         params = {title, content};
-        console.log(params);
         $.ajax({
             type: 'POST',
             url: '../noticeApi/write',
@@ -48,7 +47,6 @@
         const title = $('#title').val();
         const content = $('#content').val();
         params = {num, title, content};
-        console.log(params);
         $.ajax({
             type: 'POST',
             url: '../noticeApi/update',

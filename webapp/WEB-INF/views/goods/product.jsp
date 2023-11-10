@@ -9,8 +9,11 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-	<div class="container">
-	
-	</div>
+	<main>
+		<div class="container">
+		
+		</div>
+	</main>
+	<%@include file="../footer.jsp"%>
 </body>
 </html>

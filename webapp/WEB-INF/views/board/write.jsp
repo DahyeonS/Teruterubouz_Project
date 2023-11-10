@@ -14,12 +14,11 @@
 <body>
     <main>
         <div class="container">
-            <br>
             <c:if test="${param.update == null}">
-                <h3 class="mb-3 fw-normal">게시글 작성</h3>
+                <h3 class="mb-3 mt-5 fw-normal">게시글 작성</h3>
             </c:if>
             <c:if test="${param.update != null}">
-                <h3 class="mb-3 fw-normal">게시글 수정</h3>
+                <h3 class="mb-3 mt-5 fw-normal">게시글 수정</h3>
             </c:if>
             <br>
             <form>
@@ -84,5 +83,6 @@
             </form>
         </div>
     </main>
+    <%@include file="../footer.jsp"%>
 </body>
 </html>

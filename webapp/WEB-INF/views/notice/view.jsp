@@ -18,7 +18,7 @@
             <div id="info">
             </div>
             <hr>
-            <div class="mb-1">
+            <div class="mb-5">
                 <div id="content">
                 </div>
             </div>
@@ -36,5 +36,6 @@
             <br>
         </div>
     </main>
+    <%@include file="../footer.jsp"%>
 </body>
 </html>

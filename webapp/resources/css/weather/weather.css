@@ -1,0 +1,22 @@
+#loading {
+    width: 8rem;
+    height: 8rem;
+}
+
+.carousel-item img {
+    height: 300px;
+}
+
+#city, #image, .carousel-item h3, .carousel-item h5, .carousel-item p {
+    text-align: center;
+}
+
+#sunny {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgb(255, 184, 78);
+}
+
+#region {
+    float: right;
+}
