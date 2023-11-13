@@ -38,8 +38,6 @@
 > city - 시
 >
 > district - 군/구
-> 
-> category - 게시글 분류
 >
 > file_id - 파일 일련번호
 >
@@ -66,3 +64,21 @@
 > content - 댓글 내용
 >
 > postdate - 댓글 작성 날짜
+
+## *notice.sql*
+**공지사항 게시판 테이블**
+
+> ### 칼럼명
+> num - 게시판 일련번호
+> 
+> nickname - 회원 닉네임
+>
+> title - 게시글 제목
+>
+> content - 게시글 내용
+>
+> postdate - 게시 날짜
+>
+> update_date - 수정 날짜
+> 
+> visit_count - 방문자 수
