@@ -5,7 +5,7 @@
 자료형을 정의한 곳입니다.
 
 ## mapper
-**SQL 처리용 Mapper 파일들을 모아놓은 곳입니다.**
+**SQL 쿼리 처리용 Mapper 파일들을 모아놓은 곳입니다.**
 
 ### *StatusMapper.xml*
 Status 폴더의 Mapper 파일
