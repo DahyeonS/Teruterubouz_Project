@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>오늘의 날씨</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <%@include file="../../../resources/script/weather/weather.jsp"%>
 <link rel="stylesheet" href="./resources/css/weather/weather.css">
 </head>

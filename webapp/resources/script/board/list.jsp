@@ -284,7 +284,7 @@
                     for (let i=0; i<data['rs'].length; i++) {
                         const {num, title, nickname, postdate, visitCount, fileId} = data['rs'][i];
                         div += '<div class="col"><div class="card shadow-sm" id="board">';
-                        if (fileId == '') div += '<img class="card-img-top m-auto" src="../resources/image/no-image-icon-23483.png" alt="' + num + '" onclick="linkBoard(' + num + ');">';
+                        if (fileId == '') div += '<img class="card-img-top m-auto" src="../resources/image/no_image_logo.png" alt="' + num + '" onclick="linkBoard(' + num + ');">';
                         else {
                             const fileName = encodeURIComponent(fileId.split(',')[0]);
                             div += '<img class="card-img-top m-auto" src="../resources/uploads/s_' + fileName + '" alt="' + num + '" onclick="linkBoard(' + num + ');"/>';
