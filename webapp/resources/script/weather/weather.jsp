@@ -7,7 +7,7 @@
             url: 'http://127.0.0.1:5050/' + city,
             dataType: 'json',
             success: function(data) {
-                let text = '<div id="weather" class="carousel carousel-dark slide px-5 py-5" data-bs-ride="true">'
+                let text = '<div id="weather" class="carousel carousel-dark slide px-5 py-5 animate__animated animate__fadeIn" data-bs-ride="true">'
                     + '<div class="carousel-inner">';
                 
                 let now = new Date();

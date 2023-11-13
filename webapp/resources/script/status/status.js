@@ -388,7 +388,7 @@ $(function() {
 	
 	tempPreLoad();
 	rainPreLoad();
-	
+
 	$('input[name="tempmodel"]').on('change', function() {
 		if (this.value == 1) tempRfLoad();
 		else tempSvmLoad();

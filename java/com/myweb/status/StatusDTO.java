@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StatusDTO {
-	private int date, avgTem, maxTem, minTem, avgRain, maxRain, hourRain;
+	private int date;
+	private double avgTem, maxTem, minTem, avgRain, maxRain, hourRain;
 }

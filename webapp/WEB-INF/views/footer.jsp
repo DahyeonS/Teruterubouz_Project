@@ -21,6 +21,7 @@
                 <li class="nav-item"><a class="nav-link px-2 text-secondary" href="<%=contextPath%>/board/list">Community</a></li>
                 <li class="nav-item"><a class="nav-link px-2 text-secondary" href="<%=contextPath%>/goods">Goods</a></li>
             </ul>
+            <p class="text-center text-body-secondary">Illustration <a class="text-secondary" target="_blank" href="https://www.irasutoya.com/">いらすとや</a></p>
             <p class="text-center text-body-secondary"><img src="<%=contextPath%>/resources/image/pngegg.png" id="logo"> 2023 Teruterubouz Project</p>
         </div>
     </footer>
