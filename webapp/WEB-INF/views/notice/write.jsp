@@ -20,14 +20,8 @@
             <h3 class="mb-3 mt-5 fw-normal">공지 수정</h3>
         </c:if>
         <form>
-            <br>
-            <input type="text" maxlength="50" id="title" placeholder="제목을 입력하세요." class="form-control-lg w-100">
-            <br>
-            <br>
-            <br>
-            <textarea id="content" placeholder="내용을 입력하세요." class="form-control-lg w-100"></textarea>
-            <br>
-            <br>
+            <input type="text" maxlength="50" id="title" placeholder="제목을 입력하세요." class="form-control-lg w-100 my-4">
+            <textarea id="content" placeholder="내용을 입력하세요." class="form-control-lg w-100 my-4"></textarea>
             <div id="control" class="mb-3">
                 <c:if test="${param.update == null}">
                     <input type="button" value="작성하기" id="submit" class="btn btn-info text-white">

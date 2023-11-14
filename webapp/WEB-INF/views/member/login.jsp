@@ -28,8 +28,7 @@
                 </div>
                 <div><input type="button" value="로그인" id="submit" class="btn btn-info w-100 py-2 text-light"></div>
             </form>
-            <br>
-            <div class="btn-info btn py-2"><a href="./join" class="text-light">회원가입</a></div>
+            <div class="btn-info btn py-2 mt-4"><a href="./join" class="text-light">회원가입</a></div>
         </div>
     </main>
     <%@include file="../footer.jsp"%>

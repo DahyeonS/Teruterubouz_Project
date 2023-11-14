@@ -15,10 +15,8 @@
     <main class="container d-flex align-items-center py-4 bg-body-tertiary">
         <div class="form-signin w-lg-50 w-md-75 m-auto">
             <form class="row">
-                <h3 class="mb-3 fw-normal">회원정보</h3>
-                <a href="boardList">작성글 목록</a>
-                <br>
-                <br>
+                <h3 class="fw-normal">회원정보</h3>
+                <a class="my-4" href="boardList">작성글 목록</a>
                 <label for="id" class="form-label">아이디</label>
                 <div class="input-group col-12">
                     <input class="form-control" type="text" id="id" value="${id}" readonly="readonly">

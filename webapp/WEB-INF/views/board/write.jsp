@@ -19,9 +19,8 @@
         <c:if test="${param.update != null}">
             <h3 class="mb-3 mt-5 fw-normal">게시글 수정</h3>
         </c:if>
-        <br>
         <form>
-            <div class="row g-4">
+            <div class="row g-4 mt-3">
                 <div class="col-4">
                     <select id="province" class="form-select">
                         <option>선택</option>
@@ -55,22 +54,15 @@
                     </select>
                 </div>
             </div>
-            <br>
-            <br>
-            <input type="text" id="title" maxlength="50" placeholder="제목을 입력하세요." class="form-control-lg w-100">
-            <br>
-            <br>
-            <br>
+            <input type="text" id="title" maxlength="50" placeholder="제목을 입력하세요." class="form-control-lg w-100 my-5">
             <textarea id="content" placeholder="내용을 입력하세요." class="form-control-lg w-100 mb-2"></textarea>
             <div id="filelist">
             </div>
             <c:if test="${param.update != null}">
-                <br>
-                <h6>파일 추가하기</h6>
+                <h6 class="mt-4">파일 추가하기</h6>
             </c:if>
             <input type="file" name="uploadFile" id="file" class="form-control w-50" multiple>
-            <br>
-            <div id="control" class="mb-3">
+            <div id="control" class="my-3">
                 <c:if test="${param.update == null}">
                     <input type="button" value="작성하기" id="submit" class="btn btn-info text-white">
                 </c:if>

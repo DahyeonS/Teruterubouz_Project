@@ -21,18 +21,19 @@
             <div id="content">
             </div>
         </div>
-        <br>
-        <input type="button" class="btn btn-info text-white" value="목록보기" id="list">
-        <c:if test="${grade == 'ADMIN'}">
-            <input type="button" class="btn btn-info text-white mx-2" value="글쓰기" id="write">
-        </c:if>
-        <div id="control" class="mb-3">
+        <div class="my-5">
+            <div class="py-3"></div>
+            <input type="button" class="btn btn-info text-white" value="목록보기" id="list">
             <c:if test="${grade == 'ADMIN'}">
-                <input class="btn btn-info text-white mx-2" type="button" value="수정하기" id="update" onclick="updateLink(${param.num});">
-                <input class="btn btn-info text-white" type="button" value="삭제하기" id="delete" onclick="deleteConfirm(${param.num})">
+                <input type="button" class="btn btn-info text-white mx-2" value="글쓰기" id="write">
             </c:if>
+            <div id="control" class="mb-5">
+                <c:if test="${grade == 'ADMIN'}">
+                    <input class="btn btn-info text-white mx-2" type="button" value="수정하기" id="update" onclick="updateLink(${param.num});">
+                    <input class="btn btn-info text-white" type="button" value="삭제하기" id="delete" onclick="deleteConfirm(${param.num})">
+                </c:if>
+            </div>
         </div>
-        <br>
     </main>
     <%@include file="../footer.jsp"%>
 </body>

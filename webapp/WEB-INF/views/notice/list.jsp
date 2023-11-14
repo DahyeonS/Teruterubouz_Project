@@ -12,8 +12,7 @@
 <%@include file="../topmenu.jsp"%>
 <body>
 	<main class="container">
-		<h3 class="mb-3 mt-5 fw-normal">공지사항</h3>
-		<br>
+		<h3 class="my-5 fw-normal">공지사항</h3>
 		<h2 class="h4 mb-3 fw-normal" id="noboard">작성글이 없습니다.</h2>
 		<c:if test="${grade == 'ADMIN'}">
 			<input type="button" value="글쓰기" id="write" class="btn btn-outline-primary mb-4">
@@ -34,7 +33,7 @@
 					<input type="button" value="검색하기" id="search" class="btn btn-outline-primary">
 				</div>
 				<div class="col-1">
-					&nbsp
+					<div></div>
 				</div>
 				<div class="col-2">
 					<select id="limit" class="justify-content-md-end form-select">
@@ -44,8 +43,7 @@
 					</select>
 				</div>
 			</div>
-			<br>
-			<table class="table table-responsive-sm table-hover align-middle">
+			<table class="table table-responsive-sm table-hover align-middle mt-4">
 				<thead class="table-secondary align-middle">
 					<tr>
 						<th scope="col">번호</th>
@@ -53,7 +51,7 @@
 						<th scope="col">조회수</th>
 						<th scope="col">작성일자</th>
 						<c:if test="${grade == 'ADMIN'}">
-							<th scope="col">&nbsp</th>
+							<th scope="col"><div></div></th>
 						</c:if>
 					</tr>
 				</thead>

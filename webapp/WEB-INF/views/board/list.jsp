@@ -12,8 +12,7 @@
 <%@include file="../topmenu.jsp"%>
 <body>
 	<main class="container">
-		<h3 class="mb-3 mt-5 fw-normal">커뮤니티 게시판</h3>
-		<br>
+		<h3 class="my-5 fw-normal">커뮤니티 게시판</h3>
 		<form>
 			<div class="row g-4">
 				<div class="col-2">
@@ -68,10 +67,7 @@
 				</div>
 			</div>
 		</form>
-		<br>
-		<input type="button" value="글쓰기" id="write" class="btn btn-outline-primary">
-		<br>
-		<br>
+		<input type="button" value="글쓰기" id="write" class="btn btn-outline-primary mt-4 mb-5">
 		<nav>
 			<ul id="paging" class="pagination justify-content-center"></ul>
 		</nav>

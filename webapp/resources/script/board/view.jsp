@@ -18,9 +18,9 @@
                 region += '<a href="list?province=' + province + '&city=' + city + '">' + city + '</a>';
                 if (province !== '세종') region += ' <a id="district" href="list?province=' + province + '&city=' + city + '&district=' + district + '">' + district + '</a>';
                 
-                let info = '<div class="d-flex justify-content-between"><p id="postdate" class="my-3">작성일자 ' + postdate + '</p>';
-                if (updateDate !== null) info += '<p id="updatedate" class="my-3">수정일자 ' + updateDate + '</p>'
-                info += '</div><div class="d-flex justify-content-between"><p class="mb-1">' + nickname + '(' + id + ')</p><p class="mb-1">조회수 ' + visitCount + '</p></div>';
+                let info = '<div class="d-flex justify-content-between"><p id="postdate" class="fst-italic my-3">작성일자 ' + postdate + '</p>';
+                if (updateDate !== null) info += '<p id="updatedate" class="fst-italic my-3">수정일자 ' + updateDate + '</p>'
+                info += '</div><div class="d-flex justify-content-between"><p class="fw-bold mb-1">' + nickname + '(' + id + ')</p><p class="mb-1">조회수 ' + visitCount + '</p></div>';
                 
                 let image = '';
                 let filelist = ''
@@ -48,7 +48,7 @@
                 }
                 
                 $('title').html(title);
-                $('#title').html('<h3>'+ title +'</h3>');
+                $('#title').html('<h3 class="fw-bold">'+ title +'</h3>');
                 $('#region').html(region);
                 $('#info').html(info);
                 $('#image').html(image);
@@ -57,7 +57,7 @@
                 $('#control').html(control);
                 
                 if (id === 'admin') {
-                    $('#title > h3').attr('class', 'text-danger');
+                    $('#title > h3').attr('class', 'fw-bold text-danger');
                     $('#content').attr('class', 'fw-bold');
                 }
             },

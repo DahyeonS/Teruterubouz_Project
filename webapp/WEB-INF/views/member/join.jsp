@@ -11,7 +11,7 @@
 </head>
 <%@include file="../topmenu.jsp"%>
 <body>
-    <main class="container d-flex align-items-center py-4 bg-body-tertiary">
+    <main class="container py-4">
         <div class="form-signin m-auto position-absolute translate-middle top-50 start-50">
             <h3 class="mb-3 fw-normal mb-4">회원가입</h3>
             <form class="row g-2">
@@ -59,7 +59,12 @@
                 </div>
             </form>
         </div>
+        <div class="py-5"></div>
+        <div class="py-5"></div>
+        <div class="py-5"></div>
+        <div class="py-5"></div>
+        <div class="py-5"></div>
+        <%@include file="../footer.jsp"%>
     </main>
-    <%@include file="../footer.jsp"%>
 </body>
 </html>
