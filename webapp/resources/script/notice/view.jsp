@@ -11,12 +11,12 @@
             success: function(data) {
                 const {num, title, content, postdate, updateDate, visitCount} = data;
                 
-                let info = '<div class="d-flex justify-content-between"><p id="postdate" class="my-3">작성일자 ' + postdate + '</p>';
-                if (updateDate !== null) info += '<p id="updatedate" class="my-3">수정일자 ' + updateDate + '</p>'
+                let info = '<div class="d-flex justify-content-between"><p id="postdate" class="fst-italic my-3">작성일자 ' + postdate + '</p>';
+                if (updateDate !== null) info += '<p id="updatedate" class="fst-italic my-3">수정일자 ' + updateDate + '</p>'
                 info += '</div><div class="d-flex justify-content-end"><p class="mb-1">조회수 ' + visitCount + '</p></div>';
                 
                 $('title').html(title);
-                $('#title').html('<h3>'+ title +'</h3>');
+                $('#title').html('<h3 class="fw-bold">'+ title +'</h3>');
                 $('#info').html(info);
                 $('#content').html(content);
             },

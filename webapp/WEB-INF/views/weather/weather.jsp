@@ -55,12 +55,7 @@
 			<h3 class="mb-3 mt-5 fw-normal">제주 날씨</h3>
 		</c:if>
 		<div id="weatherinfo" class="justify-content-center m-0 align-items-center">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+			<div class="py-3"></div>
 			<div id="image" class="my-5">
 				<div class="spinner-border text-info" role="status" id="loading">
 					<span class="visually-hidden">로딩 중</span>

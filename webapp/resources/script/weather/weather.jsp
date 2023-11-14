@@ -29,26 +29,26 @@
                     else text += '<div class="carousel-item">';
 
                     if (isSameDate(now, time)) {
-                        if (data[i]['date'][8] === '0') text += '<h3>오늘 오전</h3><br>';
-                        else text += '<h3>오늘 오후</h3><br>';
+                        if (data[i]['date'][8] === '0') text += '<h3 class="mb-4">오늘 오전</h3>';
+                        else text += '<h3 class="mb-4">오늘 오후</h3>';
                     } else if (isSameDate(one, time)) {
-                        if (data[i]['date'][8] === '0') text += '<h3>내일 오전</h3><br>';
-                        else text += '<h3>내일 오후</h3><br>';
+                        if (data[i]['date'][8] === '0') text += '<h3 class="mb-4">내일 오전</h3>';
+                        else text += '<h3 class="mb-4">내일 오후</h3>';
                     } else if (isSameDate(two, time)) {
-                        if (data[i]['date'][8] === '0') text += '<h3>모레 오전</h3><br>';
-                        else text += '<h3>모레 오후</h3><br>';
+                        if (data[i]['date'][8] === '0') text += '<h3 class="mb-4">모레 오전</h3>';
+                        else text += '<h3 class="mb-4">모레 오후</h3>';
                     } else {
-                        if (data[i]['date'][8] === '0') text += '<h3>글피 오전</h3><br>';
-                        else text += '<h3>글피 오후</h3><br>';
+                        if (data[i]['date'][8] === '0') text += '<h3 class="mb-4">글피 오전</h3>';
+                        else text += '<h3 class="mb-4">글피 오후</h3>';
                     }
     
-                    if (data[i]['sky'][3] === '1' && data[i]['rain'] === '0') text += '<div id="image"><img src="./resources/image/tenki_mark01_hare.png"></div><br><h5 id="sunny">맑음</h5>';
-                    else if (data[i]['sky'][3] === '2' && data[i]['rain'] === '0') text += '<div id="image"><img src="./resources/image/kumo.png"></div><br><h5>구름 조금</h5>';
-                    else if (data[i]['sky'][3] === '3' && data[i]['rain'] === '0') text += '<div id="image"><img src="./resources/image/kumo.png"></div><br><h5>구름 많음</h5>';
-                    else if (data[i]['sky'][3] === '4' && data[i]['rain'] === '0') text += '<div id="image"><img src="./resources/image/tenki_mark05_kumori.png"></div><br><h5>흐림</h5>';
-                    else if (data[i]['rain'] === '3') text += '<div id="image"><img src="./resources/image/tenki_mark09_gousetsu.png"></div><br><h5>눈</h5>';
-                    else if (data[i]['rain'] === '4') text += '<div id="image"><img src="./resources/image/tenki_mark03_gouu.png"></div><br><h5>진눈깨비</h5>';
-                    else text += '<div id="image"><img src="./resources/image/tenki_mark03_gouu.png"></div><br><h5>비</h5>';
+                    if (data[i]['sky'][3] === '1' && data[i]['rain'] === '0') text += '<div class="mb-4" id="image"><img src="./resources/image/tenki_mark01_hare.png"></div><h5 id="sunny">맑음</h5>';
+                    else if (data[i]['sky'][3] === '2' && data[i]['rain'] === '0') text += '<div class="mb-4" id="image"><img src="./resources/image/kumo.png"></div><h5>구름 조금</h5>';
+                    else if (data[i]['sky'][3] === '3' && data[i]['rain'] === '0') text += '<div class="mb-4" id="image"><img src="./resources/image/kumo.png"></div><h5>구름 많음</h5>';
+                    else if (data[i]['sky'][3] === '4' && data[i]['rain'] === '0') text += '<div class="mb-4" id="image"><img src="./resources/image/tenki_mark05_kumori.png"></div><h5>흐림</h5>';
+                    else if (data[i]['rain'] === '3') text += '<div class="mb-4" id="image"><img src="./resources/image/tenki_mark09_gousetsu.png"></div><h5>눈</h5>';
+                    else if (data[i]['rain'] === '4') text += '<div class="mb-4" id="image"><img src="./resources/image/tenki_mark03_gouu.png"></div><h5>진눈깨비</h5>';
+                    else text += '<div class="mb-4" id="image"><img src="./resources/image/tenki_mark03_gouu.png"></div><h5>비</h5>';
                     
                     text += '<p>강수확률 ' + data[i]['prob'] + '%</p></div>'
                 }

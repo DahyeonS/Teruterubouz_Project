@@ -1,3 +1,15 @@
 #image {
     width: 513px;
 }
+
+#info, #price {
+    height: 800px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#select {
+    width: 200px;
+}

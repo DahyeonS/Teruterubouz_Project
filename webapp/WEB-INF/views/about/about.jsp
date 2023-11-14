@@ -21,9 +21,11 @@
                 </div>
             </div>
             <div class="col-lg-7 animate__animated animate__slideInUp">
-                <h2 class="featurette-heading fw-normal lh-1 mb-5">맑은 날씨를 좋아하는 사람들의 모임</h2>
-                <p class="lead mb-3 fst-italic">파란 하늘 좋아하는 사람, 비 오는 게 싫은 사람, 햇님이 좋은 사람 여기여기 모여라~</p>
-                <p>맑음돌이 프로젝트는 맑은 날을 소망하는 날씨 커뮤니티입니다.</p>
+                <h2 class="featurette-heading fw-normal lh-1 mb-3">맑은 날씨를 좋아하는 사람들의 모임</h2>
+                <p class="lead mb-5 fw-bold fst-italic opacity-50">파란 하늘 좋아하는 사람, 비 오는 게 싫은 사람, 햇빛이 좋은 사람 여기여기 모여라~</p>
+                <p>환영합니다! 맑음돌이 프로젝트는 맑은 날을 소망하는 날씨 커뮤니티입니다.</p>
+                <p>맑음돌이는 일본에서 해가 뜨길 기원하면서 처마나 우산에 장식한 인형으로, 본 사이트는 날씨에 관심 많은 사람들이 모여 소소하게 이야기를 나눌 수 있는 공간을 마련하고자 기우(雨)제가 아닌 기일(日)제를 컨셉으로 만들어졌습니다.</p>
+                <p>맑은 날, 흐린 날, 비오는 날, 눈오는 날 등등 매일매일 색다른 날씨를 거치면서 떠오르는 생각, 느낌을 자유롭게 공유해보세요.</p>
             </div>
         </div>
         <hr class="featurette-divider">
@@ -35,8 +37,8 @@
             </div>
             <div class="col-lg-7">
                 <div class="animated aniview" data-av-animation="animate__fadeInRight">
-                    <h2 class="featurette-heading fw-normal lh-1 mb-5">내일 날씨 맑음?</h2>
-                    <p class="lead mb-3 fst-italic">내일은 해가 뜰까요?</p>
+                    <h2 class="featurette-heading fw-normal lh-1 mb-3">내일 날씨 맑음?</h2>
+                    <p class="lead mb-5 fw-bold fst-italic opacity-50">내일은 해가 뜰까요?</p>
                     <p>주요 도시들의 날씨를 확인해보세요.</p>
                     <p>&nbsp</p>
                     <p>&nbsp</p>
@@ -53,8 +55,8 @@
             </div>
             <div class="col-lg-7">
                 <div class="animated aniview" data-av-animation="animate__fadeInRight">
-                    <h2 class="featurette-heading fw-normal lh-1 mb-5">내년 날씨 어때?</h2>
-                    <p class="lead mb-3 fst-italic">다음 해 날씨는 어떨까?</p>
+                    <h2 class="featurette-heading fw-normal lh-1 mb-3">내년 날씨 어때?</h2>
+                    <p class="lead mb-5 fw-bold fst-italic opacity-50">다음 해 날씨는 어떨까?</p>
                     <p>30년 동안의 전국 날씨 데이터를 확인해보세요.</p>
                     <p>&nbsp</p>
                     <p>&nbsp</p>
@@ -71,8 +73,8 @@
             </div>
             <div class="col-lg-7">
                 <div class="animated aniview" data-av-animation="animate__fadeInRight">
-                    <h2 class="featurette-heading fw-normal lh-1 mb-5">커뮤니티</h2>
-                    <p class="lead mb-3 fst-italic">다른 지역 날씨는 어떨까?</p>
+                    <h2 class="featurette-heading fw-normal lh-1 mb-3">커뮤니티</h2>
+                    <p class="lead mb-5 fw-bold fst-italic opacity-50">다른 지역 날씨는 어떨까?</p>
                     <p>여러 지역 사람들의 목소리를 들어보세요.</p>
                     <p>&nbsp</p>
                     <p>&nbsp</p>

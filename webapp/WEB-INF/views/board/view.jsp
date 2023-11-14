@@ -28,21 +28,21 @@
             </div>
         </div>
         <section id="replies" class="mt-5">
-            <br>
+            <div class="py-3"></div>
             <div id="replylist${param.num}" class="row g-1 align-items-center border border-info d-flex justify-content-center text-center px-2 py-3 mt-5 bg-white rounded">
             </div>
         </section>
-        <br>
+        <div class="py-2"></div>
         <table class="d-flex justify-content-center my-5">
         <c:if test="${nickname != null}">
         <tr>
-        <td><textarea class="form-control-lg" id="reply${param.num}" style="font-size: 10pt;"></textarea>&nbsp&nbsp</td>
+        <td><textarea class="form-control-lg mx-3" id="reply${param.num}" style="font-size: 10pt;"></textarea></td>
         <td><input type="button" class="btn btn-info text-white" value="댓글 작성" onclick="writeReply(${param.num});" id="rwrite"></td>
         </tr>
         </c:if>
         <c:if test="${nickname == null}">
         <tr>
-        <td><textarea class="form-control-lg" id="reply${param.num}" style="font-size: 10pt;" placeholder="로그인한 사용자만 작성할 수 있습니다." readonly="readonly"></textarea>&nbsp&nbsp</td>
+        <td><textarea class="form-control-lg" id="reply${param.num}" style="font-size: 10pt;" placeholder="로그인한 사용자만 작성할 수 있습니다." readonly="readonly"></textarea>&nbsp;&nbsp;</td>
         <td><input type="button" class="btn btn-info text-white" value="댓글 작성" id="rwrite" disabled="disabled"></td>
         </tr>
         </c:if>
@@ -50,9 +50,8 @@
         </table>
         <input type="button" class="btn btn-info text-white" value="목록보기" id="list">
         <input type="button" class="btn btn-info text-white mx-2" value="글쓰기" id="write">
-        <div id="control" class="mb-3">
+        <div id="control" class="mb-5">
         </div>
-        <br>
     </div>
     <%@include file="../footer.jsp"%>
 </body>
