@@ -2,6 +2,11 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-bottom: 20px;
 }
 
 a {
@@ -16,6 +21,14 @@ a {
     outline: 0;
 }
 
-body {
-    padding-bottom: 20px;
+#back-to-top {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    display: none;
+}
+
+#back-to-top svg {
+    vertical-align: top;
+    margin-top: 5px;
 }
