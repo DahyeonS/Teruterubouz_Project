@@ -35,7 +35,7 @@ function tempYearLoad() {
                 x: {
                         type: "category",
                         categories: year,
-                        height: 100
+                        height: 80
                     }
                 },
                 background: {
@@ -226,7 +226,7 @@ function rainYearLoad() {
                     x: {
                         type: "category",
                         categories: year,
-                        height: 100
+                        height: 80
                     }
                 }
             });

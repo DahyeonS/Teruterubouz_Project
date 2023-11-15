@@ -2,39 +2,39 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title></title>
-<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
-<%@include file="../../../resources/script/notice/view.jsp"%>
-<link rel="stylesheet" href="../resources/css/notice/view.css">
-</head>
-<%@include file="../topmenu.jsp"%>
-<body>
-    <main class="container">
-        <div id="title" class="text-center my-5">
-        </div>
-        <div id="info">
-        </div>
-        <hr>
-        <div class="mb-5">
-            <div id="content">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+        <%@include file="../../../resources/script/notice/view.jsp"%>
+        <link rel="stylesheet" href="../resources/css/notice/view.css">
+    </head>
+    <%@include file="../topmenu.jsp"%>
+    <body>
+        <main class="container">
+            <div id="title" class="text-center my-5">
             </div>
-        </div>
-        <div class="my-5">
-            <div class="py-3"></div>
-            <input type="button" class="btn btn-info text-white" value="목록보기" id="list">
-            <c:if test="${grade == 'ADMIN'}">
-                <input type="button" class="btn btn-info text-white mx-2" value="글쓰기" id="write">
-            </c:if>
-            <div id="control" class="mb-5">
+            <div id="info">
+            </div>
+            <hr>
+            <div class="mb-5">
+                <div id="content">
+                </div>
+            </div>
+            <div class="my-5">
+                <div class="py-3"></div>
+                <input type="button" class="btn btn-info text-white" value="목록보기" id="list">
                 <c:if test="${grade == 'ADMIN'}">
-                    <input class="btn btn-info text-white mx-2" type="button" value="수정하기" id="update" onclick="updateLink(${param.num});">
-                    <input class="btn btn-info text-white" type="button" value="삭제하기" id="delete" onclick="deleteConfirm(${param.num})">
+                    <input type="button" class="btn btn-info text-white mx-2" value="글쓰기" id="write">
                 </c:if>
+                <div id="control" class="mb-5">
+                    <c:if test="${grade == 'ADMIN'}">
+                        <input class="btn btn-info text-white mx-2" type="button" value="수정하기" id="update" onclick="updateLink(${param.num});">
+                        <input class="btn btn-info text-white" type="button" value="삭제하기" id="delete" onclick="deleteConfirm(${param.num})">
+                    </c:if>
+                </div>
             </div>
-        </div>
-    </main>
-    <%@include file="../footer.jsp"%>
-</body>
+        </main>
+        <%@include file="../footer.jsp"%>
+    </body>
 </html>
