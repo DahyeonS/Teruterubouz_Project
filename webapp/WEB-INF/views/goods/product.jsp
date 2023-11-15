@@ -29,7 +29,7 @@
 					<div class="justify-content-center">
 						<p id="new"><span class="badge text-bg-info text-white">New</span></p>
 						<h3 class="mb-3">맑음돌이 인형</h3>
-						<p>귀여운 맑음돌이 인형입니다. 처마에 매달아서 맑은 날씨를 기대해보아요.</p>
+						<p>귀여운 맑음돌이 인형입니다. 창가에 장식해서 맑은 날씨를 기대해보아요.</p>
 						<hr>
 						<h4><span class="fst-italic opacity-50" id="price">￦ 5,000</span></h4>
 						<p class="fst-italic opacity-50">배송비 별도</p>
