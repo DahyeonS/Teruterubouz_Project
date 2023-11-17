@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myweb.board.BoardDTO;
+import com.myweb.board.CommentDTO;
 import com.myweb.board.PagingDTO;
 import com.myweb.web.FileIO;
 
@@ -164,6 +165,7 @@ public class MemberControllerAjax {
 		PagingDTO paging = new PagingDTO(totalCount, pageNum, listNum, blockNum);
 		paging.setPaging();
 		
+		map.put("totalCount", paging.getTotalCount());
 		map.put("pageNum", paging.getPageNum());
 		map.put("startPage", paging.getStartPage());
 		map.put("endPage", paging.getEndPage());
@@ -184,6 +186,62 @@ public class MemberControllerAjax {
 		int rs = service.deleteBoard(num);
 		if (rs != 0) FileIO.deleteFile(dto.getFileId());
 		
+		map.put("rs", rs);
+		
+		return map;
+	}
+	
+	@PostMapping("replyList")
+	public Map<String, Object> replyList(HttpSession session, int page, int limit, CommentDTO dto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String id = (String)session.getAttribute("id");
+		map.put("id", id);
+		map.put("page", (page-1)*limit);
+		map.put("limit", limit);
+		if (dto.getContent() != null) map.put("content", dto.getContent());
+		else map.put("content", "");
+		
+		List<BoardDTO> list = service.getReply(map);
+		Map<String, Object> result = new HashMap<String, Object>();
+		if (list.size() != 0) result.put("rs", list);
+		else result.put("rs", 0);
+		
+		return result;
+	}
+	
+	@PostMapping("pagingReply")
+	public Map<String, Object> pagingReply(HttpSession session, int page, int limit, CommentDTO dto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String id = (String)session.getAttribute("id");
+		int pageNum = page;
+		int listNum = limit;
+		int blockNum = 10;
+		
+		dto.setId(id);
+		if (dto.getContent() == null) dto.setContent("");
+		
+		int totalCount = service.getReplyCount(dto);
+		
+		PagingDTO paging = new PagingDTO(totalCount, pageNum, listNum, blockNum);
+		paging.setPaging();
+		
+		map.put("totalCount", paging.getTotalCount());
+		map.put("pageNum", paging.getPageNum());
+		map.put("startPage", paging.getStartPage());
+		map.put("endPage", paging.getEndPage());
+		map.put("isPrev", paging.isPrev());
+		map.put("isNext", paging.isNext());
+		map.put("isBPrev", paging.isBPrev());
+		map.put("isBNext", paging.isBNext());
+		
+		return map;
+	}
+	
+	@PostMapping("deleteReply")
+	public Map<String, Object> deleteReply(int num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int rs = service.deleteReply(num);
 		map.put("rs", rs);
 		
 		return map;

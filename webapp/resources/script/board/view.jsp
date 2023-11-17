@@ -69,7 +69,6 @@
     
     function getReply(postNum, page) {
         event.preventDefault();
-
         const params = {postNum, page};
         $.ajax({
             type: 'POST',
@@ -108,7 +107,8 @@
             dataType: 'json',
             data: params,
             success: function(data) {
-            const {endPage, isBNext, isBPrev, isNext, isPrev, pageNum, startPage} = data;
+            const {totalCount, endPage, isBNext, isBPrev, isNext, isPrev, pageNum, startPage} = data;
+
 			let li = '';
 			if(isBPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getReply(${param.num} ,' + (startPage - 1) + ');">처음</a></li>';
 			else li += '<li class="page-item disabled"><span class="page-link">처음</span></li>';
@@ -123,6 +123,9 @@
 			if(isBNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getReply(${param.num} ,' + (endPage + 1) + ');">마지막</a></li>';
 			else li += '<li class="page-item disabled"><span class="page-link">마지막</span></li>';
             $('#paging').html(li);
+
+            let string = '댓글 ' + totalCount + '개';
+            $('#count').html(string);
             },
             error: function(xhr, status, error) {
                 console.log(xhr, status, error);
@@ -139,10 +142,22 @@
             data: param,
             success: function(data) {
                 if (data['rs'] !== 0) {
-                    alert('게시글이 삭제되었습니다.');
-                    location.href = 'list'
+                    Swal.fire({
+						text: '게시글이 삭제되었습니다.',
+						icon: 'success',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					}).then(result => {
+						if (result.isConfirmed) location.href = 'list'
+					});
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+					Swal.fire({
+						title: '오류',
+						text: '죄송합니다. 다시 시도해주세요.',
+						icon: 'error',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					});
                     return;
                 }
             },
@@ -157,8 +172,14 @@
         const nickname = '${nickname}';
         const content = $('#reply' + ${param.num}).val();
         
-        if (content === '') alert('내용을 입력해주세요.');
-        else {
+        if (content === '') {
+            Swal.fire({
+                text: '내용을 입력하세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인'
+			});
+        } else {
             const params = {id, postNum, nickname, content};
             console.log(params);
             $.ajax({
@@ -168,10 +189,22 @@
                 data: params,
                 success: function(data) {
                     if(data['rs'] !== 0) {
-                        alert('댓글이 작성되었습니다.');
-                        location.reload();
+                        Swal.fire({
+                            text: '댓글이 작성되었습니다.',
+                            icon: 'success',
+                            confirmButtonColor: '#4faaff',
+                            confirmButtonText: '확인'
+                        }).then(result => {
+                            if (result.isConfirmed) location.reload();
+                        });
                     } else {
-                        alert('다시 시도해주세요.');
+                        Swal.fire({
+                            title: '오류',
+                            text: '다시 시도해주세요.',
+                            icon: 'error',
+                            confirmButtonColor: '#4faaff',
+                            confirmButtonText: '확인'
+                        });
                         return;
                     }
                 },
@@ -182,8 +215,8 @@
         }
     };
     
-    function deleteReply(param) {
-        const num = '${param.num}';
+    function deleteReply(num) {
+        const param = {num};
         $.ajax({
             type: 'POST',
             url: '../boardApi/deleteReply',
@@ -191,10 +224,22 @@
             data: param,
             success: function(data) {
                 if(data['rs'] === 1) {
-                    alert('게시글이 삭제되었습니다.');
-                    location.reload();
+                    Swal.fire({
+                        text: '댓글이 삭제되었습니다.',
+                        icon: 'success',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    }).then(result => {
+                        if (result.isConfirmed) location.reload();
+                    });
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+                    Swal.fire({
+                        title: '오류',
+                        text: '죄송합니다. 다시 시도해주세요.',
+                        icon: 'error',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    });
                     return;
                 }
             }, error: function(xhr, status, error) {
@@ -208,16 +253,33 @@
     }
     
     function deleteConfirm(num) {
-        const input = confirm('게시글을 삭제하겠습니까?');
-        if (input) deleteBoard(num);
+        Swal.fire({
+			text: '게시글을 삭제하겠습니까?',
+			icon: 'question',
+			showDenyButton: true,
+			confirmButtonColor: '#4faaff',
+			confirmButtonText: '예',
+			denyButtonText: '아니오',
+			denyButtonColor: '#ff4f4f'
+		}).then(result => {
+			if (result.isConfirmed) deleteBoard(num);
+            else return;
+		});
     }
     
     function deleteReplyConfirm(num) {
-        const input = confirm('해당 댓글을 삭제합니까?');
-        if (input) {
-            const param = {num};
-            deleteReply(param);
-        } else return;
+        Swal.fire({
+            text: '해당 댓글을 삭제합니까?',
+            icon: 'question',
+            showDenyButton: true,
+            confirmButtonColor: '#4faaff',
+            confirmButtonText: '예',
+            denyButtonText: '아니오',
+            denyButtonColor: '#ff4f4f'
+        }).then(result => {
+            if (result.isConfirmed) deleteReply(num);
+            else return;
+        });
     };
     
     $(function() {

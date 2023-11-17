@@ -6,11 +6,12 @@
 	function pagingBoard(params) {
 		$.ajax({
 			type: 'POST',
-			url: '../noticeApi/pagingBoard',
+			url: '../memberApi/pagingBoard',
 			dataType: 'json',
 			data: params,
 			success: function(data) {
-				const {endPage, isBNext, isBPrev, isNext, isPrev, pageNum, startPage} = data;
+				const {totalCount, endPage, isBNext, isBPrev, isNext, isPrev, pageNum, startPage} = data;
+	
 				let li = '';
 				if(isBPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard('+ (startPage - 1) + ', ' + params['limit'] + ');">처음</a></li>';
 				else li += '<li class="page-item disabled"><span class="page-link">처음</span></li>';
@@ -25,6 +26,9 @@
 				if(isBNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard(' + (endPage + 1) + ', ' + params['limit'] + ');">마지막</a></li>';
 				else li += '<li class="page-item disabled"><span class="page-link">마지막</span></li>';
 				$('#paging').html(li);
+	
+				let string = '작성글 총 ' + totalCount + '개';
+				$('#count').html(string);
 			},
 			error: function(xhr, status, error) {
 				console.log(xhr, status, error);
@@ -36,7 +40,7 @@
 		const params = {page, limit, title, content};
 		$.ajax({
 			type: 'POST',
-			url: '../noticeApi/boardList',
+			url: '../memberApi/boardList',
 			dataType: 'json',
 			data: params,
 			success: function(data) {
@@ -54,17 +58,14 @@
 						if (data['rs'][i]['num'] !== 0) $('#noboard').hide();
 						$('#board').show();
 						const {num, title, visitCount, postdate} = data['rs'][i];
-						tr += '<tr><th scope="row">' + num + '</th><td id="title"><a href="view?num=' + num + '" class="text-dark">';
+						tr += '<tr><th scope="row">' + num + '</th><td id="title"><a href="#" onclick="loginCheck(' + num + ');" class="text-dark">';
 						if (title.length > 15) tr += title.substring(0, 15) + '…</a></td><td>';
 						else tr += title + '</a></td><td>';
-						tr += visitCount + '</td><td>' + postdate + '</td>';
-						if ('${grade}' === 'ADMIN') tr += '<td><a href="#" onclick="deleteCheck(' + num + ');" id="delete">삭제</td>';
-						tr += '</tr>';
+						tr += visitCount + '</td><td>' + postdate + '</td>' + '<td><a href="#" onclick="deleteCheck(' + num + ');" id="delete">삭제</td></tr>';
 					}
 				}
 				$('#tbody').html(tr);
 				pagingBoard(params);
-				return search;
 			},
 			error: function(xhr, status, error) {
 				console.log(xhr, status, error);
@@ -75,7 +76,7 @@
 	function deleteBoard(param) {
 		$.ajax({
 			type: 'POST',
-			url: '../noticeApi/delete',
+			url: '../memberApi/deleteBoard',
 			dataType: 'json',
 			data: param,
 			success: function(data) {
@@ -101,6 +102,19 @@
 				console.log(xhr, status, error);
 			}
 		});
+	};
+	
+	function loginCheck(num) {
+		if ('${id}' === '') {
+			Swal.fire({
+				text: '세션이 만료되었습니다.',
+				icon: 'info',
+				confirmButtonColor: '#4faaff',
+				confirmButtonText: '확인'
+			}).then(result => {
+				if (result.isConfirmed) $('a').attr('href', 'login');
+			});
+		} else window.open('../board/view?num=' + num);
 	};
 	
 	function deleteCheck(num) {
@@ -134,10 +148,6 @@
 		$('#select').change(function() {
 			title = undefined;
 			content = undefined;
-		});
-
-		$('#write').click(function() {
-			location.href = 'write';
 		});
 	
 		$('#search').click(function() {

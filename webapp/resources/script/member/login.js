@@ -1,51 +1,106 @@
 function login(id, pw) {
 	const params = {id, pw};
 	$.ajax({
-        type: 'POST',
-        url: '../memberApi/login',
-        dataType: 'json',
-        data: params,
-        success: function(data) {
+		type: 'POST',
+		url: '../memberApi/login',
+		dataType: 'json',
+		data: params,
+		success: function(data) {
 			if (data['rs'] === 0) {
-				alert('ID 또는 비밀번호가 다릅니다.');
-				return;
+				Swal.fire({
+					title: '오류',
+					text: 'ID 또는 비밀번호가 다릅니다.',
+					icon: 'error',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인',
+					script: $('#id').focus()
+				});
 			}
 			else {
-				alert('환영합니다!');
-				location.href = '../';
+				Swal.fire({
+					title: '로그인',
+					text: '환영합니다!',
+					icon: 'success',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				}).then(result => {
+					if (result.isConfirmed) location.href = '../';
+				});
 			}
-        },
-        error: function(xhr, status, error) {
-            console.log(xhr, status, error);
-        }
-    });
+		},
+		error: function(xhr, status, error) {
+			console.log(xhr, status, error);
+		}
+	});
 }
 
 $(function() {
 	$('#id').focus();
 	$('#submit').click(function() {
-        const id = $('#id').val();
+		const id = $('#id').val();
 		const pw = $('#pw').val();
-		if (id === '') alert('아이디를 입력해주세요.');
-		else if (pw === '') alert('비밀번호를 입력해주세요.');
-		else login(id, pw);
-    });
-    $('#pw').keydown(function(event) {
+		if (id === '') {
+			Swal.fire({
+				text: '아이디를 입력해주세요.',
+				icon: 'info',
+				confirmButtonColor: '#4faaff',
+				confirmButtonText: '확인',
+				script: $('#id').focus()
+			});
+		} else if (pw === '') {
+			Swal.fire({
+				text: '비밀번호를 입력해주세요.',
+				icon: 'info',
+				confirmButtonColor: '#4faaff',
+				confirmButtonText: '확인',
+				script: $('#pw').focus()
+			});
+		} else login(id, pw);
+	});
+	$('#pw').keydown(function(event) {
 		if (event.keyCode === 13) {
 			const id = $('#id').val();
 			const pw = $('#pw').val();
-			if (id === '') alert('아이디를 입력해주세요.');
-			else if (pw === '') alert('비밀번호를 입력해주세요.');
-			else login(id, pw);
+			if (id === '') {
+				Swal.fire({
+					text: '아이디를 입력해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인',
+					script: $('#id').focus()
+				});
+			} else if (pw === '') {
+				Swal.fire({
+					text: '비밀번호를 입력해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인',
+					script: $('#pw').focus()
+				});
+			} else login(id, pw);
 		}
-    });
-    $('#id').keydown(function(event) {
+	});
+	$('#id').keydown(function(event) {
 		if (event.keyCode === 13) {
 			const id = $('#id').val();
 			const pw = $('#pw').val();
-			if (id === '') alert('아이디를 입력해주세요.');
-			else if (pw === '') alert('비밀번호를 입력해주세요.');
-			else login(id, pw);
+			if (id === '') {
+				Swal.fire({
+					text: '아이디를 입력해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인',
+					script: $('#id').focus()
+				});
+			} else if (pw === '') {
+				Swal.fire({
+					text: '비밀번호를 입력해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인',
+					script: $('#pw').focus()
+				});
+			} else login(id, pw);
 		}
-    });
+	});
 });

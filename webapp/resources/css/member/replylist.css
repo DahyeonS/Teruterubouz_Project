@@ -1,0 +1,12 @@
+table {
+    text-align: center;
+}
+
+th, td {
+    width: 100px;
+    height: 50px;
+}
+
+#title, #rcontent {
+    width: 200px;
+}

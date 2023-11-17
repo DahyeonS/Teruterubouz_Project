@@ -59,4 +59,10 @@ public class MemberController {
 		view = "member/boardList";
 		return view;
 	}
+	
+	@GetMapping("replyList")
+	public String replyList() {
+		view = "member/replyList";
+		return view;
+	}
 }

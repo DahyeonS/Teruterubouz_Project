@@ -72,4 +72,14 @@ public class BoardServiceImpl implements BoardService {
 	public int deleteReply(CommentDTO dto) {
 		return dao.deleteReply(dto);
 	}
+
+	@Override
+	public List<BoardDTO> getboardListReply(Map<String, Object> map) {
+		return dao.getboardListReply(map);
+	}
+
+	@Override
+	public int getBoardCountReply(BoardDTO dto) {
+		return dao.getBoardCountReply(dto);
+	}
 }

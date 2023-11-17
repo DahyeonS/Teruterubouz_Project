@@ -9,12 +9,22 @@
         const regex = new RegExp('(.*?)\.(png|jpg|jpeg|bmp|gif|tif|webp)$');
         
         if (fileSize >= 5242880) {
-            alert("파일 사이즈가 초과되었습니다.");
+            Swal.fire({
+                text: '파일 사이즈가 초과되었습니다.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인'
+			});
             return false;
         }
         
         if (!(regex.test(fileName))) {
-            alert("이미지 파일만 업로드할 수 있습니다.")
+            Swal.fire({
+                text: '이미지 파일만 업로드할 수 있습니다.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인'
+            });
             return false;
         }
         return true;
@@ -302,10 +312,22 @@
             data: params,
             success: function(data) {
                 if (data['rs'] !== 0) {
-                    alert('파일이 삭제되었습니다.');
-                    imageLoad(num);
+                    Swal.fire({
+						text: '파일이 삭제되었습니다.',
+						icon: 'success',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					}).then(result => {
+						if (result.isConfirmed) imageLoad(num);
+					});
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+                    Swal.fire({
+						title: '오류',
+						text: '죄송합니다. 다시 시도해주세요.',
+						icon: 'error',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					});
                     return;
                 }
             },
@@ -386,10 +408,22 @@
             data: params,
             success: function(data) {
                 if (data['rs'] !== 0) {
-                    alert('게시글이 작성되었습니다.');
-                    location.href = 'list'
+                    Swal.fire({
+						text: '게시글이 작성되었습니다.',
+						icon: 'success',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					}).then(result => {
+						if (result.isConfirmed) location.href = 'list'
+					});
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+                    Swal.fire({
+						title: '오류',
+						text: '죄송합니다. 다시 시도해주세요.',
+						icon: 'error',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					});
                     return;
                 }
             },
@@ -407,10 +441,22 @@
             data: params,
             success: function(data) {
                 if (data['rs'] !== 0) {
-                    alert('게시글이 수정되었습니다.');
-                    location.href = 'view?num=${param.update}';
+                    Swal.fire({
+                        text: '게시글이 수정되었습니다.',
+                        icon: 'success',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    }).then(result => {
+                        if (result.isConfirmed) location.href = 'view?num=${param.update}'
+                    });
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+                    Swal.fire({
+                        title: '오류',
+                        text: '죄송합니다. 다시 시도해주세요.',
+                        icon: 'error',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    });
                     return;
                 }
             },
@@ -421,10 +467,18 @@
     }
     
     function imgDeleteConfirm(num, fileId, fileName) {
-        const input = confirm('파일을 삭제합니까?');
-        event.preventDefault();
-        if (input) deleteImg(num, fileId, fileName);
-        else return;
+        Swal.fire({
+			text: '파일을 삭제합니까?',
+			icon: 'question',
+			showDenyButton: true,
+			confirmButtonColor: '#4faaff',
+			confirmButtonText: '예',
+			denyButtonText: '아니오',
+			denyButtonColor: '#ff4f4f'
+		}).then(result => {
+			if (result.isConfirmed) deleteImg(num, fileId, fileName);
+			else return;
+		});
     }
     
     $(function() {
@@ -439,10 +493,20 @@
         
         $('#submit').click(function() {
             if ($('#title').val() === '') {
-                alert('제목을 작성해주세요.');
+                Swal.fire({
+					text: '제목을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             } else if ($('#content').val() === '') {
-                alert('내용을 작성해주세요.');
+                Swal.fire({
+					text: '내용을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             }
             
@@ -463,10 +527,32 @@
             
             const district = $('#district option:selected').val();
             
-            if (province == '선택') alert('지역을 선택해주세요.');
-            else if (city == '선택') alert('지역을 선택해주세요.');
-            else if (district == '선택') alert('지역을 선택해주세요.');
-            else {
+            if (province == '선택') {
+                Swal.fire({
+					text: '지역을 선택해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
+                return;
+            }
+            else if (city == '선택') {
+                Swal.fire({
+                    text: '지역을 선택해주세요.',
+                    icon: 'info',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                });
+                return;
+            } else if (district == '선택') {
+                Swal.fire({
+                    text: '지역을 선택해주세요.',
+                    icon: 'info',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                });
+                return;
+            } else {
                 let formData = new FormData();
                 let inputFile = $('input[name="uploadFile"]');
                 let files = inputFile[0].files;
@@ -518,10 +604,20 @@
         
         $('#update').click(function() {
             if ($('#title').val() === '') {
-                alert('제목을 작성해주세요.');
+                Swal.fire({
+					text: '제목을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             } else if ($('#content').val() === '') {
-                alert('내용을 작성해주세요.');
+                Swal.fire({
+					text: '내용을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             }
             
@@ -542,13 +638,31 @@
             
             const district = $('#district option:selected').val();
             
-            console.log(province);
-            console.log(city);
-            console.log(district);
-            if (province == '선택') alert('지역을 선택해주세요.');
-            else if (city == '선택') alert('지역을 선택해주세요.');
-            else if (district == '선택') alert('지역을 선택해주세요.');
-            else {
+            if (province == '선택') {
+                Swal.fire({
+                    text: '지역을 선택해주세요.',
+                    icon: 'info',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                });
+                return;
+            } else if (city == '선택') {
+                Swal.fire({
+                    text: '지역을 선택해주세요.',
+                    icon: 'info',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                });
+                return;
+            } else if (district == '선택') {
+                Swal.fire({
+                    text: '지역을 선택해주세요.',
+                    icon: 'info',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                });
+                return;
+            } else {
                 let formData = new FormData();
                 let inputFile = $('input[name="uploadFile"]');
                 let files = inputFile[0].files;

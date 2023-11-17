@@ -12,11 +12,14 @@
     </head>
     <%@include file="../topmenu.jsp"%>
     <body>
-        <main class="container d-flex align-items-center py-4 bg-body-tertiary">
-            <div class="form-signin w-lg-50 w-md-75 m-auto">
+        <main class="container py-4">
+            <div class="form-signin w-lg-25 w-md-75 m-auto">
                 <form class="row">
                     <h3 class="fw-normal">회원정보</h3>
-                    <a class="my-4" href="boardList">작성글 목록</a>
+                    <div class="my-4">
+                        <a class="me-2" href="boardList">작성글 목록</a>
+                        <a href="replyList">댓글 목록</a>
+                    </div>
                     <label for="id" class="form-label">아이디</label>
                     <div class="input-group col-12">
                         <input class="form-control" type="text" id="id" value="${id}" readonly="readonly">

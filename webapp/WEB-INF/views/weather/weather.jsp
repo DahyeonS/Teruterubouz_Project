@@ -18,6 +18,8 @@
 				<ul class="dropdown-menu">
 					<li><a class="dropdown-item" href="./weather?city=seoul">서울</a></li>
 					<li><a class="dropdown-item" href="./weather?city=incheon">인천</a></li>
+					<li><a class="dropdown-item" href="./weather?city=chuncheon">춘천</a></li>
+					<li><a class="dropdown-item" href="./weather?city=gangneung">강릉</a></li>
 					<li><a class="dropdown-item" href="./weather?city=daejeon">대전</a></li>
 					<li><a class="dropdown-item" href="./weather?city=sejong">세종</a></li>
 					<li><a class="dropdown-item" href="./weather?city=gwangju">광주</a></li>
@@ -32,6 +34,12 @@
 			</c:if>
 			<c:if test="${param.city == 'incheon'}">
 				<h3 class="mb-3 mt-5 fw-normal">인천 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'chuncheon'}">
+				<h3 class="mb-3 mt-5 fw-normal">춘천 날씨</h3>
+			</c:if>
+			<c:if test="${param.city == 'gangneung'}">
+				<h3 class="mb-3 mt-5 fw-normal">강릉 날씨</h3>
 			</c:if>
 			<c:if test="${param.city == 'daejeon'}">
 				<h3 class="mb-3 mt-5 fw-normal">대전 날씨</h3>

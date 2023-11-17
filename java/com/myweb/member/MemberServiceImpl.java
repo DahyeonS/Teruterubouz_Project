@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myweb.board.BoardDTO;
+import com.myweb.board.CommentDTO;
 import com.myweb.mybatis.mapper.MemberMapper;
 
 @Service
@@ -59,4 +60,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getBoardNum(num);
 	}
 
+	@Override
+	public List<BoardDTO> getReply(Map<String, Object> map) {
+		return dao.getReply(map);
+	}
+
+	@Override
+	public int getReplyCount(CommentDTO dto) {
+		return dao.getReplyCount(dto);
+	}
+
+	@Override
+	public int deleteReply(int num) {
+		return dao.deleteReply(num);
+	}
 }

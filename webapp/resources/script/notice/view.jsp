@@ -35,10 +35,22 @@
             data: param,
             success: function(data) {
                 if (data['rs'] !== 0) {
-                    alert('게시글이 삭제되었습니다.');
-                    location.href = 'list'
+                    Swal.fire({
+						text: '게시글이 삭제되었습니다.',
+						icon: 'success',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					}).then(result => {
+						if (result.isConfirmed) location.href = 'list'
+					});
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+                    Swal.fire({
+						title: '오류',
+						text: '죄송합니다. 다시 시도해주세요.',
+						icon: 'error',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					});
                     return;
                 }
             },
@@ -53,8 +65,18 @@
     }
     
     function deleteConfirm(num) {
-        const input = confirm('게시글을 삭제하겠습니까?');
-        if (input) deleteBoard(num);
+        Swal.fire({
+			text: '게시글을 삭제하겠습니까?',
+			icon: 'question',
+			showDenyButton: true,
+			confirmButtonColor: '#4faaff',
+			confirmButtonText: '예',
+			denyButtonText: '아니오',
+			denyButtonColor: '#ff4f4f'
+		}).then(result => {
+			if (result.isConfirmed) deleteBoard(num);
+            else return;
+		});
     }
     
     $(function() {

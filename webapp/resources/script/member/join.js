@@ -58,10 +58,23 @@ function join(params) {
         data: params,
         success: function(data) {
             if (data['rs'] === 0) {
-                alert('죄송합니다. 다시 시도해주세요.');
+                Swal.fire({
+                    title: '오류',
+                    text: '죄송합니다. 다시 시도해주세요.',
+                    icon: 'error',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                });
             } else {
-                alert('회원가입을 축하드립니다!');
-                location.href = 'login';
+                Swal.fire({
+                    title: '회원가입',
+                    text: '회원가입을 축하드립니다!',
+                    icon: 'success',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                }).then(result => {
+                    if (result.isConfirmed) location.href = 'login';
+                });
             }
         },
         error: function(xhr, status, error) {
@@ -142,17 +155,25 @@ $(function() {
             $('#nickcheck').removeAttr("disabled");
         }
 	});
-
+    
 	$('#idcheck').click(function() {
         const id = $('#id').val();
         if(id === '') {
-            alert('아이디를 입력해주세요.');
-            $('#id').focus();
-            return;
+            Swal.fire({
+                text: '아이디를 입력해주세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#id').focus()
+            });
         } else if (/^[ㄱ-ㅎ|가-힣]+$/.test(id)) {
-            alert('아이디는 한글을 사용할 수 없습니다.');
-            $('#id').focus();
-            return;
+            Swal.fire({
+                text: '아이디는 한글을 사용할 수 없습니다.',
+                icon: 'error',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#id').focus()
+            });
         }
         idCheck(id);
 	});
@@ -160,9 +181,13 @@ $(function() {
 	$('#nickcheck').click(function() {
         const nickname = $('#nickname').val();
         if(nickname === '') {
-            alert('별명을 입력해주세요.');
-            $('#nickname').focus();
-            return;
+            Swal.fire({
+                text: '별명을 입력해주세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#nickname').focus()
+            })
         }
         nickCheck(nickname);
     });
@@ -173,34 +198,56 @@ $(function() {
         const pw2 = $('#pw2').val();
         const nickname = $('#nickname').val();
         if(id === '') {
-            alert('아이디를 입력해주세요.');
-            $('#id').focus();
-            return;
+            Swal.fire({
+                text: '아이디를 입력해주세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#id').focus()
+            });
         } else if (/^[ㄱ-ㅎ|가-힣]+$/.test(id)) {
-            alert('아이디는 한글을 사용할 수 없습니다.');
-            $('#id').focus();
-            return;
-        }
-        if(pw === '') {
-            alert('비밀번호를 입력해주세요.');
-            $('#pw').focus();
-            return;
-        }
-        if(pw2 === '') {
-            alert('비밀번호 확인을 해주세요.');
-            $('#pw2').focus();
-            return;
+            Swal.fire({
+                text: '아이디는 한글을 사용할 수 없습니다.',
+                icon: 'error',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#id').focus()
+            });
+        } else if(pw === '') {
+            Swal.fire({
+                text: '비밀번호를 입력해주세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#pw').focus()
+            });
+        } else if(pw2 === '') {
+            Swal.fire({
+                text: '비밀번호 확인을 해주세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#pw2').focus()
+            });
         } else if (pw !== pw2) {
-            alert('비밀번호가 일치하지 않습니다.');
-            $('#pw2').focus();
-            return;
+            Swal.fire({
+                text: '비밀번호가 일치하지 않습니다.',
+                icon: 'error',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#pw2').focus()
+            });
+        } else if(nickname === '') {
+            Swal.fire({
+                text: '별명을 입력해주세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+                script: $('#nickname').focus()
+            });
+        } else {
+            const params = {id, pw, nickname};
+            join(params);
         }
-        if(nickname === '') {
-            alert('별명을 입력해주세요.');
-            $('#nickname').focus();
-            return;
-        }
-        const params = {id, pw, nickname};
-        join(params);
     });
 });

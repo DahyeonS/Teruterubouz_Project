@@ -9,12 +9,6 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 		<script src="https://unpkg.com/jquery-aniview/dist/jquery.aniview.js"></script>
 		<link rel="stylesheet" href="../resources/css/goods/product.css">
-		<script>
-			if ('${id}' === '') {
-				alert('로그인이 필요한 서비스입니다.');
-				location.href = "../member/login";
-			}
-		</script>
 	</head>
 	<%@include file="../topmenu.jsp"%>
 	<body>
