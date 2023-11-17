@@ -11,8 +11,10 @@
 **실제 보여지는 웹 페이지들을 모아놓은 곳입니다.**
 
 ### about
+#### *about.jsp*
 
 ### weather
+#### *weather.jsp*
 
 ### status
 #### *status.jsp*
@@ -25,3 +27,6 @@
 ### notice
 
 ### goods
+#### *goods.jsp*
+
+#### *product.jsp*
