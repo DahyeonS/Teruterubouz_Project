@@ -58,7 +58,7 @@
                         <h2 class="featurette-heading fw-normal lh-1 mb-3">내년 날씨 어때?</h2>
                         <p class="lead mb-5 fw-bold fst-italic opacity-50">다음 해 날씨는 어떨까?</p>
                         <p>30년 동안의 전국 날씨 데이터를 확인해보세요.</p>
-                        <p>연별, 월별 기온과 강수량을 한눈에 확인할 수 있습니다.<br>그리고 기계학습 모델이 예상한 내년 기온과 강수량도 구경할 수 있어요.</p>
+                        <p>연도별, 월별 기온과 강수량을 한눈에 확인할 수 있습니다.<br>그리고 기계학습 모델이 예상한 내년 기온과 강수량도 구경할 수 있어요.</p>
                         <p>&nbsp;</p>
                         <a href="status" class="btn btn-info text-white">확인하러 가기</a>
                     </div>
