@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 기온 데이터 처리
+# 강수 데이터 처리
 
 import pandas as pd
 import json
