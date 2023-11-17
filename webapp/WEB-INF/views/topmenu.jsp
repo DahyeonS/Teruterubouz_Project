@@ -7,15 +7,34 @@
 	<head>
 		<meta charset="UTF-8">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 		<script>
 			function logoutCheck() {
-				const check = confirm('로그아웃 하시겠습니까?');
-				if (check) {
-					alert('로그아웃이 완료되었습니다.');
-					location.href = '<%=contextPath%>/member/logout';
-				}
-				else return;
+				Swal.fire({
+					title: '로그아웃',
+					text: '로그아웃 하시겠습니까?',
+					icon: 'question',
+					showDenyButton: true,
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '예',
+					denyButtonText: '아니오',
+					denyButtonColor: '#ff4f4f'
+				}).then(result => {
+					if (result.isConfirmed) {
+						Swal.fire({
+							title: '로그아웃',
+							text: '로그아웃이 완료되었습니다.',
+							icon: 'success',
+							confirmButtonColor: '#4faaff',
+							confirmButtonText: '확인'
+						}).then(result => {
+							if (result.isConfirmed) location.href = '<%=contextPath%>/member/logout';
+						});
+					} else return;
+				});
 			}
 			
 			$(function(){

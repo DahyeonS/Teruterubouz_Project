@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
-    var id, nickname, title, content;
+    var id, nickname, title, content, rcontent;
 
     function fn_option(code, name) {
         return '<option value="' + code + '">' + name + '</option>';
@@ -247,6 +247,35 @@
             }
         });
     };
+
+    function pagingBoardReply(params) {
+        $.ajax({
+            type: 'POST',
+            url: '../boardApi/pagingBoardReply',
+            dataType: 'json',
+            data: params,
+            success: function(data) {
+            const {endPage, isBNext, isBPrev, isNext, isPrev, pageNum, startPage} = data;
+			let li = '';
+			if(isBPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard('+ (startPage - 1) + ', ' + params['limit'] + ');">처음</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">처음</span></li>';
+			if(isPrev) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard('+ (pageNum - 1) + ', ' + params['limit'] + ');">이전</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">이전</span></li>';
+			for(let i=startPage; i<=endPage; i++) {
+				if(i === pageNum) li += '<li class="page-item active"><span class="page-link">'+ i + '</span></li>';
+				else li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard(' + i + ', ' + params['limit'] + ');">'+ i +'</a></li>';
+			};
+			if(isNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard(' + (pageNum + 1) + ', ' + params['limit'] + ');">다음</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">다음</span></li>';
+			if(isBNext) li += '<li class="page-item"><a href="#" class="page-link" onclick="getBoard(' + (endPage + 1) + ', ' + params['limit'] + ');">마지막</a></li>';
+			else li += '<li class="page-item disabled"><span class="page-link">마지막</span></li>';
+            $('#paging').html(li);
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr, status, error);
+            }
+        });
+    };
     
     function getBoard(page) {
         let province = $('#province option:selected').val();
@@ -269,47 +298,103 @@
         let district = $('#district option:selected').val();
         if (district == '선택' || district == undefined) district = '';
         
-        const params = {page, id, nickname, title, content, province, city, district};
-        $.ajax({
-            type: 'POST',
-            url: '../boardApi/boardList',
-            dataType: 'json',
-            data: params,
-            success: function(data) {
-                let div = '';
-                if (data['rs'] === 0) {
-                    alert('조회되는 게시글이 없습니다.');
-                    location.href = 'list';
-                } else {
-                    for (let i=0; i<data['rs'].length; i++) {
-                        const {num, title, nickname, postdate, visitCount, fileId} = data['rs'][i];
-                        div += '<div class="col"><div class="card shadow-sm" id="board">';
-                        if (fileId == '') div += '<img class="card-img-top" src="../resources/image/no_image_logo.png" alt="' + num + '" onclick="linkBoard(' + num + ');">';
-                        else {
-                            const fileName = encodeURIComponent(fileId.split(',')[0]);
-                            div += '<img class="card-img-top" src="../resources/uploads/s_' + fileName + '" alt="' + num + '" onclick="linkBoard(' + num + ');"/>';
+        if (rcontent === undefined) {
+            const params = {page, id, nickname, title, content, province, city, district};
+            $.ajax({
+                type: 'POST',
+                url: '../boardApi/boardList',
+                dataType: 'json',
+                data: params,
+                success: function(data) {
+                    let div = '';
+                    if (data['rs'] === 0) {
+                        Swal.fire({
+                            text: '조회되는 게시글이 없습니다.',
+                            icon: 'info',
+                            confirmButtonColor: '#4faaff',
+                            confirmButtonText: '확인',
+                        });
+                        return;
+                    } else {
+                        for (let i=0; i<data['rs'].length; i++) {
+                            const {num, title, nickname, postdate, visitCount, fileId} = data['rs'][i];
+                            div += '<div class="col"><div class="card shadow-sm" id="board">';
+                            if (fileId == '') div += '<img class="card-img-top" src="../resources/image/no_image_logo.png" alt="' + num + '" onclick="linkBoard(' + num + ');">';
+                            else {
+                                const fileName = encodeURIComponent(fileId.split(',')[0]);
+                                div += '<img class="card-img-top" src="../resources/uploads/s_' + fileName + '" alt="' + num + '" onclick="linkBoard(' + num + ');"/>';
+                            }
+                            div += '<div class="card-body"><h6 class="card-text"><a class="text-title text-dark" href="#" onclick="linkBoard(' + num + ');"';
+                            if (nickname === '관리자') div += ' style="font-weight: bold;"';
+                            div += '>';
+                            if (title.length > 15) div += title.substring(0, 15) + '…';
+                            else div += title;
+                                
+                            div += '</a></h6><hr><div id="info" class="d-flex justify-content-between align-items-center mb-3"><p class="card-text"';
+                            if (nickname === '관리자') div += ' style="font-weight: bold;"'
+                            div += '>';
+                            if (nickname.length > 5) div += nickname.substring(0, 5) + '…';
+                            else div += nickname;
+                            div += '</p><p class="card-text">조회수 ' + visitCount + '</p></div><p class="card-text"><small class="text-body-secondary">'
+                                + postdate + '</small></p></div></div></div>';
                         }
-                        div += '<div class="card-body"><h6 class="card-text"><a class="text-title text-dark" href="#" onclick="linkBoard(' + num + ');"';
-                        if (nickname === '관리자') div += ' style="font-weight: bold;"';
-                        if (title.length > 15) div += '>' + title.substring(0, 15) + '…</a>';
-                        else div += '>' + title + '</a>';
-                            
-                        div += '</h6><hr><div id="info" class="d-flex justify-content-between align-items-center mb-3"><p class="card-text"';
-                        if (nickname === '관리자') div += ' style="font-weight: bold;"'
-                        div += '>';
-                        if (nickname.length > 5) div += nickname.substring(0, 5) + '…';
-                        else div += nickname;
-                        div += '</p><p class="card-text">조회수 ' + visitCount + '</p></div><p class="card-text"><small class="text-body-secondary">'
-                            + postdate + '</small></p></div></div></div>';
                     }
+                    $('#boardlist').html(div);
+                    pagingBoard(params);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr, status, error);
                 }
-                $('#boardlist').html(div);
-                pagingBoard(params);
-            },
-            error: function(xhr, status, error) {
-                console.log(xhr, status, error);
-            }
-        });
+            });
+        } else {
+            const params = {page, content: rcontent, province, city, district};
+            $.ajax({
+                type: 'POST',
+                url: '../boardApi/boardListReply',
+                dataType: 'json',
+                data: params,
+                success: function(data) {
+                    let div = '';
+                    if (data['rs'] === 0) {
+                        Swal.fire({
+                            text: '조회되는 게시글이 없습니다.',
+                            icon: 'info',
+                            confirmButtonColor: '#4faaff',
+                            confirmButtonText: '확인',
+                        });
+                        return;
+                    } else {
+                        for (let i=0; i<data['rs'].length; i++) {
+                            const {num, title, nickname, postdate, visitCount, fileId} = data['rs'][i];
+                            div += '<div class="col"><div class="card shadow-sm" id="board">';
+                            if (fileId == '') div += '<img class="card-img-top" src="../resources/image/no_image_logo.png" alt="' + num + '" onclick="linkBoard(' + num + ');">';
+                            else {
+                                const fileName = encodeURIComponent(fileId.split(',')[0]);
+                                div += '<img class="card-img-top" src="../resources/uploads/s_' + fileName + '" alt="' + num + '" onclick="linkBoard(' + num + ');"/>';
+                            }
+                            div += '<div class="card-body"><h6 class="card-text"><a class="text-title text-dark" href="#" onclick="linkBoard(' + num + ');"';
+                            if (nickname === '관리자') div += ' style="font-weight: bold;"';
+                            div += '>';
+                            if (title.length > 15) div += title.substring(0, 15) + '…';
+                            else div += title;
+                                
+                            div += '</a></h6><hr><div id="info" class="d-flex justify-content-between align-items-center mb-3"><p class="card-text"';
+                            if (nickname === '관리자') div += ' style="font-weight: bold;"'
+                            div += '>';
+                            if (nickname.length > 5) div += nickname.substring(0, 5) + '…';
+                            else div += nickname;
+                            div += '</p><p class="card-text">조회수 ' + visitCount + '</p></div><p class="card-text"><small class="text-body-secondary">'
+                                + postdate + '</small></p></div></div></div>';
+                        }
+                    }
+                    $('#boardlist').html(div);
+                    pagingBoardReply(params);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr, status, error);
+                }
+            });
+        }
     };
     
     function linkBoard(num) {
@@ -339,14 +424,32 @@
         });
         
         $('#search').click(function() {
+            const word = $('#content').val();
+
             if ($('#select').val() === 'id') id = $('#content').val();
             else if ($('#select').val() === 'nickname') nickname = $('#content').val();
             else if ($('#select').val() === 'title') title = $('#content').val();
             else if ($('#select').val() === 'content') content = $('#content').val();
+            else if ($('#select').val() === 'rcontent') rcontent = $('#content').val();
             else {
-                alert('검색 종류를 선택해주세요.')
+                Swal.fire({
+                    text: '검색 종류를 선택해주세요.',
+                    icon: 'info',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인'
+                });
+                return;
             }
-            getBoard(1);
+
+            if (word === '') {
+				Swal.fire({
+					text: '검색어를 입력해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
+				return;
+			} else getBoard(1);
         });
         
         $('#all').click(function() {
@@ -360,13 +463,38 @@
                 else if ($('#select').val() === 'nickname') nickname = $('#content').val();
                 else if ($('#select').val() === 'title') title = $('#content').val();
                 else if ($('#select').val() === 'content') content = $('#content').val();
+                else if ($('#select').val() === 'rcontent') rcontent = $('#content').val();
                 else {
-                    alert('검색 종류를 선택해주세요.')
+                    Swal.fire({
+                        text: '검색 종류를 선택해주세요.',
+                        icon: 'info',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    });
+                    return;
                 }
-                getBoard(1);
+
+                const word = $('#content').val();
+                if (word === '') {
+                    Swal.fire({
+                        text: '검색어를 입력해주세요.',
+                        icon: 'info',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    });
+                    return;
+                } else getBoard(1);
             }
         });
         
+        $('#select').change(function() {
+            id = undefined;
+            nickname = undefined;
+            title = undefined;
+            content = undefined;
+            rcontent = undefined;
+        });
+
         $('#province').change(function() {
             cityShow();
             getBoard(1);

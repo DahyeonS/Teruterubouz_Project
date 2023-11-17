@@ -21,5 +21,4 @@ public class StatusServiceImpl implements StatusService {
 	public List<StatusDTO> getRain() {
 		return dao.getRain();
 	}
-
 }

@@ -8,11 +8,23 @@ function pwUpdate() {
         dataType: 'json',
         success: function(data) {
             if(data['rs'] === 0) {
-				alert('죄송합니다. 다시 시도해주세요.');
-				return;
+				Swal.fire({
+					title: '오류',
+					text: '죄송합니다. 다시 시도해주세요.',
+					icon: 'error',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
             } else {
-				alert('비밀번호가 수정되었습니다.');
-				location.href = 'update';
+				Swal.fire({
+					title: '비밀번호 수정',
+					text: '비밀번호가 수정되었습니다.',
+					icon: 'success',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				}).then(result => {
+					if (result.isConfirmed) location.href = 'update';
+				});
             }
         },
         error: function(xhr, status, error) {
@@ -42,8 +54,13 @@ $(function() {
 		const pw = $('#pw').val();
         const pw2 = $('#pw2').val();
 		if (pw !== pw2) {
-			alert('비밀번호를 변경할 수 없습니다.');
-			return;
+			Swal.fire({
+				title: '오류',
+				text: '비밀번호를 변경할 수 없습니다.',
+				icon: 'error',
+				confirmButtonColor: '#4faaff',
+				confirmButtonText: '확인'
+			});
 		} else pwUpdate();
 	});
 });

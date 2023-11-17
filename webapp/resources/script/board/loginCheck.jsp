@@ -2,7 +2,13 @@
     pageEncoding="UTF-8"%>
 <script>
 	if ('${id}' === '') {
-		alert('로그인이 필요한 서비스입니다.');
-		location.href = "../member/login";
+		Swal.fire({
+			text: '로그인이 필요한 서비스입니다.',
+			icon: 'info',
+			confirmButtonColor: '#4faaff',
+			confirmButtonText: '확인'
+		}).then(result => {
+			if (result.isConfirmed) location.href = "../member/login";
+		});
 	}
 </script>

@@ -22,6 +22,7 @@
 							<option value="nickname">별명</option>
 							<option value="title">제목</option>
 							<option value="content">내용</option>
+							<option value="rcontent">댓글</option>
 						</select>
 					</div>
 					<div class="col-lg-3 col-sm-4">

@@ -155,6 +155,52 @@ public class BoardControllerAjax {
 		return map;
 	}
 	
+	@PostMapping("boardListReply")
+	public Map<String, Object> boardListReply(int page, BoardDTO dto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("page", (page-1)*10);
+		if (dto.getContent() != null) map.put("content", dto.getContent());
+		else map.put("content", "");
+		
+		map.put("province", dto.getProvince());
+		map.put("city", dto.getCity());
+		map.put("district", dto.getDistrict());
+		
+		List<BoardDTO> list = service.getboardListReply(map);
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		if (list.size() != 0) result.put("rs", list);
+		else result.put("rs", 0);
+		
+		return result;
+	}
+	
+	@PostMapping("pagingBoardReply")
+	public Map<String, Object> pagingBoardReply(int page, BoardDTO dto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		int pageNum = page;
+		int listNum = 10;
+		int blockNum = 10;
+		
+		if (dto.getContent() == null) dto.setContent("");
+		
+		int totalCount = service.getBoardCountReply(dto);
+		
+		PagingDTO paging = new PagingDTO(totalCount, pageNum, listNum, blockNum);
+		paging.setPaging();
+		
+		map.put("pageNum", paging.getPageNum());
+		map.put("startPage", paging.getStartPage());
+		map.put("endPage", paging.getEndPage());
+		map.put("isPrev", paging.isPrev());
+		map.put("isNext", paging.isNext());
+		map.put("isBPrev", paging.isBPrev());
+		map.put("isBNext", paging.isBNext());
+		
+		return map;
+	}
+	
 	@PostMapping("getBoard")
 	public Map<String, Object> getBoard(BoardDTO dto) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -236,10 +282,7 @@ public class BoardControllerAjax {
 		paging.setPaging();
 		
 		map.put("totalCount", paging.getTotalCount());
-		map.put("listNum", paging.getListNum());
-		map.put("blockNum", paging.getBlockNum());
 		map.put("pageNum", paging.getPageNum());
-		map.put("totalPage", paging.getTotalPage());
 		map.put("startPage", paging.getStartPage());
 		map.put("endPage", paging.getEndPage());
 		map.put("isPrev", paging.isPrev());

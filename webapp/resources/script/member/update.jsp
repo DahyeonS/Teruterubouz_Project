@@ -35,9 +35,18 @@
     };
 
     function deleteCheck() {
-        const check = confirm('회원을 탈퇴할까요?');
-        if (check) location.href = 'delete';
-        else return;
+        Swal.fire({
+                text: '회원을 탈퇴할까요?',
+                icon: 'question',
+                showDenyButton: true,
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '예',
+                denyButtonText: '아니오',
+                denyButtonColor: '#ff4f4f'
+            }).then(result => {
+                if (result.isConfirmed) location.href = 'delete';
+                else return;
+            });
     }
 
     function update() {
@@ -51,11 +60,23 @@
             dataType: 'json',
             success: function(data) {
                 if(data['rs'] === 0) {
-                    alert('죄송합니다. 다시 시도해주세요.');
-                    return;
+                    Swal.fire({
+                        title: '오류',
+                        text: '죄송합니다. 다시 시도해주세요.',
+                        icon: 'error',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    });
                 } else {
-                    alert('회원정보가 수정되었습니다.');
-                    location.reload();
+                    Swal.fire({
+                        title: '회원정보 수정',
+                        text: '회원정보가 수정되었습니다.',
+                        icon: 'success',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    }).then(result => {
+                        if (result.isConfirmed) location.reload();
+                    });
                 }
             },
             error: function(xhr, status, error) {
@@ -82,20 +103,33 @@
         });
         
         $('#submit').click(function() {
-            const input = confirm("회원정보를 수정하겠습니까?");
-            if (input) update();
-            else return;
+            Swal.fire({
+                title: '회원정보 수정',
+                text: '회원정보를 수정하겠습니까?',
+                icon: 'question',
+                showDenyButton: true,
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '예',
+                denyButtonText: '아니오',
+                denyButtonColor: '#ff4f4f'
+            }).then(result => {
+                if (result.isConfirmed) update();
+                else return;
+            });
         });
 
         $('#nickcheck').click(function() {
             event.preventDefault();
             const nickname = $('#nickname').val();
             if(nickname === '') {
-                alert('닉네임을 입력해주세요.');
-                $('#nickname').focus();
-                return;
-            }
-            nickCheck(nickname);
+                Swal.fire({
+                    text: '별명을 입력해주세요.',
+                    icon: 'info',
+                    confirmButtonColor: '#4faaff',
+                    confirmButtonText: '확인',
+                    script: $('#nickname').focus()
+                });
+            } else nickCheck(nickname);
         });
     });
 </script>

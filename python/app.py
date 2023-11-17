@@ -57,6 +57,14 @@ def gwangju():
 def jeju():
     return weather_info.weather('11G00201')
 
+@app.route('/chuncheon') # 춘천
+def chuncheon():
+    return weather_info.weather('11D10301')
+
+@app.route('/gangneung') # 강릉
+def gangneung():
+    return weather_info.weather('11D20501')
+
 @app.route('/temp') # 월별 기온 통계
 def temp_info():
     return temperature.temp_info()

@@ -30,10 +30,22 @@
             data: params,
             success: function(data) {
                 if (data['rs'] !== 0) {
-                    alert('게시글이 작성되었습니다.');
-                    location.href = 'list'
+                    Swal.fire({
+						text: '게시글이 작성되었습니다.',
+						icon: 'success',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					}).then(result => {
+						if (result.isConfirmed) location.href = 'list'
+					});
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+                    Swal.fire({
+						title: '오류',
+						text: '죄송합니다. 다시 시도해주세요.',
+						icon: 'error',
+						confirmButtonColor: '#4faaff',
+						confirmButtonText: '확인'
+					});
                     return;
                 }
             },
@@ -54,10 +66,22 @@
             data: params,
             success: function(data) {
                 if (data['rs'] !== 0) {
-                    alert('게시글이 수정되었습니다.');
-                    location.href = 'view?num=${param.update}';
+                    Swal.fire({
+                        text: '게시글이 수정되었습니다.',
+                        icon: 'success',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    }).then(result => {
+                        if (result.isConfirmed) location.href = 'view?num=${param.update}'
+                    });
                 } else {
-                    alert('죄송합니다. 다시 시도해주세요.');
+                    Swal.fire({
+                        title: '오류',
+                        text: '죄송합니다. 다시 시도해주세요.',
+                        icon: 'error',
+                        confirmButtonColor: '#4faaff',
+                        confirmButtonText: '확인'
+                    });
                     return;
                 }
             },
@@ -82,10 +106,20 @@
         
         $('#submit').click(function() {
             if ($('#title').val() === '') {
-                alert('제목을 작성해주세요.');
+                Swal.fire({
+					text: '제목을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             } else if ($('#content').val() === '') {
-                alert('내용을 작성해주세요.');
+                Swal.fire({
+					text: '내용을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             } else write();
         });
@@ -96,10 +130,20 @@
         
         $('#update').click(function() {
             if ($('#title').val() === '') {
-                alert('제목을 작성해주세요.');
+                Swal.fire({
+					text: '제목을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             } else if ($('#content').val() === '') {
-                alert('내용을 작성해주세요.');
+                Swal.fire({
+					text: '내용을 작성해주세요.',
+					icon: 'info',
+					confirmButtonColor: '#4faaff',
+					confirmButtonText: '확인'
+				});
                 return;
             } else update(${param.update});
         });

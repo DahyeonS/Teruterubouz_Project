@@ -29,7 +29,8 @@
             </div>
             <section id="replies" class="mt-5">
                 <div class="py-3"></div>
-                <div id="replylist${param.num}" class="row g-1 align-items-center border border-info d-flex justify-content-center text-center px-2 py-3 mt-5 bg-white rounded">
+                <h5 id="count" class="fw-bold py-3 mt-5"></h5>
+                <div id="replylist${param.num}" class="row g-1 align-items-center border border-info d-flex justify-content-center text-center px-2 py-3 bg-white rounded">
                 </div>
             </section>
             <div class="py-2"></div>
@@ -46,13 +47,12 @@
             <td><input type="button" class="btn btn-info text-white" value="댓글 작성" id="rwrite" disabled="disabled"></td>
             </tr>
             </c:if>
-            <tr>
             </table>
             <input type="button" class="btn btn-info text-white" value="목록보기" id="list">
             <input type="button" class="btn btn-info text-white mx-2" value="글쓰기" id="write">
             <div id="control" class="mb-5">
             </div>
-        </div>
+        </main>
         <%@include file="../footer.jsp"%>
     </body>
 </html>
