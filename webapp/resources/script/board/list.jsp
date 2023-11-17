@@ -51,24 +51,28 @@
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of gyeonggi) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '강원도') {
             $('#citydiv').show();
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of gangwon) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '충청북도') {
             $('#citydiv').show();
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of nchungcheong) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '충청남도') {
             $('#citydiv').show();
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of schungcheong) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '대전') {
             $('#citydiv').hide();
@@ -86,12 +90,14 @@
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of njeolla) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '전라남도') {
             $('#citydiv').show();
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of sjeolla) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '광주') {
             $('#citydiv').hide();
@@ -104,12 +110,14 @@
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of ngyeongsang) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '경상남도') {
             $('#citydiv').show();
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of sgyeongsang) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else if (province == '대구') {
             $('#citydiv').hide();
@@ -134,9 +142,12 @@
             $('#city').empty();
             $('#city').append(fn_option('선택', '선택'));
             for (c of jeju) $('#city').append(fn_option(c, c));
+            $('#district').empty();
             $('#district').hide();
         } else {
+            $('#city').empty();
             $('#citydiv').hide();
+            $('#district').empty();
             $('#district').hide();
         }
     }
@@ -300,6 +311,7 @@
         
         if (rcontent === undefined) {
             const params = {page, id, nickname, title, content, province, city, district};
+            console.log(params);
             $.ajax({
                 type: 'POST',
                 url: '../boardApi/boardList',
