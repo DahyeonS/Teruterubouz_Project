@@ -14,6 +14,7 @@
 
 ### about
 #### *about.jsp*
+사이트의 정보를 설명하는 곳입니다.
 
 ### weather
 #### *weather.jsp*
