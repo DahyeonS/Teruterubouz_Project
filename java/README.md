@@ -40,7 +40,7 @@ status의 작업을 처리하는 곳
 StatusService의 자식 클래스
 
 ## member
-**회원 관리**
+**회원 관리 시스템을 담당합니다.**
 
 ### *MemberController.java*
 member 폴더의 서블릿을 관리
@@ -58,7 +58,7 @@ member의 작업을 처리하는 곳
 MemberService의 자식 클래스
 
 ## board
-**커뮤니티 게시판**
+**커뮤니티 게시판의 시스템을 담당합니다.**
 
 ### *BoardController.java*
 board 폴더의 서블릿을 관리
@@ -76,7 +76,7 @@ board의 작업을 처리하는 곳
 BoardService의 자식 클래스
 
 ## notice
-**공지 게시판**
+**공지 게시판의 시스템을 담당합니다.**
 
 ### *NoticeController.java*
 notice 폴더의 서블릿을 관리
