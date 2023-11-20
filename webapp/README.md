@@ -33,28 +33,45 @@
 ### member
 *회원 관리*
 
+#### *join.jsp*
+
+#### *login.jsp*
+
+#### *pwCheck.jsp*
+
+#### *update.jsp*
+
+#### *pwUpdate.jsp*
+
+#### *delete.jsp*
+
+#### *boardList.jsp*
+
+#### *replyList.jsp*
+
+
 ### board
 *커뮤니티 게시판*
 
-#### list.jsp
+#### *list.jsp*
 커뮤니티 게시판의 목록을 보여주는 페이지입니다.
 
-#### view.jsp
+#### *view.jsp*
 커뮤니티 게시판의 게시글을 보여주는 페이지입니다.
 
-#### write.jsp
+#### *write.jsp*
 커뮤니티 게시판의 게시글 작성 페이지입니다.
 
 ### notice
 *공지 게시판*
 
-#### list.jsp
+#### *list.jsp*
 공지 게시판의 목록을 보여주는 페이지입니다.
 
-#### view.jsp
+#### *view.jsp*
 공지 게시판의 게시글을 보여주는 페이지입니다.
 
-#### write.jsp
+#### *write.jsp*
 공지 게시판의 게시글 작성 페이지입니다.
 
 ### goods
