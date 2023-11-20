@@ -41,6 +41,21 @@ StatusService의 자식 클래스
 
 ## member
 
+### *MemberController.java*
+Member 폴더의 서블릿을 관리
+
+### *MemberControllerAjax.java*
+Member 폴더의 AJAX 작업을 관리
+
+### *MemberDTO.java*
+회원 데이터를 저장하는 곳
+
+### *MemberService.java*
+Member의 작업을 처리하는 곳
+
+#### *MemberServiceImpl.java*
+MemberService의 자식 클래스
+
 ## board
 
 ## notice
