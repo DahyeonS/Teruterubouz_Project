@@ -40,6 +40,7 @@ Status의 작업을 처리하는 곳
 StatusService의 자식 클래스
 
 ## member
+**회원 관리**
 
 ### *MemberController.java*
 Member 폴더의 서블릿을 관리
@@ -57,5 +58,37 @@ Member의 작업을 처리하는 곳
 MemberService의 자식 클래스
 
 ## board
+**커뮤니티 게시판**
+
+### *BoardController.java*
+Board 폴더의 서블릿을 관리
+
+### *BoardControllerAjax.java*
+Board 폴더의 AJAX 작업을 관리
+
+### *BoardDTO.java*
+회원 데이터를 저장하는 곳
+
+### *BoardService.java*
+Board의 작업을 처리하는 곳
+
+#### *BoardServiceImpl.java*
+BoardService의 자식 클래스
 
 ## notice
+**공지 게시판**
+
+### *MemberController.java*
+Member 폴더의 서블릿을 관리
+
+### *MemberControllerAjax.java*
+Member 폴더의 AJAX 작업을 관리
+
+### *MemberDTO.java*
+회원 데이터를 저장하는 곳
+
+### *MemberService.java*
+Member의 작업을 처리하는 곳
+
+#### *MemberServiceImpl.java*
+MemberService의 자식 클래스
