@@ -17,6 +17,7 @@
 
 ### weather
 #### *weather.jsp*
+지역별 일기 예보를 보여주는 페이지입니다.
 
 ### status
 #### *status.jsp*
@@ -30,5 +31,7 @@
 
 ### goods
 #### *goods.jsp*
+굿즈 목록을 보여주는 페이지입니다.
 
 #### *product.jsp*
+굿즈의 상세 페이지입니다.
