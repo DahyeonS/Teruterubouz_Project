@@ -31,7 +31,7 @@ notice 폴더의 Mapper 파일
 status 폴더의 서블릿을 관리
 
 ### *StatusDTO.java*
-날시 데이터를 저장하는 곳
+날씨 데이터를 저장하는 곳
 
 ### *StatusService.java*
 status의 작업을 처리하는 곳
@@ -67,7 +67,13 @@ board 폴더의 서블릿을 관리
 board 폴더의 AJAX 작업을 관리
 
 ### *BoardDTO.java*
-회원 데이터를 저장하는 곳
+게시판 데이터를 저장하는 곳
+
+### *PagingDTO.java*
+페이징 처리를 위한 변수를 저장하는 곳
+
+### *CommentDTO.java*
+댓글 데이터를 저장하는 곳
 
 ### *BoardService.java*
 board의 작업을 처리하는 곳
