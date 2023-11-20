@@ -78,17 +78,14 @@ BoardService의 자식 클래스
 ## notice
 **공지 게시판**
 
-### *MemberController.java*
-Member 폴더의 서블릿을 관리
+### *NoticeController.java*
+Notice 폴더의 서블릿을 관리
 
-### *MemberControllerAjax.java*
-Member 폴더의 AJAX 작업을 관리
+### *NoticeControllerAjax.java*
+Notice 폴더의 AJAX 작업을 관리
 
-### *MemberDTO.java*
-회원 데이터를 저장하는 곳
+### *NoticeService.java*
+Notice의 작업을 처리하는 곳
 
-### *MemberService.java*
-Member의 작업을 처리하는 곳
-
-#### *MemberServiceImpl.java*
-MemberService의 자식 클래스
+#### *NoticeServiceImpl.java*
+NoticeService의 자식 클래스
