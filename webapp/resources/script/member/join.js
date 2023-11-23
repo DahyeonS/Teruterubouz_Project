@@ -245,6 +245,13 @@ $(function() {
                 confirmButtonText: '확인',
                 script: $('#nickname').focus()
             });
+        } else if ($('#idsuccess').css('display') == 'none') {
+            Swal.fire({
+                text: 'ID 중복체크를 완료해주세요.',
+                icon: 'info',
+                confirmButtonColor: '#4faaff',
+                confirmButtonText: '확인',
+            });
         } else {
             const params = {id, pw, nickname};
             join(params);
