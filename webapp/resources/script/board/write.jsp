@@ -259,7 +259,7 @@
                     for (let i=0; i<fileId.split(', ').length; i++) {
                         const newFileId = encodeURIComponent(fileId.split(', ')[i]);
                         filelist += '<img id="image' + i + '" src="../resources/uploads/s_' + newFileId + '" alt="' + fileName.split(',')[i] + '"/>'
-                        + '<button class="btn-close mx-3" onclick="imgDeleteConfirm(' + num + ', \'' + newFileId + '\', \'' + fileName.split(',')[i] + '\');"></button>'
+                        + '<input type="button" class="btn-close mx-3" onclick="imgDeleteConfirm(' + num + ', \'' + newFileId + '\', \'' + fileName.split(',')[i] + '\');"></input>'
                     }
                     $('#filelist').show();
                 }
