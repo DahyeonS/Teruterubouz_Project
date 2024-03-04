@@ -15,11 +15,17 @@
 - Spring
 - Flask
 
-## Database
-- MySQL
+## OS
+- Windows 10, 11
 
 ## 서버
 - Apache Tomcat
+
+## 가상환경
+- anaconda3
+
+## Database
+- MySQL
 
 ## 사용 패키지
 - MyBatis
@@ -29,3 +35,7 @@
 - Bootstarp
 - D3.js
 - AJAX
+
+## IDC 및 소프트웨어
+- Eclipse
+- Spyder
