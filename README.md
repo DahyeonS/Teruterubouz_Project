@@ -18,7 +18,7 @@
 ## Database
 - MySQL
 
-## Server
+## 서버
 - Apache Tomcat
 
 ## 사용 패키지
