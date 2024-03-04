@@ -1,6 +1,31 @@
 # Teruterubouz_Project
 **맑음돌이 프로젝트**
 
-현재 수강 중인 강의의 중간 프로젝트입니다.
+자바 웹개발 & 데이터 분석 강의의 중간 프로젝트입니다.
 
 [수강 노트 링크](https://github.com/DahyeonS/Java_Python_Lecture)
+
+## 사용 언어
+- Java
+- Python
+- HTML
+- CSS
+
+## 프레임워크
+- Spring
+- Flask
+
+## Database
+- MySQL
+
+## Server
+- Apache Tomcat
+
+## 사용 패키지
+- MyBatis
+- pandas
+- scikit-learn
+- jQuery
+- Bootstarp
+- D3.js
+- AJAX
