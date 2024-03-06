@@ -36,7 +36,7 @@
 - D3.js
 - AJAX
 
-## IDC 및 소프트웨어
+## IDE 및 소프트웨어
 - Eclipse
 - Spyder
 - VSCode
