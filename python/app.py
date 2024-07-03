@@ -89,4 +89,5 @@ def pre_rf():
 def pre_svm():
     return rain_svm.result()
 
-app.run(host='127.0.0.1',debug=True, port=5050)
+if __name__ == "__main__":
+    app.run(host='127.0.0.1',debug=True, port=5050)
