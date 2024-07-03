@@ -7,9 +7,9 @@ import json
 data = pd.read_csv("./기상청데이터_기온.csv").iloc[:, [2, 3, 4, 5, 7, 8]]
 
 def info(): 
-    avg_temp = round(data.groupby(data['일시'].str[5:7]).mean()['평균기온(℃)'], 1)
-    max_temp = data.groupby(data['일시'].str[5:7]).max()['평균최고기온(℃)']
-    min_temp = data.groupby(data['일시'].str[5:7]).min()['평균최저기온(℃)']
+    avg_temp = round(data.groupby(data['일시'].str[5:7]).mean(numeric_only=True)['평균기온(℃)'], 1)
+    max_temp = data.groupby(data['일시'].str[5:7]).max(numeric_only=True)['평균최고기온(℃)']
+    min_temp = data.groupby(data['일시'].str[5:7]).min(numeric_only=True)['평균최저기온(℃)']
     
     result = pd.DataFrame({'평균기온':avg_temp, '평균최고기온':max_temp, '평균최저기온':min_temp})
     return result
