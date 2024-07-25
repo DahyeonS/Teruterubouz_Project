@@ -7,17 +7,16 @@ import json
 
 warnings.filterwarnings('ignore')
 
+with open('../secrets.json') as f:
+    secrets = json.loads(f.read())
+
 col_name = ['REG_ID', 'TM_FC', 'TM_EF', 'MOD', 'NE', 'STN', 'C', 'MAN_ID', 'MAN_FC', 'W1', 'T', 'W2', 'TA', 'ST', 'SKY', 'PREP']
 
 def weather_crawling(reg) :
     url = 'https://apihub.kma.go.kr/api/typ01/url/fct_afs_dl.php'
-    key = 'KAZL23c3Q2yGS9t3N-Nskw'
-    params = {'reg': reg,
-             'tmfc1': '',
-             'tmfc2': '',
-             'disp': 0,
-             'help': 0,
-             'authKey': key}
+    key = secrets['auth_key']
+    params = {'reg': reg, # 지역 코드
+             'authKey': key} # 인증키
     response = requests.get(url, params=params, verify=False)
     
     text = response.text
