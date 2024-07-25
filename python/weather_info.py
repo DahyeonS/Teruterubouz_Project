@@ -32,10 +32,10 @@ def weather(reg):
     
     for i in range(df.shape[0]) :
         item = {}
-        item['date'] =  df.iloc[i, 2]
-        item['prob'] = df.iloc[i, -3]
-        item['sky'] = df.iloc[i, -2]
-        item['rain'] = df.iloc[i, -1]
+        item['date'] =  df.iloc[i, 2] # 날짜
+        item['prob'] = df.iloc[i, -3] # 강수 확률
+        item['sky'] = df.iloc[i, -2] # 구름양
+        item['rain'] = df.iloc[i, -1] # 비 유무
         data.append(item)
         result = json.dumps(data)
         
